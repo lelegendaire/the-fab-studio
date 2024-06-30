@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../img/circle-scatter-haikei.png);
+  backdrop-filter: blur(100px);
+}
+/* CodePen Card */
+.body_cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.cards {
+  width: 20em;
+  height: 17em;
+  background-color: #252525;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.cards .img_background {
+  position: relative;
+  top: -75px;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  right: 20px;
+  width: 17em;
+  border-radius: 7px;
+  height: 9em;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+}
+.cards .img_background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 7px;
+}
+.cards .nb_view {
+  color: #fff;
+  display: flex;
+  justify-content: end;
+  margin-right: 10px;
+  position: relative;
+  align-items: center;
+  bottom: 122px;
+}
+.cards .des_play {
+  display: flex;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  top: -100px;
+  height: 200px;
+}
+.des_play::-webkit-scrollbar {
+  width: 6px; /* Largeur de la barre de défilement */
+}
+
+.des_play::-webkit-scrollbar-track {
+  background-color: transparent; /* Fond transparent */
+}
+
+.des_play::-webkit-scrollbar-thumb {
+  background-color: rgba(
+    128,
+    128,
+    128,
+    0.3
+  ); /* Couleur de la barre de défilement */
+  border-radius: 3px; /* Coins arrondis */
+}
+.cards .ui_play {
+  display: flex;
+  justify-content: center;
+  height: 130px;
+  align-items: end;
+  transform: translateX(125px);
+  color: #fff;
+  position: relative;
+  font-size: 30px;
+  top: 80px;
+  width: 0;
+  flex-direction: column;
+}
+.cards .btn_play {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cards .progress-area {
+  height: 6px;
+  width: 100%;
+  border-radius: 50px;
+  background: #f0f0f0;
+  cursor: pointer;
+  position: relative;
+  top: -10px;
+  font-size: 10px;
+}
+.cards .progress-area .progress-bar {
+  height: inherit;
+  width: 0%;
+  position: relative;
+  border-radius: inherit;
+  background-color: red;
+}
+.cards .progress-area .song-timer {
+  margin-top: 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cards .ui_play i[id="play"] {
+  font-size: 35px;
+}
+.cards .ui_play .material-icons[id="translate"] {
+  position: relative;
+
+  right: 70px;
+  z-index: 11;
+}
+.cards .description {
+  width: 100%;
+  position: relative;
+  top: -10px;
+  color: #fff;
+  padding: 10px;
+  position: relative;
+
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.cards .ui_play .name_chap {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -90px;
+}
+.list_fleche {
+  color: #fff;
+  position: relative;
+  top: -125px;
+  display: flex;
+  justify-content: end;
+  margin-right: 20px;
+  font-size: 25px;
+}
+.list_fleche i {
+  transform: rotate(0);
+  transition: all 0.3s ease-in-out;
+}
+.list_audio {
+  background-color: #2020208c;
+  backdrop-filter: blur(50px);
+
+  top: -6px;
+  z-index: -1;
+
+  height: 200px;
+  width: 20em;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  transform: translateY(-200px);
+  transition: all 0.3s ease-in-out;
+}
+.list_audio_content {
+  /* Ajustez la hauteur pour adapter au contenu des cartes audio */
+  max-height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  /* Coins arrondis */
+}
+.list_audio_content::-webkit-scrollbar {
+  width: 6px; /* Largeur de la barre de défilement */
+}
+
+.list_audio_content::-webkit-scrollbar-track {
+  background-color: transparent; /* Fond transparent */
+}
+
+.list_audio_content::-webkit-scrollbar-thumb {
+  background-color: rgba(
+    128,
+    128,
+    128,
+    0.3
+  ); /* Couleur de la barre de défilement */
+  border-radius: 3px; /* Coins arrondis */
+}
+
+.audio {
+  margin: 10px;
+
+  display: flex;
+
+  align-items: center;
+  background-color: #41414154;
+  backdrop-filter: blur(50px);
+  height: 70px;
+  width: 19em;
+  border-radius: 10px;
+}
+.audio:hover {
+  background-color: #86868654;
+}
+.audio img {
+  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
+  transform: translate(0);
+  transition: all 0.3s ease-in-out;
+}
+.audio p {
+  margin-left: 10px;
+}
+.audio .play {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: 10px;
+}

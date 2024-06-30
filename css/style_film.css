@@ -1,0 +1,839 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1b1717;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo_text {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 30px;
+
+  white-space: nowrap;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.top_film {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url(../img/poster_top_film.jpg);
+  background-size: cover;
+}
+.top_film::before {
+  content: "";
+  position: absolute;
+  bottom: -40vh;
+  width: 100%;
+  height: 90%;
+  background: linear-gradient(0deg, #1b1717 50%, transparent);
+  transition: 0.5s;
+}
+.top_film_card {
+  display: flex;
+  justify-content: start;
+}
+.card[id="top_film"] {
+  width: 1020px;
+  margin-left: 50px;
+
+  background-color: transparent;
+  box-shadow: none;
+  color: #fff;
+}
+
+.card[id="top_film"] .btn_end {
+  display: flex;
+  justify-content: start;
+}
+.cat {
+  display: flex;
+  align-items: center;
+}
+.category {
+  display: flex;
+  border-radius: 50px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+
+  background-color: #6a9eff3b;
+  backdrop-filter: blur(5px);
+}
+.category::-webkit-scrollbar {
+  display: flex;
+}
+.category:hover::-webkit-scrollbar {
+  width: 6px; /* Largeur de la barre de défilement */
+}
+
+.category:hover::-webkit-scrollbar-track {
+  background-color: transparent; /* Fond transparent */
+}
+
+.category:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(
+    128,
+    128,
+    128,
+    0.3
+  ); /* Couleur de la barre de défilement */
+  border-radius: 3px; /* Coins arrondis */
+}
+.category .action,
+.animation,
+.science_fiction,
+.adventure,
+.drama {
+  display: flex;
+  margin-left: auto;
+
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+
+  margin: 10px;
+  border-radius: 15px;
+}
+
+.input-wrapper {
+  display: flex;
+
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+}
+
+.input {
+  border-style: none;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  outline: none;
+  border-radius: 50%;
+  transition: 0.5s ease-in-out;
+  background: transparent;
+
+  padding-right: 40px;
+  color: #fff;
+}
+
+.input::placeholder,
+.input {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 17px;
+}
+
+.input::placeholder {
+  color: #8f8f8f;
+}
+
+header .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0px;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border-style: none;
+  border-radius: 50%;
+  pointer-events: painted;
+  background-color: transparent;
+  transition: 0.2s linear;
+}
+
+.icon:focus ~ .input,
+.input:focus {
+  box-shadow: none;
+  width: 280px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 3px solid #7e4fd4;
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+.accounts {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  font-size: 25px;
+  align-items: center;
+  border: 2px solid #fff;
+  justify-content: center;
+  margin-right: 100px;
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+.text_h1 {
+  margin-left: 70px;
+  margin-bottom: 30px;
+  color: #fff;
+  z-index: 3;
+}
+.scroll_gallery {
+  transition: 0.5s ease-in-out;
+}
+.gallery_film {
+  display: flex;
+  gap: 20px;
+  z-index: 3;
+  padding-left: 70px;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  user-select: none; /* -- Prevent image highlighting -- */
+}
+.gallery_film::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery_film::-webkit-scrollbar {
+  height: 6px; /* Largeur de la barre de défilement */
+}
+
+.gallery_film::-webkit-scrollbar-track {
+  background-color: transparent; /* Fond transparent */
+}
+
+.gallery_film::-webkit-scrollbar-thumb {
+  background-color: rgba(
+    128,
+    128,
+    128,
+    0.3
+  ); /* Couleur de la barre de défilement */
+  border-radius: 3px; /* Coins arrondis */
+}
+.film {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  width: 320px;
+  height: 450px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+.card .poster {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.card .poster::before {
+  content: "";
+  position: absolute;
+  bottom: -180px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #fff 50%, transparent);
+  transition: 0.5s;
+  z-index: 2;
+}
+.card .poster[id="inception"]::before {
+  content: "";
+  position: absolute;
+  bottom: -180px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #2f536a 50%, transparent);
+  transition: 0.5s;
+  z-index: 2;
+}
+.card .poster[id="avengers3"]::before {
+  content: "";
+  position: absolute;
+  bottom: -180px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #130f19 50%, transparent);
+  transition: 0.5s;
+  z-index: 2;
+}
+.card .poster[id="avengers4"]::before {
+  content: "";
+  position: absolute;
+  bottom: -180px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #1a1957 50%, transparent);
+  transition: 0.5s;
+  z-index: 2;
+}
+.card .poster[id="tu_ne_tueras_point"]::before {
+  content: "";
+  position: absolute;
+  bottom: -180px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #262212 50%, transparent);
+  transition: 0.5s;
+  z-index: 2;
+}
+.card .poster[id="alita"]::before {
+  content: "";
+  position: absolute;
+  bottom: -180px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #074d6f 50%, transparent);
+  transition: 0.5s;
+  z-index: 2;
+}
+.card .poster[id="Le_man_66"]::before {
+  content: "";
+  position: absolute;
+  bottom: -180px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #85969e 50%, transparent);
+  transition: 0.5s;
+  z-index: 2;
+}
+.card .poster[id="rain_man"]::before {
+  content: "";
+  position: absolute;
+  bottom: -180px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #4f4f44 50%, transparent);
+  transition: 0.5s;
+  z-index: 2;
+}
+.card:hover .poster::before {
+  bottom: 0px;
+}
+
+.card .poster img {
+  width: 100%;
+  height: 70vmin;
+  transition: 0.5s;
+  object-fit: cover;
+  object-position: 100% center;
+}
+.card:hover .poster img {
+  transform: translateY(-50px);
+  filter: blur(5px);
+}
+
+.card .details {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -313px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+.card[id="top_film"] .details[id="top_film"] {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: 0px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+.card:hover .details {
+  bottom: 0px;
+}
+.card .details[id="astérix"] {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -390px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+.card .details[id="inception"] {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -370px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+.card .details[id="avengers3"] {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -310px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+.card .details[id="avengers4"] {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -330px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+.card .details[id="interstellar"] {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -332px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+.card .details[id="tu ne tueras point"] {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -413px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+.card .details[id="rain man"] {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -484px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+.card .details[id="le man 66"] {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -371px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+.card .details[id="alita : battle angel"] {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -485px;
+  left: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+
+.card:hover .details[id="astérix"] {
+  bottom: 0px;
+}
+.card:hover .details[id="inception"] {
+  bottom: 0px;
+}
+.card:hover .details[id="avengers3"] {
+  bottom: 0px;
+}
+.card:hover .details {
+  bottom: 0px;
+}
+.card .details .logo {
+  max-width: 100px;
+}
+.card .details h3 {
+  font-size: 0.8em;
+  color: #000;
+}
+.card .details[id="top_film"] h3 {
+  font-size: 0.8em;
+  color: #fff;
+}
+.card .details[id="inception"] h3 {
+  font-size: 0.8em;
+  color: #fff;
+}
+.card .details[id="inception"] h1 {
+  color: #fff;
+}
+.card .details[id="avengers3"] h3 {
+  font-size: 0.8em;
+  color: #fff;
+}
+.card .details[id="avengers3"] h1 {
+  color: #fff;
+}
+.card[id="blanc"] .details[id="avengers4"] h3 {
+  font-size: 0.8em;
+  color: #fff;
+}
+.card[id="blanc"] .details h3 {
+  font-size: 0.8em;
+  color: #fff;
+}
+.card .details[id="avengers4"] h1 {
+  color: #fff;
+}
+.card[id="blanc"] .details h1 {
+  color: #fff;
+}
+.card .details .rating {
+  position: relative;
+  padding: 5px 0;
+}
+.card .details .rating .bx-star {
+  color: #f7f406;
+  font-size: 1em;
+}
+.card .details .rating .bxs-star {
+  color: #f7f406;
+  font-size: 1em;
+}
+.card .details .rating span {
+  color: #000;
+  margin-left: 5px;
+}
+.card .details[id="top_film"] .rating span {
+  color: #fff;
+  margin-left: 5px;
+}
+.card .details[id="inception"] .rating span {
+  color: #fff;
+  margin-left: 5px;
+}
+.card .details[id="avengers3"] .rating span {
+  color: #fff;
+  margin-left: 5px;
+}
+.card .details[id="avengers4"] .rating span {
+  color: #fff;
+  margin-left: 5px;
+}
+.card[id="blanc"] .details .rating span {
+  color: #fff;
+  margin-left: 5px;
+}
+.card .details .tags {
+  position: relative;
+  margin-top: 5px;
+}
+.card .details .tags span {
+  color: #000;
+  padding: 2px 5px;
+  background: #03a8f5;
+  border-radius: 4px;
+}
+.card .details[id="top_film"] .tags span {
+  color: #fff;
+  padding: 2px 5px;
+  background: #03a8f5;
+  border-radius: 4px;
+}
+.card .details[id="inception"] .tags span {
+  color: #fff;
+  padding: 2px 5px;
+  background: #03a8f5;
+  border-radius: 4px;
+}
+.card .details[id="avengers3"] .tags span {
+  color: #fff;
+  padding: 2px 5px;
+  background: #03a8f5;
+  border-radius: 4px;
+}
+.card .details[id="avengers4"] .tags span {
+  color: #fff;
+  padding: 2px 5px;
+  background: #03a8f5;
+  border-radius: 4px;
+}
+.card[id="blanc"] .details .tags span {
+  color: #fff;
+  padding: 2px 5px;
+  background: #03a8f5;
+  border-radius: 4px;
+}
+.card .details .tags span:nth-child(2) {
+  background: #ff5722;
+}
+.card .details .tags span:nth-child(3) {
+  background: #ffd700;
+}
+.card .details .tags span:nth-child(4) {
+  background: red;
+}
+.card[id="top_film"] .details[id="top_film"] .tags span:nth-child(3) {
+  background: #000;
+}
+.card .details .info {
+  color: #000;
+  margin-top: 20px;
+}
+.card .details[id="inception"] .info {
+  color: #fff;
+  margin-top: 20px;
+}
+.card .details[id="avengers3"] .info {
+  color: #fff;
+  margin-top: 20px;
+}
+.card .details[id="avengers4"] .info {
+  color: #fff;
+  margin-top: 20px;
+}
+.card[id="blanc"] .details .info {
+  color: #fff;
+  margin-top: 20px;
+}
+.card[id="top_film"] .details[id="top_film"] .info {
+  color: #fff;
+  margin-top: 20px;
+  width: 1000px;
+}
+.card .details .cast {
+  position: relative;
+}
+.card .details .cast h4 {
+  color: #000;
+  margin-top: 10px;
+}
+.card .details[id="inception"] .cast h4 {
+  color: #fff;
+  margin-top: 10px;
+}
+.card .details[id="avengers3"] .cast h4 {
+  color: #fff;
+  margin-top: 10px;
+}
+.card .details[id="avengers4"] .cast h4 {
+  color: #fff;
+  margin-top: 10px;
+}
+.card[id="blanc"] .details .cast h4 {
+  color: #fff;
+  margin-top: 10px;
+}
+.card .details .cast ul {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.card .details .cast ul li {
+  list-style: none;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+.card .details[id="inception"] .cast ul li {
+  list-style: none;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.card .details[id="avengers3"] .cast ul li {
+  list-style: none;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.card .details[id="avengers4"] .cast ul li {
+  list-style: none;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.card[id="blanc"] .details .cast ul li {
+  list-style: none;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.card .details .cast ul li img {
+  max-width: 100%;
+}
+.gallery_film button,
+.card[id="top_film"] button {
+  padding: 17px 40px;
+  border-radius: 50px;
+  border: 0;
+  z-index: 5;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+}
+.card[id="top_film"] button {
+  font-size: 30px;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  padding: 17px 17px;
+}
+.card[id="top_film"] button i {
+  margin-left: 3px;
+}
+.gallery_film button:hover,
+.card[id="top_film"] button:hover {
+  letter-spacing: 2px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 51%, 13%);
+  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+}
+
+.gallery_film button:active,
+.card[id="top_film"] button:active {
+  letter-spacing: 2px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 440px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  header .logo_text {
+    white-space: normal;
+  }
+  .gallery_film {
+    padding-left: 0;
+  }
+  .category {
+    width: 100%;
+  }
+  .top_film {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    background-image: url(poster_top_film.jpg);
+    background-size: cover;
+  }
+  .card[id="top_film"] {
+    margin-left: 0px;
+  }
+  .card[id="top_film"] .details[id="top_film"] .info {
+    width: 335px;
+  }
+  .text_h1 {
+    margin-left: 20px;
+  }
+  .gallery_film {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .film {
+    margin-top: 20px;
+  }
+}
+
+.selector {
+  border-radius: 50px;
+  height: 30px;
+
+  background-color: #2d2f3373;
+
+  width: 70px;
+  transform: translateX(-440px);
+  transition: all 0.4s ease-in-out;
+}
+.tabs {
+  font-size: 1.3rem;
+  font-weight: 500;
+
+  display: flex;
+  background-color: #6a9eff3b;
+  backdrop-filter: blur(5px);
+  border-radius: 1000px;
+  box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15),
+    0 6px 12px 0 rgba(24, 94, 224, 0.15);
+  list-style: none;
+  position: relative;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.tab {
+  width: 120px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: inherit;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.tabs .slider {
+  width: 120px;
+  height: 50px;
+  position: absolute;
+  border-radius: inherit;
+  background-color: #2d2f3373;
+  z-index: 0;
+  transition: 0.25s ease;
+}
+
+input[type="radio"]:checked + label {
+  color: hsl(216 81% 49%);
+}
+
+input[id="Action"]:checked ~ .slider {
+  transform: translateX(0);
+}
+input[id="Animation"]:checked ~ .slider {
+  transform: translateX(100%);
+}
+input[id="Sci-fi"]:checked ~ .slider {
+  transform: translateX(200%);
+}
+input[id="Aventure"]:checked ~ .slider {
+  transform: translateX(300%);
+}
+input[id="Drame"]:checked ~ .slider {
+  transform: translateX(400%);
+}

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style_audiobook.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="img/Logo_fab_cvl_studio.png" />
+    <script src="js/audio.js"></script>
+    <!-- <script src="audiobook.js"></script> -->
+
+    <title>Livre audio</title>
+  </head>
+  <body>
+    <div class="body_cards">
+      <div class="cards">
+        <div class="img_background">
+          <img src="img/couverture_livre.jpg" />
+        </div>
+        <div class="nb_view">
+          <span class="nb_view_p" id="nb_view_p">0</span>
+          <i class="bx bx-show-alt"></i>
+        </div>
+        <div class="des_play">
+          <div class="description">
+            <h1>Le Loup Du Destins Entrelacés</h1>
+            <p>
+              Dans une ville jadis tranquille, un trio exceptionnel traverse des
+              épreuves : M. Khyller, avocat victorieux, défend sa réputation
+              face à des procès de plus en plus ardus ; M. Night, policier
+              courageux, démêle un crime insaisissable, et mystérieux ; Athéna,
+              architecte talentueuse, lutte pour un projet crucial à portée
+              mondiale. Leurs chemins se croisent alors qu'ils bravent
+              l'adversité, trouvant force et réconfort dans leur amitié et leur
+              amour.
+            </p>
+          </div>
+          <div class="ui_play">
+            <div class="name_chap">
+              <p>Name</p>
+            </div>
+            <div class="progress-area">
+              <div class="progress-bar">
+                <audio id="main-audio"></audio>
+              </div>
+              <div class="song-timer">
+                <span class="current-time">0:00</span>
+                <span class="max-duration">0:00</span>
+              </div>
+            </div>
+            <div class="btn_play">
+              <span class="material-icons" id="translate"> g_translate </span>
+
+              <span class="material-icons" id="10avant"> replay_10 </span>
+              <i class="bx bx-play-circle" id="play"></i>
+
+              <span class="material-icons" id="10après"> forward_10 </span>
+            </div>
+          </div>
+        </div>
+        <div class="list_fleche">
+          <i class="bx bx-chevron-down"></i>
+        </div>
+      </div>
+      <div class="list_audio">
+        <div class="list_audio_content">
+          <div class="audio chap1">
+            <img class="logo_chap" src="img/chap1.jpg" />
+            <p>Chap 1</p>
+            <div class="play chap1">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap2">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 2</p>
+            <div class="play chap2">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap3">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 3</p>
+            <div class="play chap3">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+
+          <div class="audio chap4">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 4</p>
+            <div class="play chap4">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap5">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 5</p>
+            <div class="play chap5">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap6">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 6</p>
+            <div class="play chap6">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap7">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 7</p>
+            <div class="play chap7">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap8">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 8</p>
+            <div class="play chap8">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap9">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 9</p>
+            <div class="play chap9">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap10">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 10</p>
+            <div class="play chap10">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap11">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 11</p>
+            <div class="play chap11">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap12">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 12</p>
+            <div class="play chap12">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap13">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 13</p>
+            <div class="play chap13">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+          <div class="audio chap14">
+            <img class="logo_chap" src="img/circle-scatter-haikei.png" />
+            <p>Chap 14</p>
+            <div class="play chap14">
+              <i class="bx bx-play"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+        function setCookie(name, value, days) {
+          var expires = "";
+          if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+            expires = "; expires=" + date.toUTCString();
+          }
+          document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // Fonction pour incrémenter le compteur de vues
+        function incrementViews() {
+          var views = getCookie("views");
+          if (views) {
+            views = parseInt(views);
+            setCookie("views", views + 1, 365); // Met à jour le cookie avec le nombre de vues actuel + 1
+          } else {
+            setCookie("views", 1, 365); // Si le cookie n'existe pas, crée un nouveau cookie avec 1 comme valeur initiale
+          }
+        }
+
+        // Appeler la fonction pour incrémenter les vues lors du chargement de la page
+        incrementViews();
+
+        // Fonction pour récupérer le nombre de vues à partir du cookie
+        function getViews() {
+          var views = getCookie("views");
+          return views ? parseInt(views) : 0; // Retourne 0 si le cookie n'existe pas
+        }
+
+        // Exemple d'utilisation
+        var totalViews = getViews();
+        console.log("Nombre total de vues :", totalViews);
+        const nbViewElement = document.getElementById("nb_view_p");
+        nbViewElement.textContent = totalViews;
+      });
+      setTimeout(() => {
+        supp_img();
+        function supp_img() {
+          // Sélectionner tous les divs sur la page
+          const divs = document.querySelectorAll("div");
+
+          // Parcourir les divs pour trouver celui avec le lien spécifique
+          divs.forEach((div) => {
+            // Sélectionner l'élément <a> à l'intérieur du div
+            const a_div = div.querySelector("a");
+
+            // Vérifier si l'élément <a> existe et s'il a le href spécifique
+            if (
+              a_div &&
+              a_div.href ===
+                "https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"
+            ) {
+              // Supprimer l'élément div du DOM
+              div.remove();
+            }
+          });
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
+<!--Chapitre 1: Le commencement
+-->

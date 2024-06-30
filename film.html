@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style_film.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="img/Logo_fab_cvl_studio.png" />
+    <title>Film</title>
+  </head>
+  <body>
+    <div class="top_film">
+      <header>
+        <div class="cat">
+          <div class="tabs">
+            <input type="radio" id="Action" name="tabs" checked />
+            <label class="tab" for="Action">Action</label>
+            <input type="radio" id="Animation" name="tabs" />
+            <label class="tab" for="Animation">Animation</label>
+            <input type="radio" id="Sci-fi" name="tabs" />
+            <label class="tab" for="Sci-fi">Sci-fi</label>
+            <input type="radio" id="Aventure" name="tabs" />
+            <label class="tab" for="Aventure">Aventure</label>
+            <input type="radio" id="Drame" name="tabs" />
+            <label class="tab" for="Drame">Drame</label>
+            <span class="slider"></span>
+          </div>
+        </div>
+        <div class="logo_text">
+          <h1>The Fab Studio Film</h1>
+        </div>
+        <div class="input-wrapper">
+          <button class="icon">
+            <i class="bx bx-search-alt"></i>
+          </button>
+          <input
+            placeholder="Cherchez vos films préférés.."
+            class="input"
+            name="text"
+            type="text"
+            id="searchInput"
+          />
+        </div>
+        <div class="accounts">
+          <i class="bx bx-user"></i>
+        </div>
+      </header>
+      <br />
+      <div class="top_film_card">
+        <div class="card" id="top_film">
+          <div class="details" id="top_film">
+            <img src="img/avatar.webp" class="logo" />
+            <h3>Réalisé par James Cameron</h3>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+              <span>4/5</span>
+            </div>
+            <div class="tags">
+              <span>Sci-fi</span>
+              <span>Action</span>
+              <span>4K</span>
+            </div>
+            <div class="info">
+              <p>
+                Malgré sa paralysie, Jake Sully, ancien marine, est recruté pour
+                participer au Programme Avatar sur Pandora, une planète riche en
+                minerai. Grâce à un avatar, il peut vivre parmi les autochtones
+                Na'vi, dont la culture est menacée par l'exploitation
+                industrielle. Jake se lie avec Neytiri, une Na'vi, et se
+                retrouve pris entre deux mondes : son rôle d'espion et son amour
+                pour Neytiri, ce qui transforme sa perspective sur Pandora et
+                ses enjeux.
+              </p>
+            </div>
+            <br />
+            <div class="btn_end">
+              <button id="btn_film_av" class="Avatar.mp4">
+                <i class="bx bx-play"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="text_h1"><h1>Nos films</h1></div>
+      <div class="scroll_gallery">
+        <div
+          class="gallery_film"
+          id="image-track"
+          data-mouse-down-at="0"
+          data-prev-percentage="0"
+        >
+          <div class="film film_starswars8">
+            <div class="card">
+              <div class="poster">
+                <img
+                  src="https://fr.web.img4.acsta.net/c_310_420/pictures/17/10/10/04/58/2061488.jpg"
+                  class="image"
+                  draggable="false"
+                />
+              </div>
+              <div class="details" id="starswars">
+                <img src="img/logo.png" class="logo" />
+                <h3>Réalisé par Rian Johnson</h3>
+                <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                  <i class="bx bx-star"></i>
+                  <span>3/5</span>
+                </div>
+                <div class="tags">
+                  <span class="category_film">Sci-fi</span>
+                  <span class="category_film">Action</span>
+                </div>
+                <div class="info">
+                  <p>
+                    Les héros du Réveil de la force rejoignent les figures
+                    légendaires de la galaxie dans une aventure épique qui
+                    révèle des secrets ancestraux sur la Force et entraîne de
+                    surprenantes révélations sur le passé…
+                  </p>
+                </div>
+                <div class="cast">
+                  <h4>Cast</h4>
+                  <ul>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/19/12/24/11/33/2976395.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img4.acsta.net/c_162_216/pictures/15/12/17/10/01/125690.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img2.acsta.net/c_162_216/pictures/20/01/03/10/24/4239906.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/19/06/20/12/55/1998268.jpg"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <button id="btn_film" class="Starswars8.mp4">Voir le film</button>
+          </div>
+          <div class="film film_astérix">
+            <div class="card">
+              <div class="poster">
+                <img
+                  src="https://fr.web.img5.acsta.net/c_310_420/pictures/23/12/12/16/56/3491830.jpg"
+                  class="image"
+                  draggable="false"
+                />
+              </div>
+              <div class="details" id="astérix">
+                <h1>Astérix</h1>
+                <h3>Réalisé par Alexandre Astier et Louis Clichy</h3>
+                <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                  <span>4/5</span>
+                </div>
+                <div class="tags">
+                  <span class="category_film">Histoire</span>
+                  <span class="category_film">Animation</span>
+                  <span><i class="bx bx-sun"></i></span>
+                </div>
+                <div class="info">
+                  <p>
+                    Nous sommes en 50 avant Jésus-Christ et Jules César décide
+                    de construire à côté du village un domaine résidentiel
+                    luxueux destiné à des propriétaires romains. : « Le Domaine
+                    des Dieux ». Nos amis gaulois résisteront ils à l’appât du
+                    gain et au confort romain ? Astérix et Obélix vont tout
+                    faire pour contrecarrer les plans de César.
+                  </p>
+                </div>
+                <div class="cast">
+                  <h4>Cast</h4>
+                  <ul>
+                    <li>
+                      <img
+                        src="https://fr.web.img3.acsta.net/c_162_216/pictures/17/07/03/17/11/072640.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/19/10/01/08/46/0119375.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img2.acsta.net/c_162_216/pictures/20/12/21/16/47/5878583.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img2.acsta.net/c_310_420/pictures/19/05/20/14/08/1916823.jpg"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <button id="btn_film_as" class="astérix.mp4">Voir le film</button>
+          </div>
+          <div class="film film_inception">
+            <div class="card">
+              <div class="poster" id="inception">
+                <img
+                  src="https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/18/72/34/14/19476654.jpg"
+                  class="image"
+                  draggable="false"
+                />
+              </div>
+              <div class="details" id="inception">
+                <h1>Inception</h1>
+                <h3>Réalisé par Christopher Nolan</h3>
+                <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                  <span>4/5</span>
+                </div>
+                <div class="tags">
+                  <span class="category_film">Sci-fi</span>
+                  <span class="category_film">Action</span>
+                  <span class="category_film">10/10</span>
+                </div>
+                <div class="info">
+                  <p>
+                    Dom Cobb est un voleur expérimenté – le meilleur qui soit
+                    dans l’art périlleux de l’extraction : sa spécialité
+                    consiste à s’approprier les secrets les plus précieux d’un
+                    individu, enfouis au plus profond de son subconscient,
+                    pendant qu’il rêve et que son esprit est particulièrement
+                    vulnérable.
+                  </p>
+                </div>
+                <div class="cast">
+                  <h4>Cast</h4>
+                  <ul>
+                    <li>
+                      <img
+                        src="https://fr.web.img5.acsta.net/c_162_216/pictures/15/06/24/14/36/054680.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/16/05/17/11/00/419951.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/22/06/10/15/09/5806962.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img5.acsta.net/c_162_216/pictures/20/01/07/12/28/4858526.jpg"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <button id="btn_film_inc" class="inception.mp4">
+              Voir le film
+            </button>
+          </div>
+          <div class="film film_avengers3">
+            <div class="card">
+              <div class="poster" id="avengers3">
+                <img
+                  src="https://fr.web.img3.acsta.net/c_310_420/pictures/18/03/16/14/42/0611719.jpg"
+                  class="image"
+                  draggable="false"
+                />
+              </div>
+              <div class="details" id="avengers3">
+                <h1>Avengers: Infinity War</h1>
+                <h3>Réalisé par Christopher Markus, Stephen McFeely</h3>
+                <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                  <span>4/5</span>
+                </div>
+                <div class="tags">
+                  <span class="category_film">Sci-fi</span>
+                  <span class="category_film">Action</span>
+                </div>
+                <div class="info">
+                  <p>
+                    Les Avengers et leurs alliés devront être prêts à tout
+                    sacrifier pour neutraliser le redoutable Thanos avant que
+                    son attaque éclair ne conduise à la destruction complète de
+                    l’univers.
+                  </p>
+                </div>
+                <div class="cast">
+                  <h4>Cast</h4>
+                  <ul>
+                    <li>
+                      <img
+                        src="https://fr.web.img5.acsta.net/c_162_216/pictures/15/08/12/12/24/179903.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/19/06/05/12/04/5240675.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/15/08/12/12/29/266164.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img3.acsta.net/c_162_216/pictures/15/08/12/12/23/376279.jpg"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <button id="btn_film_avengers3" class="avengers3.mp4">
+              Voir le film
+            </button>
+          </div>
+          <div class="film film_avengers4">
+            <div class="card" id="blanc">
+              <div class="poster" id="avengers4">
+                <img
+                  src="https://fr.web.img6.acsta.net/c_310_420/pictures/19/04/04/09/04/0472053.jpg"
+                  class="image"
+                  draggable="false"
+                />
+              </div>
+              <div class="details blanc" id="avengers4">
+                <h1>Avengers: Infinity War</h1>
+                <h3>Réalisé par Christopher Markus, Stephen McFeely</h3>
+                <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                  <span>4/5</span>
+                </div>
+                <div class="tags">
+                  <span class="category_film">Sci-fi</span>
+                  <span class="category_film">Action</span>
+                </div>
+                <div class="info">
+                  <p>
+                    Thanos ayant anéanti la moitié de l’univers, les Avengers
+                    restants resserrent les rangs dans ce vingt-deuxième film
+                    des Studios Marvel, grande conclusion d’un des chapitres de
+                    l’Univers Cinématographique Marvel.
+                  </p>
+                </div>
+                <div class="cast">
+                  <h4>Cast</h4>
+                  <ul>
+                    <li>
+                      <img
+                        src="https://fr.web.img5.acsta.net/c_162_216/pictures/15/08/12/12/24/179903.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/19/06/05/12/04/5240675.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/15/08/12/12/29/266164.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img3.acsta.net/c_162_216/pictures/15/08/12/12/23/376279.jpg"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <button id="btn_film_avengers4" class="avengers4.mp4">
+              Voir le film
+            </button>
+          </div>
+          <div class="film film_interstellar">
+            <div class="card">
+              <div class="poster">
+                <img
+                  src="https://fr.web.img5.acsta.net/c_310_420/pictures/14/09/24/12/08/158828.jpg"
+                  class="image"
+                  draggable="false"
+                />
+              </div>
+              <div class="details" id="interstellar">
+                <h1>Interstellar</h1>
+                <h3>Réalisé par Christopher Nolan</h3>
+                <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                  <span>4/5</span>
+                </div>
+                <div class="tags">
+                  <span class="category_film">Sci-Fi</span>
+                  <span class="category_film">Action</span>
+                  <span class="category_film">10/10</span>
+                </div>
+                <div class="info">
+                  <p>
+                    Le film raconte les aventures d’un groupe d’explorateurs qui
+                    utilisent une faille récemment découverte dans
+                    l’espace-temps afin de repousser les limites humaines et
+                    partir à la conquête des distances astronomiques dans un
+                    voyage interstellaire.
+                  </p>
+                </div>
+                <div class="cast">
+                  <h4>Cast</h4>
+                  <ul>
+                    <li>
+                      <img
+                        src="https://fr.web.img4.acsta.net/c_162_216/pictures/16/03/02/17/16/573123.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/20/02/25/15/38/5978651.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img5.acsta.net/c_162_216/pictures/15/05/20/14/58/214953.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/16/10/24/13/50/024460.jpg"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <button id="btn_film_as" class="interstellar.mp4">
+              Voir le film
+            </button>
+          </div>
+          <div class="film film_tueras_point">
+            <div class="card" id="blanc">
+              <div class="poster" id="tu_ne_tueras_point">
+                <img
+                  src="https://fr.web.img6.acsta.net/c_310_420/pictures/16/09/02/19/16/302469.jpg"
+                  class="image"
+                  draggable="false"
+                />
+              </div>
+              <div class="details" id="tu ne tueras point">
+                <h1>TU NE TUERAS POINT</h1>
+                <h3>Réalisé par Mel Gibson</h3>
+                <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                  <span>4/5</span>
+                </div>
+                <div class="tags">
+                  <span class="category_film">Sci-Fi</span>
+                  <span class="category_film">Action</span>
+                  <span class="category_film">10/10</span>
+                  <span>-12</span>
+                </div>
+                <div class="info">
+                  <p>
+                    Quand la Seconde Guerre mondiale a éclaté, Desmond, un jeune
+                    américain, s’est retrouvé confronté à un dilemme : comme
+                    n’importe lequel de ses compatriotes, il voulait servir son
+                    pays, mais la violence était incompatible avec ses croyances
+                    et ses principes moraux. Il s’opposait ne serait-ce qu’à
+                    tenir une arme et refusait d’autant plus de tuer.
+                  </p>
+                </div>
+                <div class="cast">
+                  <h4>Cast</h4>
+                  <ul>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_310_420/pictures/16/09/05/17/16/068414.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img5.acsta.net/c_310_420/pictures/18/11/26/16/40/5098551.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img4.acsta.net/c_310_420/pictures/16/02/09/17/25/204779.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img5.acsta.net/c_310_420/pictures/20/01/03/09/47/3048844.jpg"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <button id="btn_film_as" class="Tu_ne_tueras_point.mp4">
+              Voir le film
+            </button>
+          </div>
+          <div class="film film_rain_man">
+            <div class="card" id="blanc">
+              <div class="poster" id="rain_man">
+                <img
+                  src="https://fr.web.img5.acsta.net/c_310_420/medias/nmedia/18/65/43/69/19254800.jpg"
+                  class="image"
+                  draggable="false"
+                />
+              </div>
+              <div class="details" id="rain man">
+                <h1>RAIN MAN</h1>
+                <h3>Réalisé par Barry Levinson</h3>
+                <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                  <span>4/5</span>
+                </div>
+                <div class="tags">
+                  <span class="category_film">Sci-Fi</span>
+                  <span class="category_film">Action</span>
+                  <span class="category_film">10/10</span>
+                </div>
+                <div class="info">
+                  <p>
+                    A la mort de son père, Charlie Babbitt, homme d'affaires
+                    pressé, hérite d'une vieille Buick qu'il convoitait depuis
+                    longtemps mais se voit spolié de quelque trois millions de
+                    francs versés à l'Institution psychiatrique Wallbrook au
+                    profit d'un bénéficiaire anonyme. Charlie se rend a
+                    Wallbrook et découvre l'heureux bénéficiaire. Il s'agit de
+                    Raymond, savant autiste, celui qu'il appelait dans son
+                    enfance Rain Man, qui représente ses seuls souvenirs heureux
+                    et qui n'est autre que son frère.
+                  </p>
+                </div>
+                <div class="cast">
+                  <h4>Cast</h4>
+                  <ul>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/17/05/24/16/14/434591.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/18/07/13/09/57/3777492.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img5.acsta.net/c_162_216/pictures/15/05/20/14/58/214953.jpg"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <button id="btn_film_as" class="rain_man.mp4">Voir le film</button>
+          </div>
+          <div class="film film_man66">
+            <div class="card">
+              <div class="poster" id="Le_man_66">
+                <img
+                  src="https://fr.web.img6.acsta.net/c_310_420/pictures/19/10/14/09/06/5193325.jpg"
+                  class="image"
+                  draggable="false"
+                />
+              </div>
+              <div class="details" id="le man 66">
+                <h1>LE MANS 66</h1>
+                <h3>Réalisé par James Mangold</h3>
+                <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                  <span>4/5</span>
+                </div>
+                <div class="tags">
+                  <span class="category_film">Sci-Fi</span>
+                  <span class="category_film">Action</span>
+                  <span class="category_film">10/10</span>
+                </div>
+                <div class="info">
+                  <p>
+                    Basé sur une histoire vraie, le film suit une équipe
+                    d'excentriques ingénieurs américains menés par le
+                    visionnaire Carroll Shelby et son pilote britannique Ken
+                    Miles, qui sont envoyés par Henry Ford II pour construire à
+                    partir de rien une nouvelle automobile qui doit détrôner la
+                    Ferrari à la compétition du Mans de 1966.
+                  </p>
+                </div>
+                <div class="cast">
+                  <h4>Cast</h4>
+                  <ul>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/16/07/13/11/16/193188.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img2.acsta.net/c_162_216/pictures/19/01/22/16/22/0699464.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img5.acsta.net/c_162_216/pictures/16/05/12/17/05/286362.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/18/01/10/11/21/1225562.jpg"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <button id="btn_film_as" class="man66.mp4">Voir le film</button>
+          </div>
+          <div class="film film_alita">
+            <div class="card" id="blanc">
+              <div class="poster" id="alita">
+                <img
+                  src="https://fr.web.img5.acsta.net/c_310_420/pictures/18/12/20/17/14/4514778.jpg"
+                  class="image"
+                  draggable="false"
+                />
+              </div>
+              <div class="details" id="alita : battle angel">
+                <h1>ALITA : BATTLE ANGEL</h1>
+                <h3>Réalisé par Robert Rodriguez</h3>
+                <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                  <span>4/5</span>
+                </div>
+                <div class="tags">
+                  <span class="category_film">Sci-Fi</span>
+                  <span class="category_film">Action</span>
+                  <span class="category_film">10/10</span>
+                </div>
+                <div class="info">
+                  <p>
+                    Lorsqu’Alita se réveille sans aucun souvenir de qui elle
+                    est, dans un futur qu’elle ne reconnaît pas, elle est
+                    accueillie par Ido, un médecin qui comprend que derrière ce
+                    corps de cyborg abandonné, se cache une jeune femme au passé
+                    extraordinaire. Ce n’est que lorsque les forces dangereuses
+                    et corrompues qui gèrent la ville d’Iron City se lancent à
+                    sa poursuite qu’Alita découvre la clé de son passé - elle a
+                    des capacités de combat uniques, que ceux qui détiennent le
+                    pouvoir veulent absolument maîtriser.
+                  </p>
+                </div>
+                <div class="cast">
+                  <h4>Cast</h4>
+                  <ul>
+                    <li>
+                      <img
+                        src="https://fr.web.img4.acsta.net/c_162_216/pictures/19/01/29/15/53/0546441.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img3.acsta.net/c_162_216/pictures/19/01/29/15/51/2800630.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img4.acsta.net/c_162_216/pictures/15/11/24/16/42/248748.jpg"
+                      />
+                    </li>
+                    <li>
+                      <img
+                        src="https://fr.web.img6.acsta.net/c_162_216/pictures/15/07/10/16/10/144671.jpg"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <button id="btn_film_as" class="alita.mp4">Voir le film</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+    request.addEventListener("success", function (event) {
+      const db = event.target.result;
+      const yes = "yes";
+      console.log("Base de données ouverte avec succès.", db);
+      const transaction = db.transaction(["Connexion"], "readonly");
+      const objectStore = transaction.objectStore("Connexion");
+
+      // Si vous avez un index nommé "Connected", vous pouvez également l'utiliser
+      const connectedStatusIndex = objectStore.index("Connected");
+      const getRequestByConnectedStatus = connectedStatusIndex.get("yes");
+
+      // Gérez l'événement onsuccess pour obtenir les données récupérées
+      getRequestByConnectedStatus.onsuccess = function (event) {
+        const dataByConnectedStatus = event.target.result;
+
+        if (dataByConnectedStatus) {
+          const connectedValue = dataByConnectedStatus.connected;
+          const getRequest = objectStore.get(1);
+
+          // Gérez l'événement onsuccess pour obtenir les données récupérées
+          getRequest.onsuccess = function (event) {
+            const data = event.target.result;
+
+            if (data) {
+              const name_to_profil = data.name_to_profil;
+
+              if (connectedValue === "yes") {
+                // Sélectionnez l'élément <i> à l'intérieur du lien
+                const accueilLink = document.querySelector(".accounts");
+                // Sélectionnez l'élément <i> à l'intérieur du lien
+                const iconElement = accueilLink.querySelector("i");
+
+                // Supprimez la classe "bx-log-in" de l'élément <i>
+                iconElement.remove();
+
+                const letter = document.createElement("h3");
+                letter.textContent = name_to_profil.charAt(0).toUpperCase();
+                accueilLink.appendChild(letter);
+              }
+            }
+          };
+        }
+      };
+    });
+    const track = document.getElementById("image-track");
+
+    window.onmousedown = (e) => {
+      track.dataset.mouseDownAt = e.clientX;
+    };
+    window.onmouseup = () => {
+      track.dataset.mouseDownAt = "0";
+      track.dataset.prevPercentage = track.dataset.percentage;
+    };
+
+    window.onmousemove = (e) => {
+      if (track.dataset.mouseDownAt === "0") return;
+
+      const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+        maxDelta = window.innerWidth / 2;
+
+      const percentage = (mouseDelta / maxDelta) * -100,
+        nextPercentageUnconstrained =
+          parseFloat(track.dataset.prevPercentage) + percentage,
+        nextPercentage = Math.max(
+          Math.min(nextPercentageUnconstrained, 0),
+          -100
+        );
+
+      track.dataset.percentage = nextPercentage;
+
+      track.animate(
+        {
+          transform: `translate(${nextPercentage}%, 0%)`,
+        },
+        { duration: 1200, fill: "forwards" }
+      );
+
+      for (const image of track.getElementsByClassName("image")) {
+        image.animate(
+          {
+            objectPosition: `${100 + nextPercentage}% center`,
+          },
+          { duration: 1200, fill: "forwards" }
+        );
+      }
+    };
+    const searchInput = document.getElementById("searchInput");
+    const galleryFilm = document.querySelector(".gallery_film");
+    const filmsContainer = document.querySelector(".gallery_film");
+    const originalGalleryHTML = galleryFilm.innerHTML; // Sauvegarde du contenu original
+
+    searchInput.addEventListener("input", () => {
+      const searchTerm = searchInput.value.toLowerCase();
+
+      if (searchTerm === "") {
+        // Si l'input est vide, restaurer la galerie à son état d'origine
+        galleryFilm.innerHTML = originalGalleryHTML;
+        return; // Sortir de la fonction
+      }
+
+      // Récupérer tous les éléments de film
+      const filmElements = Array.from(galleryFilm.querySelectorAll(".film"));
+
+      // Filtrer les éléments de film en fonction du terme de recherche
+      const matchingFilms = filmElements.filter((film) => {
+        const filmTitle = film.querySelector(".details").id;
+        return filmTitle.includes(searchTerm);
+      });
+
+      // Réorganiser les éléments dans la galerie
+      galleryFilm.innerHTML = "";
+      matchingFilms.forEach((film) => {
+        galleryFilm.appendChild(film);
+      });
+    });
+
+    const btn_film = document.getElementById("btn_film");
+
+    btn_film.addEventListener("click", function () {
+      const src = document.getElementById("btn_film");
+
+      film_src = src.classList;
+
+      localStorage.setItem("Film_Src", film_src);
+      window.location.href = "vidéo.html";
+    });
+    const all_btn_film = document.querySelector(".gallery_film");
+
+    const btn_film_as = document.getElementById("btn_film_as");
+
+    const buttons = all_btn_film.querySelectorAll("button");
+    console.log(buttons);
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        console.log(btn);
+        const film_src = btn.classList;
+
+        localStorage.setItem("Film_Src", film_src);
+        window.location.href = "vidéo.html";
+      });
+    });
+    btn_film_as.addEventListener("click", function () {
+      const src = document.getElementById("btn_film_av");
+
+      film_src = src.classList;
+
+      localStorage.setItem("Film_Src", film_src);
+      window.location.href = "vidéo.html";
+    });
+    let originalFilms = [];
+
+    // Récupérez les films d'origine au chargement de la page
+    window.addEventListener("load", function () {
+      originalFilms = Array.from(document.querySelectorAll(".film"));
+    });
+
+    // Fonction pour réinitialiser l'ordre des films
+    function resetFilmOrder() {
+      const filmsContainer = document.querySelector(".gallery_film");
+
+      // Videz le conteneur de films actuel
+      filmsContainer.innerHTML = "";
+
+      // Ajoutez les films d'origine au conteneur de films
+      originalFilms.forEach((film) => {
+        filmsContainer.appendChild(film);
+      });
+    }
+    const selector = document.querySelector(".slider");
+
+    const categories = ["Action", "Animation", "Sci-fi", "Aventure", "Drame"];
+
+    categories.forEach((category, index) => {
+      const btn = document.getElementById(category);
+      btn.addEventListener("click", function () {
+        // Votre code de tri des films ici
+        resetFilmOrder();
+        const films = document.querySelectorAll(".film");
+        const sortedFilms = [];
+
+        films.forEach((film) => {
+          const categories = film.querySelectorAll(".tags .category_film");
+          let isCategory = false;
+          categories.forEach((cat) => {
+            if (cat.textContent === category) {
+              isCategory = true;
+            }
+          });
+
+          if (isCategory) {
+            sortedFilms.push(film);
+          }
+        });
+
+        filmsContainer.innerHTML = "";
+
+        sortedFilms.forEach((film) => {
+          filmsContainer.appendChild(film);
+        });
+      });
+    });
+    setTimeout(() => {
+      supp_img();
+      function supp_img() {
+        // Sélectionner tous les divs sur la page
+        const divs = document.querySelectorAll("div");
+
+        // Parcourir les divs pour trouver celui avec le lien spécifique
+        divs.forEach((div) => {
+          // Sélectionner l'élément <a> à l'intérieur du div
+          const a_div = div.querySelector("a");
+
+          // Vérifier si l'élément <a> existe et s'il a le href spécifique
+          if (
+            a_div &&
+            a_div.href ===
+              "https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"
+          ) {
+            // Supprimer l'élément div du DOM
+            div.remove();
+          }
+        });
+      }
+    }, 1000);
+  </script>
+</html>

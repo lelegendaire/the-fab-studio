@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="img/Logo_fab_cvl_studio.png" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="card-switch">
+        <label class="switch">
+          <input type="checkbox" class="toggle" />
+          <span class="slider"></span>
+          <span class="card-side"></span>
+          <div class="flip-card__inner">
+            <div class="flip-card__front">
+              <div class="title">Log in</div>
+              <form class="flip-card__form" id="loginForm">
+                <input
+                  class="flip-card__input"
+                  name="email"
+                  placeholder="Email"
+                  type="email"
+                  id="email"
+                />
+                <input
+                  class="flip-card__input"
+                  name="password"
+                  placeholder="Mot de passe"
+                  type="password"
+                  id="password"
+                />
+                <button type="button" class="flip-card__btn" onclick="login()">
+                  Se connecter
+                </button>
+              </form>
+            </div>
+            <div class="flip-card__back">
+              <div class="title">Sign up</div>
+              <form class="flip-card__form" id="registerForm">
+                <input
+                  class="flip-card__input"
+                  placeholder="Nom"
+                  type="text"
+                  id="name"
+                />
+                <input
+                  class="flip-card__input"
+                  name="email"
+                  placeholder="Email"
+                  type="email"
+                  id="email_s"
+                />
+                <div id="emailValidationMessage"></div>
+                <input
+                  class="flip-card__input"
+                  name="password"
+                  placeholder="Mot de passe"
+                  type="password"
+                  id="password_s"
+                />
+                <button
+                  type="button"
+                  class="flip-card__btn"
+                  onclick="register()"
+                >
+                  Créer
+                </button>
+              </form>
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="validation">
+      <ul>
+        <li class="invalid">
+          <i class="bx bx-circle"></i> Au moins une lettre minuscule
+        </li>
+        <li class="invalid">
+          <i class="bx bx-circle"></i> Au moins une lettre majuscule
+        </li>
+        <li class="invalid">
+          <i class="bx bx-circle"></i> Au moins une chiffre
+        </li>
+        <li class="invalid">
+          <i class="bx bx-circle"></i> Au moins une charactère spécial
+        </li>
+        <li class="invalid">
+          <i class="bx bx-circle"></i> Au moins 8 charactère
+        </li>
+      </ul>
+    </div>
+  </body>
+
+  <style>
+    /* style.css */
+    @import url("https://fonts.googleapis.com/css2?family=Lalezar&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Lalezar";
+      scroll-behavior: smooth;
+    }
+    body {
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+      transform: translateY(350px);
+    }
+    * {
+      --input-focus: #2d8cf0;
+      --font-color: #323232;
+      --font-color-sub: #666;
+      --bg-color: #fff;
+      --bg-color-alt: #66666688;
+      --main-color: #323232;
+    }
+    .wrapper {
+      --input-focus: #2d8cf0;
+      --font-color: #323232;
+      --font-color-sub: #666;
+      --bg-color: #fff;
+      --bg-color-alt: #66666688;
+      --main-color: #323232;
+    }
+    /* switch card */
+    .switch {
+      transform: translateY(-200px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      width: 50px;
+      height: 20px;
+    }
+
+    .card-side::before {
+      position: absolute;
+      content: "Log in";
+      left: -70px;
+      top: 0;
+      width: 100px;
+      text-decoration: underline;
+      color: var(--font-color);
+      font-weight: 600;
+    }
+
+    .card-side::after {
+      position: absolute;
+      content: "Sign up";
+      left: 70px;
+      top: 0;
+      width: 100px;
+      text-decoration: none;
+      color: var(--font-color);
+      font-weight: 600;
+    }
+
+    .toggle {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      box-sizing: border-box;
+      border-radius: 0.75em;
+      border: 2px solid var(--main-color);
+      box-shadow: 4px 4px var(--main-color);
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--bg-colorcolor);
+      transition: 0.3s;
+    }
+
+    .slider:before {
+      box-sizing: border-box;
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      border: 2px solid var(--main-color);
+      border-radius: 0.75em;
+      left: -2px;
+      bottom: 2px;
+      background-color: var(--bg-color);
+      box-shadow: 0 3px 0 var(--main-color);
+      transition: 0.3s;
+    }
+
+    .toggle:checked + .slider {
+      background-color: var(--input-focus);
+    }
+
+    .toggle:checked + .slider:before {
+      transform: translateX(30px);
+    }
+
+    .toggle:checked ~ .card-side:before {
+      text-decoration: none;
+    }
+
+    .toggle:checked ~ .card-side:after {
+      text-decoration: underline;
+    }
+
+    /* card */
+
+    .flip-card__inner {
+      width: 300px;
+      height: 350px;
+      position: relative;
+      background-color: transparent;
+      perspective: 1000px;
+      /* width: 100%;
+      height: 100%; */
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .toggle:checked ~ .flip-card__inner {
+      transform: rotateY(180deg);
+    }
+
+    .toggle:checked ~ .flip-card__front {
+      box-shadow: none;
+    }
+
+    .flip-card__front,
+    .flip-card__back {
+      padding: 20px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      background: lightgrey;
+      gap: 20px;
+      border-radius: 0.75em;
+      border: 2px solid var(--main-color);
+      box-shadow: 4px 4px var(--main-color);
+    }
+
+    .flip-card__back {
+      width: 100%;
+      transform: rotateY(180deg);
+    }
+
+    .flip-card__form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .title {
+      margin: 20px 0 20px 0;
+      font-size: 25px;
+      font-weight: 900;
+      text-align: center;
+      color: var(--main-color);
+    }
+
+    .flip-card__input {
+      width: 250px;
+      height: 40px;
+      border-radius: 0.75em;
+      border: 2px solid var(--main-color);
+      background-color: var(--bg-color);
+      box-shadow: 4px 4px var(--main-color);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--font-color);
+      padding: 5px 10px;
+      outline: none;
+    }
+
+    .flip-card__input::placeholder {
+      color: var(--font-color-sub);
+      opacity: 0.8;
+    }
+
+    .flip-card__input:focus {
+      border: 2px solid var(--input-focus);
+    }
+
+    .flip-card__btn:active,
+    .button-confirm:active {
+      box-shadow: 0px 0px var(--main-color);
+      transform: translate(3px, 3px);
+    }
+
+    .flip-card__btn {
+      margin: 20px 0 20px 0;
+      width: 120px;
+      height: 40px;
+      border-radius: 0.75em;
+      border: 2px solid var(--main-color);
+      background-color: var(--bg-color);
+      box-shadow: 4px 4px var(--main-color);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--font-color);
+      cursor: pointer;
+    }
+    [id="emailValidationMessage"] {
+      display: none;
+      color: red;
+    }
+    .flip-card__input[id="email_s"].invalid {
+      border: 2px solid #ff0000;
+      box-shadow: 4px 4px #ff0000;
+    }
+    .flip-card__input[id="email_s"].valid {
+      border: 2px solid #323232;
+      box-shadow: 4px 4px #323232;
+    }
+    .validation {
+      display: none;
+      background: lightgrey;
+      padding: 20px;
+      transform: translateX(0px);
+      transition: all 0.5s ease-in-out;
+      font-size: 17px;
+      position: absolute;
+      border-radius: 0.75em;
+      border: 2px solid var(--main-color);
+      box-shadow: 4px 4px var(--main-color);
+      z-index: -1;
+    }
+
+    .validation ul {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .validation ul li {
+      position: relative;
+      list-style: none;
+      color: #666;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      font-size: 0.85em;
+      transition: 0.5s;
+      border-radius: 0.75em;
+      padding: 5px;
+      border: 2px solid var(--main-color);
+      box-shadow: 4px 4px var(--main-color);
+    }
+
+    .validation ul li.valid {
+      color: #0f0;
+    }
+
+    .validation ul li::before {
+      width: 20px;
+      height: 10px;
+      display: inline-flex;
+    }
+
+    .validation ul li i .valid::before {
+      color: #0f0;
+    }
+  </style>
+
+  <script>
+    const emailInput = document.getElementById("email_s");
+    const passwordInput2 = document.getElementById("password_s");
+    const validationList = document.querySelector(".validation ul");
+    const validation = document.querySelector(".validation");
+    const emailValidationMessage = document.getElementById(
+      "emailValidationMessage"
+    );
+
+    function validateEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
+    // Événement déclenché lorsqu'une touche est relâchée dans le champ de l'adresse e-mail
+    emailInput.addEventListener("keyup", (event) => {
+      const email = event.target.value;
+      if (validateEmail(email)) {
+        emailInput.classList.remove("invalid");
+        emailInput.classList.add("valid");
+        emailValidationMessage.innerHTML = "";
+        emailValidationMessage.style.display = "none";
+      } else {
+        emailInput.classList.remove("valid");
+        emailInput.classList.add("invalid");
+        emailValidationMessage.innerHTML = "L'adresse e-mail n'est pas valide.";
+        emailValidationMessage.style.display = "block";
+      }
+    });
+    function checkPassword(password) {
+      // Expression régulière pour vérifier chaque critère
+      const lowercaseRegex = /[a-z]/;
+      const uppercaseRegex = /[A-Z]/;
+      const numberRegex = /[0-9]/;
+      const specialCharRegex = /[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/;
+      const lengthRegex = /.{8,}/;
+
+      // Vérification de chaque critère et mise à jour de l'état de la liste de validation
+      const criteria = [
+        {
+          id: "Au moins une lettre minuscule",
+          regex: lowercaseRegex.test(password),
+        },
+        {
+          id: "Au moins une lettre majuscule",
+          regex: uppercaseRegex.test(password),
+        },
+        { id: "Au moins une chiffre", regex: numberRegex.test(password) },
+        {
+          id: "Au moins une charactère spécial",
+          regex: specialCharRegex.test(password),
+        },
+        { id: "Au moins 8 charactère", regex: lengthRegex.test(password) },
+      ];
+
+      // Réinitialisation de la liste de validation
+      validationList.innerHTML = "";
+
+      // Mise à jour de l'état de chaque critère dans la liste de validation
+      criteria.forEach((criterion) => {
+        const listItem = document.createElement("li");
+        const icon = document.createElement("i");
+
+        if (criterion.regex) {
+          icon.classList.add("bx", "bx-check-circle");
+          listItem.classList.add("valid");
+        } else {
+          icon.classList.add("bx", "bx-circle");
+          listItem.classList.add("invalid");
+        }
+
+        listItem.appendChild(icon);
+        listItem.appendChild(document.createTextNode(` ${criterion.id}`));
+
+        validationList.appendChild(listItem);
+      });
+    }
+
+    // Événement déclenché lorsqu'une touche est relâchée dans le champ de mot de passe
+    passwordInput2.addEventListener("keyup", (event) => {
+      const password = event.target.value;
+
+      validation.style.display = "block";
+      setTimeout(() => {
+        validation.style.transform = "translateX(310px)";
+      }, 100);
+
+      checkPassword(password);
+    });
+
+    function register() {
+      // Sélection des éléments DOM
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email_s");
+
+      const passwordInput = document.getElementById("password_s");
+
+      const nameValue = nameInput.value.trim();
+      const emailValue = emailInput.value.trim();
+      const passwordValue = passwordInput.value.trim();
+      // Fonction pour vérifier si tous les champs sont remplis
+      if (nameValue === "" || emailValue === "" || passwordValue === "") {
+        alert("Veuillez remplir les champs");
+        return; // Sortir de la fonction si un champ est vide
+      } else {
+        // Vérifier si le mot de passe respecte les critères
+        const lowercaseRegex = /[a-z]/;
+        const uppercaseRegex = /[A-Z]/;
+        const numberRegex = /[0-9]/;
+        const specialCharRegex = /[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/;
+        const lengthRegex = /.{8,}/;
+
+        const isValidPassword =
+          lowercaseRegex.test(passwordValue) &&
+          uppercaseRegex.test(passwordValue) &&
+          numberRegex.test(passwordValue) &&
+          specialCharRegex.test(passwordValue) &&
+          lengthRegex.test(passwordValue);
+
+        if (!isValidPassword) {
+          alert(
+            "Le mot de passe doit respecter les critères suivants :\n- Au moins une lettre minuscule\n- Au moins une lettre majuscule\n- Au moins un chiffre\n- Au moins un caractère spécial\n- Au moins 8 caractères"
+          );
+          return; // Sortir de la fonction si le mot de passe ne respecte pas les critères
+        }
+      }
+
+      // Ajouter des gestionnaires d'événements aux champs d'entrée pour surveiller les changements
+
+      const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+      // Gérer les événements associés à la requête
+      request.addEventListener("success", function (event) {
+        const db = event.target.result;
+        console.log("Base de données ouverte avec succès.", db);
+        const transaction = db.transaction(["Compte"], "readonly");
+        const objectStore = transaction.objectStore("Compte");
+        const index = objectStore.index("User"); // Créez un index sur l'e-mail
+        function generateUserId() {
+          return "user_" + Math.random().toString(36).substr(2, 9);
+        }
+        // Récupérez l'e-mail saisi par l'utilisateur
+        const email = document.getElementById("email_s").value;
+
+        // Effectuez une recherche dans l'index pour vérifier si l'e-mail existe déjà
+        const getRequest = index.get(email);
+
+        getRequest.onsuccess = function (event) {
+          const existingAccount = event.target.result;
+
+          if (existingAccount) {
+            // Un compte avec cet e-mail existe déjà
+            alert(
+              "Un compte avec cet e-mail existe déjà. Veuillez utiliser une autre adresse e-mail."
+            );
+          } else {
+            // Aucun compte avec cet e-mail n'existe, vous pouvez ajouter le nouveau compte
+            const userId = generateUserId();
+            const name = document.getElementById("name").value;
+            const password_before = document.getElementById("password_s").value;
+            function addToDatabase(variableName, variableValue) {
+              // Assurez-vous que la base de données est ouverte
+              if (!db) {
+                console.error("La base de données n'est pas ouverte.");
+                return;
+              }
+
+              // Utilisez db pour ajouter la variable à la base de données
+              const transaction = db.transaction(["Compte"], "readwrite");
+              const objectStore = transaction.objectStore("Compte");
+
+              const request = objectStore.put({
+                username: variableName,
+                id: userId,
+                value: variableValue,
+              });
+
+              // Gérez les événements de la requête si nécessaire
+              request.onsuccess = function (event) {
+                console.log(
+                  "Variable ajoutée avec succès à la base de données."
+                );
+                function getFormattedDateTime() {
+                  const currentTime = new Date();
+
+                  // Obtention des composants de la date
+                  const day = currentTime.getDate();
+                  const month = currentTime.getMonth() + 1; // Les mois sont indexés à partir de 0
+                  const year = currentTime.getFullYear();
+
+                  // Formater la date au format "dd-mm-yyyy"
+                  const formattedDate = `${day < 10 ? "0" : ""}${day}-${
+                    month < 10 ? "0" : ""
+                  }${month}-${year}`;
+
+                  // Obtention des composants de l'heure
+                  const hours = currentTime.getHours();
+                  const minutes = currentTime.getMinutes();
+
+                  // Formater l'heure au format "hh:mm"
+                  const formattedTime = `${hours < 10 ? "0" : ""}${hours}:${
+                    minutes < 10 ? "0" : ""
+                  }${minutes}`;
+
+                  // Concaténer la date et l'heure dans la chaîne de caractères finale
+                  return `${formattedDate} ${formattedTime}`;
+                }
+                updateDateTimeInUpdating();
+                function updateDateTimeInUpdating() {
+                  const formattedDateTime = getFormattedDateTime();
+                  // Mettre à jour l'heure dans Updating
+                  const transaction = db.transaction(["Updating"], "readwrite");
+                  const objectStore = transaction.objectStore("Updating");
+                  objectStore.put({
+                    MAJ: formattedDateTime,
+                    update: "maj_hour",
+                  });
+                }
+              };
+
+              request.onerror = function (event) {
+                console.error(
+                  "Erreur lors de l'ajout de la variable à la base de données.",
+                  event.target.error
+                );
+              };
+            }
+
+            async function hashPassword(password) {
+              // Convert password to ArrayBuffer
+              const encoder = new TextEncoder();
+              const data = encoder.encode(password);
+
+              // Generate a salt
+              const salt = crypto.getRandomValues(new Uint8Array(16));
+
+              // Combine password and salt
+              const saltedData = new Uint8Array(data.length + salt.length);
+              saltedData.set(salt);
+              saltedData.set(data, salt.length);
+
+              // Hash the salted password
+              const hashBuffer = await crypto.subtle.digest(
+                "SHA-256",
+                saltedData
+              );
+              const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+              // Convert hash to hex string
+              const hashHex = hashArray
+                .map((b) => b.toString(16).padStart(2, "0"))
+                .join("");
+
+              // Convert salt to hex string
+              const saltHex = Array.from(salt)
+                .map((b) => b.toString(16).padStart(2, "0"))
+                .join("");
+
+              // Return the combined salt and hash
+              return `${saltHex}:${hashHex}`;
+            }
+            (async () => {
+              const password = await hashPassword(password_before);
+              console.log(`Mot de passe haché: ${password}`);
+              // Ajoutez le nouveau compte à la base de données
+              addToDatabase(
+                email,
+                JSON.stringify({ userId, name, email, password })
+              );
+            })();
+
+            // Affichez un message de succès
+            alert("Compte créé avec succès!");
+            const validation = document.querySelector(".validation");
+            validation.style.dispay = "none";
+            const toggle = document.querySelector(".toggle");
+            toggle.checked = false;
+          }
+        };
+
+        getRequest.onerror = function (event) {
+          console.error(
+            "Erreur lors de la recherche du compte :",
+            event.target.error
+          );
+        };
+      });
+    }
+
+    function login() {
+      const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+      // Gérer les événements associés à la requête
+      request.addEventListener("success", function (event) {
+        const db = event.target.result;
+        const transaction = db.transaction(["Compte"], "readonly");
+        const objectStore = transaction.objectStore("Compte");
+
+        const email_input = document.getElementById("email").value;
+        const password_input = document.getElementById("password").value;
+        const index = objectStore.index("User");
+        const getRequest = index.get(email_input);
+        console.log(getRequest);
+        console.log(objectStore);
+        getRequest.onsuccess = function (event) {
+          const storedUserData = event.target.result;
+          console.log(storedUserData);
+          if (storedUserData) {
+            // La variable a été récupérée avec succès
+            console.log("Valeur de la variable :", storedUserData.value);
+            const { email, password, name, userId } = JSON.parse(
+              storedUserData.value
+            );
+            async function verifyPassword(password_ver, storedHash) {
+              console.log(password_ver);
+              console.log(storedHash);
+              // Split the stored hash into salt and hash
+              const [saltHex, hashHex] = storedHash.split(":");
+
+              // Convert salt from hex to ArrayBuffer
+              const salt = new Uint8Array(
+                saltHex.match(/.{1,2}/g).map((byte) => parseInt(byte, 16))
+              );
+
+              // Convert password to ArrayBuffer
+              const encoder = new TextEncoder();
+              const data = encoder.encode(password_ver);
+
+              // Combine password and salt
+              const saltedData = new Uint8Array(data.length + salt.length);
+              saltedData.set(salt);
+              saltedData.set(data, salt.length);
+
+              // Hash the salted password
+              const hashBuffer = await crypto.subtle.digest(
+                "SHA-256",
+                saltedData
+              );
+              const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+              // Convert hash to hex string
+              const hashHexToCompare = hashArray
+                .map((b) => b.toString(16).padStart(2, "0"))
+                .join("");
+
+              // Compare the hashes
+              return hashHex === hashHexToCompare;
+            }
+            (async () => {
+              // Vérification du mot de passe
+
+              const isCorrect = await verifyPassword(password_input, password);
+              console.log(`Mot de passe vérifié: ${isCorrect}`);
+              if (isCorrect === true) {
+                const newTransaction = db.transaction(
+                  ["Connexion"],
+                  "readwrite"
+                );
+                const newObjectStore = newTransaction.objectStore("Connexion");
+
+                const newRequest = newObjectStore.put({
+                  connexion: 1,
+                  connected: "yes",
+                  name_to_profil: name,
+                  email: email,
+                  id_to_create: userId,
+                });
+                newRequest.onsuccess = function (event) {
+                  console.log(
+                    "Variable ajoutée avec succès à la base de données."
+                  );
+                };
+
+                // Stockez le nom de l'utilisateur dans le localStorage (si nécessaire)
+
+                alert("Connexion réussie!");
+                window.location.href = "index.html";
+                function getFormattedDateTime() {
+                  const currentTime = new Date();
+
+                  // Obtention des composants de la date
+                  const day = currentTime.getDate();
+                  const month = currentTime.getMonth() + 1; // Les mois sont indexés à partir de 0
+                  const year = currentTime.getFullYear();
+
+                  // Formater la date au format "dd-mm-yyyy"
+                  const formattedDate = `${day < 10 ? "0" : ""}${day}-${
+                    month < 10 ? "0" : ""
+                  }${month}-${year}`;
+
+                  // Obtention des composants de l'heure
+                  const hours = currentTime.getHours();
+                  const minutes = currentTime.getMinutes();
+
+                  // Formater l'heure au format "hh:mm"
+                  const formattedTime = `${hours < 10 ? "0" : ""}${hours}:${
+                    minutes < 10 ? "0" : ""
+                  }${minutes}`;
+
+                  // Concaténer la date et l'heure dans la chaîne de caractères finale
+                  return `${formattedDate} ${formattedTime}`;
+                }
+                updateDateTimeInUpdating();
+                function updateDateTimeInUpdating() {
+                  const formattedDateTime = getFormattedDateTime();
+                  // Mettre à jour l'heure dans Updating
+                  const transaction = db.transaction(["Updating"], "readwrite");
+                  const objectStore = transaction.objectStore("Updating");
+                  objectStore.put({
+                    MAJ: formattedDateTime,
+                    update: "maj_hour",
+                  });
+                }
+              } else {
+                alert("Mot de passe incorrect. Veuillez réessayer.");
+              }
+            })();
+          } else {
+            // La variable n'a pas été trouvée
+            console.log("La variable n'a pas été trouvée.");
+            alert("Utilisateur non trouvé. Veuillez vous inscrire.");
+          }
+        };
+      });
+    }
+    setTimeout(() => {
+      supp_img();
+      function supp_img() {
+        // Sélectionner tous les divs sur la page
+        const divs = document.querySelectorAll("div");
+
+        // Parcourir les divs pour trouver celui avec le lien spécifique
+        divs.forEach((div) => {
+          // Sélectionner l'élément <a> à l'intérieur du div
+          const a_div = div.querySelector("a");
+
+          // Vérifier si l'élément <a> existe et s'il a le href spécifique
+          if (
+            a_div &&
+            a_div.href ===
+              "https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"
+          ) {
+            // Supprimer l'élément div du DOM
+            div.remove();
+          }
+        });
+      }
+    }, 1000);
+  </script>
+</html>

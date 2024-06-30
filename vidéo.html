@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Film</title>
+    <link rel="icon" type="image/png" href="img/Logo_fab_cvl_studio.png" />
+    <link
+      href="https://senpai-stream.tv/build/assets/app-40b5d136.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="video"></div>
+    </div>
+  </body>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    :root {
+      --light: #6990f2;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      max-height: 100vh;
+      background: #0d1423;
+    }
+    .wrapper {
+      width: 90%;
+      transform: scale(0.85);
+      background-color: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.1s ease-in-out;
+      box-shadow: 0 0 10px var(--light), 0 0 2px var(--light),
+        0 0 40px var(--light), 0 0 80px var(--light), 0 0 12px var(--light),
+        inset 0 0 1px var(--light);
+    }
+
+    @media (max-width: 790px) {
+      .wrapper {
+        width: 70%;
+        transform: scale(0.85);
+
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 10px var(--light), 0 0 2px var(--light),
+          0 0 40px var(--light), 0 0 80px var(--light), 0 0 12px var(--light),
+          inset 0 0 1px var(--light);
+      }
+    }
+  </style>
+  <script>
+    function create_film(poster, source_src) {
+      const video_div = document.querySelector(".video");
+      const aspect_video = document.createElement("div");
+      aspect_video.classList.add("w-full");
+      aspect_video.classList.add("aspect-video");
+      const video_film = document.createElement("video");
+      video_film.id = "player";
+      video_film.classList.add("video-js");
+      video_film.classList.add("w-full");
+      video_film.classList.add("h-full");
+      video_film.classList.add("vjs-default-skin");
+      video_film.setAttribute("data-setup", "{}"); // Ajouter l'attribut "controls"
+      video_film.setAttribute("controls", "controls"); // Ajouter l'attribut "controls"
+      video_film.preload = "data";
+      video_film.poster = poster;
+      const source = document.createElement("source");
+      source.src = source_src;
+      source.type = "application/x-mpegURL";
+
+      video_div.appendChild(aspect_video);
+      aspect_video.appendChild(video_film);
+      video_film.appendChild(source);
+      const script_film = document.createElement("script");
+
+      script_film.textContent = `const player = new Plyr("#player", {
+                i18n: {
+                  speed: "Vitesse",
+                  normal: "Normale",
+                  quality: "Qualité",
+                },
+                keyboard: {
+                  global: true,
+                },
+                hls: {
+                  enable: true,
+                },
+              });
+              player.on("ready", function (event) {
+                var instance = event.detail.plyr;
+
+                var hslSource = null;
+                var sources = instance.media.querySelectorAll("source"),
+                  i;
+                for (i = 0; i < sources.length; ++i) {
+                  if (
+                    sources[i].src.indexOf(".m3u8") > -1 ||
+                    sources[i].src.indexOf(".txt") > -1 ||
+                    sources[i].src.indexOf(".ts") > -1
+                  ) {
+                    hslSource = sources[i].src;
+                  }
+                }
+
+                if (hslSource !== null && Hls.isSupported()) {
+                  var hls = new Hls();
+                  hls.loadSource(hslSource);
+                  hls.attachMedia(instance.media);
+                  hls.on(Hls.Events.MANIFEST_PARSED, function () {});
+                }
+              });
+            `;
+      video_div.appendChild(script_film);
+    }
+
+    const vidéo_src = localStorage.getItem("Film_Src");
+    if (vidéo_src === "Starswars8.mp4") {
+      create_film(
+        "https://image.tmdb.org/t/p/w1280_and_h720_bestv2/prV3qBW4CqFsH14CEQNslnwvqWi.jpg",
+        "https://mdLM9ykP34aB8psM6c69wJ3M36Qt99c3czZ8VThhMYXyJ692yT.streamforyou-v25.xyz/FILMS/SAGAS/STARWARS/10/10.m3u8"
+      );
+    } else if (vidéo_src === "astérix.mp4") {
+      create_film(
+        "https://image.tmdb.org/t/p/w1280_and_h720_bestv2/fKIhO8pL7pVcIGkjP1cSDV9FOxu.jpg",
+        "https://mdlm9ykp34ab8psm6c69wj3m36qt99c3czz8vthhmyxyj692yt.streamforyou-v25.xyz/FILMS/SAGAS/ASTERIXETOBELIX/02/02.m3u8"
+      );
+    } else if (vidéo_src === "Avatar.mp4") {
+      create_film(
+        "https://image.tmdb.org/t/p/w1280_and_h720_bestv2/3npygfmEhqnmNTmDWhHLz1LPcbA.jpg",
+        "https://t9j6pgauvgpf993tbpfmxtc3am4vfj534mq69qxvfl56gb283g.streamforyou-v18.xyz/FILMS/SAGAS/AVATAR/01/01.m3u8"
+      );
+    } else if (vidéo_src === "inception.mp4") {
+      create_film(
+        "https://image.tmdb.org/t/p/w1280_and_h720_bestv2/aej3LRUga5rhgkmRP6XMFw3ejbl.jpg",
+        "https://xmmva9q6f5l8ac6xgtgug9p2t6pvtpbg4jfj3f943q335mfv9b.streamforyou-v17.xyz/FILMS/OTHERS/INCEPTION/INCEPTION.m3u8"
+      );
+    } else if (vidéo_src === "avengers3.mp4") {
+      create_film(
+        "https://image.tmdb.org/t/p/w1280_and_h720_bestv2/hSfuKPtyEryeFzapZ8UgZd4aESu.jpg",
+        "https://mdlm9ykp34ab8psm6c69wj3m36qt99c3czz8vthhmyxyj692yt.streamforyou-v25.xyz/FILMS/SAGAS/AVENGERS/03/03.m3u8"
+      );
+    } else if (vidéo_src === "avengers4.mp4") {
+      create_film(
+        "https://image.tmdb.org/t/p/w1280_and_h720_bestv2/wF7jv3x51hXgkl7t5KHePuRjXc8.jpg",
+        "https://mdlm9ykp34ab8psm6c69wj3m36qt99c3czz8vthhmyxyj692yt.streamforyou-v25.xyz/FILMS/SAGAS/AVENGERS/04/04.m3u8"
+      );
+    } else if (vidéo_src === "interstellar.mp4") {
+      create_film(
+        "https://image.tmdb.org/t/p/w1280_and_h720_bestv2/1pnigkWWy8W032o9TKDneBa3eVK.jpg",
+        "https://xmmvA9Q6f5L8ac6XGTGUG9p2T6pVtpbG4Jfj3F943q335Mfv9B.streamforyou-v17.xyz/FILMS/OTHERS/INTERSTELLAR/INTERSTELLAR.m3u8"
+      );
+    } else if (vidéo_src === "Tu_ne_tueras_point.mp4") {
+      create_film(
+        "https://image.tmdb.org/t/p/w1280_and_h720_bestv2/zyxSZvaA7mU7mwnO1lR2cXUdQdV.jpg",
+        "https://xmmva9q6f5l8ac6xgtgug9p2t6pvtpbg4jfj3f943q335mfv9b.streamforyou-v17.xyz/FILMS/OTHERS/TUNETUERAPOINT/TUNETUERAPOINT.m3u8"
+      );
+    } else if (vidéo_src === "rain_man.mp4") {
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://uqload.io/embed-9recu1ofsk2h.html";
+      iframe.scrolling = "NO";
+      iframe.allow =
+        "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+      iframe.frameBorder = "0";
+      iframe.allowFullscreen = "yes";
+      video_div.appendChild(iframe);
+    } else if (vidéo_src === "man66.mp4") {
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://uqload.io/embed-vg2tjpsm0tiu.html";
+      iframe.scrolling = "NO";
+      iframe.allow =
+        "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+      iframe.frameBorder = "0";
+      iframe.allowFullscreen = "yes";
+      video_div.appendChild(iframe);
+    } else if (vidéo_src === "alita.mp4") {
+      create_film(
+        "https://image.tmdb.org/t/p/w1280_and_h720_bestv2/rV3itKLEALozktTGOCd1EE9vjG6.jpg",
+        "https://xmmva9q6f5l8ac6xgtgug9p2t6pvtpbg4jfj3f943q335mfv9b.streamforyou-v17.xyz/FILMS/OTHERS/ALITABATTLEANGEL/ALITABATTLEANGEL.m3u8"
+      );
+    }
+
+    const video = document.getElementById("player");
+    const container = document.querySelector(".wrapper");
+
+    video.addEventListener("play", () => {
+      const canvas = document.createElement("canvas");
+      canvas.setAttribute("willReadFrequently", "true");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = 100; // Reduce the canvas size for faster processing
+      canvas.height = 100;
+
+      const updateInterval = 1000; // Update every second (1000 ms)
+
+      setInterval(() => {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        ).data;
+
+        const topColor = getDominantColor(
+          imageData,
+          canvas.width,
+          canvas.height,
+          "top"
+        );
+        const rightColor = getDominantColor(
+          imageData,
+          canvas.width,
+          canvas.height,
+          "right"
+        );
+        const bottomColor = getDominantColor(
+          imageData,
+          canvas.width,
+          canvas.height,
+          "bottom"
+        );
+        const leftColor = getDominantColor(
+          imageData,
+          canvas.width,
+          canvas.height,
+          "left"
+        );
+        const sizeBox = 50;
+
+        const boxShadow = `
+                    0 0 10px ${rgbString(topColor)}, 
+                    0 0 2px ${rgbString(topColor)}, 
+                    0 0 40px ${rgbString(topColor)}, 
+                    0 0 80px ${rgbString(topColor)}, 
+                    0 0 12px ${rgbString(topColor)},
+                    0 -10px 30px -10px ${rgbString(topColor)},
+                    10px 0px 30px -10px ${rgbString(rightColor)},
+                    0px 10px 30px -10px ${rgbString(bottomColor)},
+                    -10px 0px 30px -10px ${rgbString(leftColor)}
+                `;
+
+        container.style.boxShadow = boxShadow;
+      }, updateInterval);
+    });
+
+    function getDominantColor(imageData, width, height, edge) {
+      const pixelData = [];
+      let index;
+
+      if (edge === "top") {
+        for (let x = 0; x < width; x++) {
+          index = (0 * width + x) * 4;
+          pixelData.push([
+            imageData[index],
+            imageData[index + 1],
+            imageData[index + 2],
+          ]);
+        }
+      } else if (edge === "right") {
+        for (let y = 0; y < height; y++) {
+          index = (y * width + (width - 1)) * 4;
+          pixelData.push([
+            imageData[index],
+            imageData[index + 1],
+            imageData[index + 2],
+          ]);
+        }
+      } else if (edge === "bottom") {
+        for (let x = 0; x < width; x++) {
+          index = ((height - 1) * width + x) * 4;
+          pixelData.push([
+            imageData[index],
+            imageData[index + 1],
+            imageData[index + 2],
+          ]);
+        }
+      } else if (edge === "left") {
+        for (let y = 0; y < height; y++) {
+          index = (y * width + 0) * 4;
+          pixelData.push([
+            imageData[index],
+            imageData[index + 1],
+            imageData[index + 2],
+          ]);
+        }
+      }
+
+      const clusters = kmeans(pixelData, 1);
+      return clusters.centroids[0];
+    }
+
+    // Optimized k-means algorithm
+    function kmeans(data, k) {
+      const centroids = data.slice(0, k);
+      let clusters = new Array(k).fill().map(() => []);
+
+      while (true) {
+        clusters = new Array(k).fill().map(() => []);
+
+        for (const point of data) {
+          const distances = centroids.map((centroid) =>
+            distance(point, centroid)
+          );
+          const nearestCentroid = distances.indexOf(Math.min(...distances));
+          clusters[nearestCentroid].push(point);
+        }
+
+        const newCentroids = centroids.map((centroid, index) =>
+          calculateMean(clusters[index])
+        );
+
+        if (centroidsEqual(centroids, newCentroids)) {
+          return { centroids: newCentroids, clusters };
+        }
+
+        centroids.splice(0);
+        centroids.push(...newCentroids);
+      }
+    }
+
+    function distance(pointA, pointB) {
+      const [r1, g1, b1] = pointA;
+      const [r2, g2, b2] = pointB;
+      return (r2 - r1) ** 2 + (g2 - g1) ** 2 + (b2 - b1) ** 2; // Use squared distance to avoid Math.sqrt
+    }
+
+    function calculateMean(points) {
+      const sum = points.reduce(
+        (accumulator, current) =>
+          accumulator.map((value, index) => value + current[index]),
+        [0, 0, 0]
+      );
+      return sum.map((value) => value / points.length);
+    }
+
+    function centroidsEqual(centroidsA, centroidsB) {
+      return centroidsA.every((centroidA, index) =>
+        centroidA.every(
+          (value, subIndex) => value === centroidsB[index][subIndex]
+        )
+      );
+    }
+
+    function rgbString(color) {
+      return `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+    }
+    setTimeout(() => {
+      supp_img();
+      function supp_img() {
+        // Sélectionner tous les divs sur la page
+        const divs = document.querySelectorAll("div");
+
+        // Parcourir les divs pour trouver celui avec le lien spécifique
+        divs.forEach((div) => {
+          // Sélectionner l'élément <a> à l'intérieur du div
+          const a_div = div.querySelector("a");
+
+          // Vérifier si l'élément <a> existe et s'il a le href spécifique
+          if (
+            a_div &&
+            a_div.href ===
+              "https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"
+          ) {
+            // Supprimer l'élément div du DOM
+            div.remove();
+          }
+        });
+      }
+    }, 1000);
+  </script>
+</html>

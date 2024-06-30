@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="img/Logo_fab_cvl_studio.png" />
+    <link rel="stylesheet" href="css/style_ide.css" />
+    <title>The Fab Studio: IDE</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css"
+    />
+    <script  type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.12.0/brython.min.js">
+    </script>
+    <script  type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.12.0/brython_stdlib.min.js">
+    </script>
+
+
+    <script src="js/ide.js"></script>
+    
+  </head>
+
+  <body>
+    <div class="ide">
+      <nav class="nav_bar">
+        <header>
+          <div class="image-text">
+            <span class="image">
+              <img src="" alt="" />
+            </span>
+          </div>
+        </header>
+
+        <div class="menu-bar">
+          <div class="menu">
+            <ul class="menu-links">
+              <li class="nav-link">
+             
+                <a href="menu_IDE.html">
+                  <i class="bx bx-home-alt icon"></i>
+                </a>
+              </li>
+
+              <li class="nav-link">
+                <a onclick="sauvegarderCode()">
+                  <i class="bx bx-save icon"></i>
+                </a>
+              </li>
+
+              <li class="nav-link">
+                <a href="#">
+                  <i class="bx bx-file-find icon"></i>
+                </a>
+              </li>
+
+              <li class="nav-link">
+                <a href="#">
+                  <i class="bx bx-cog icon"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <section class="body_home">
+      <div class="title_ide">
+        <h1 class="title_code">Title</h1>
+        <div class="view">
+          <a class="run" href="index_ide.html" onclick="run_console()"target="preview">Run <i class='bx bx-play' ></i></a>
+          <a  class="page_of_preview"
+            ><i class="bx bx-show-alt"></i
+          ></a>
+        </div>
+      </div>
+      <div class="header_language">
+        
+      </div>
+      <div class="card_code">
+      
+      </div>
+
+      <div class="console">
+        <div class="header">
+          <span class="title">Console</span>
+        </div>
+        <div class="console_editor">
+          <textarea class="console_texterea"></textarea>
+        </div>
+      </div>
+      <iframe name="preview" class="preview"></iframe>
+    </div></section>
+  </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+      const body = document.querySelector("body");
+        request.addEventListener("success", function (event) {
+          const db = event.target.result;
+          const transaction = db.transaction(["preferences"], "readonly");
+          const preferencesStore = transaction.objectStore("preferences");
+          const index = preferencesStore.index("nameIndex");
+
+        
+          const darkModeRequest = index.get("darkMode");
+
+          
+
+          darkModeRequest.onsuccess = function (event) {
+            const isDarkMode = event.target.result?.value;
+
+            if (isDarkMode) {
+              body.classList.add("dark");
+            }
+
+           
+          };
+        });
+      
+  const header_html = document.querySelector('.header_html');
+  const header_css = document.querySelector('.header_css');
+  const header_js = document.querySelector('.header_js');
+  const header_python = document.querySelector('.header_python');
+  const page_of_preview = document.querySelector('.page_of_preview');
+  page_of_preview.addEventListener("click", function(){
+    window.open("index_ide.html")
+  })
+    const html = document.querySelector('.html');
+    const css = document.querySelector('.css');
+    const js = document.querySelector('.js');
+    const python = document.querySelector('.python');
+if(header_html){
+    header_html.addEventListener("click", function () {
+      html.style.display = "block"
+      header_css.classList.remove("active")
+      header_js.classList.remove("active")
+      header_html.classList.add("active")
+      css.style.display = "none"
+      js.style.display = "none"
+    })
+    header_css.addEventListener("click", function () {
+      css.style.display = "block"
+      header_html.classList.remove("active")
+      header_js.classList.remove("active")
+      header_css.classList.add("active")
+      html.style.display = "none"
+      js.style.display = "none"
+    })
+    header_js.addEventListener("click", function () {
+      js.style.display = "block"
+      header_html.classList.remove("active")
+      header_css.classList.remove("active")
+      header_js.classList.add("active")
+      html.style.display = "none"
+      css.style.display = "none"
+   
+    })
+  }
+
+    
+    function number_scroll_html(){
+   // Sélectionnez les éléments
+const textarea = document.getElementById('codeTextarea_html');
+const lineNumbers = document.getElementById('lineNumbers_html');
+if(textarea){
+// Ajoutez un gestionnaire d'événements de défilement à la zone de texte
+textarea.addEventListener('scroll', syncScroll);
+textarea.addEventListener('input', updateLineNumbers);
+
+const resizeObserver = new ResizeObserver(sizeSync);
+
+// Ajoutez la zone de texte à la liste des éléments à surveiller
+resizeObserver.observe(textarea);
+
+function syncScroll() {
+  lineNumbers.scrollTop = textarea.scrollTop;
+}
+// Initialisez les numéros de ligne
+updateLineNumbers();
+
+// Ajoutez un gestionnaire d'événements de défilement à la fenêtre pour mettre à jour les numéros de ligne lors du redimensionnement
+
+
+
+function updateLineNumbers() {
+  // Réinitialisez les numéros de ligne
+  lineNumbers.innerHTML = '';
+
+  // Séparez le contenu de la zone de texte en lignes
+  const lines = textarea.value.split('\n');
+  const totalLines = lines.length;
+
+  // Ajoutez les numéros de ligne à la division des numéros de ligne
+  for (let i = 1; i <= totalLines; i++) {
+    const lineNum = document.createElement('div');
+    lineNum.textContent = i;
+    lineNumbers.appendChild(lineNum);
+  }
+}
+function sizeSync() {
+ 
+  // Récupérez la largeur de la zone de texte
+  const textareaHeight = textarea.clientHeight + 'px';
+
+  // Appliquez la largeur aux numéros de ligne
+  lineNumbers.style.height = textareaHeight;
+}
+}
+    }
+    function number_scroll_css(){
+   // Sélectionnez les éléments
+const textarea = document.getElementById('codeTextarea_css');
+const lineNumbers = document.getElementById('lineNumbers_css');
+if(textarea){
+textarea.addEventListener('scroll', syncScroll);
+textarea.addEventListener('input', updateLineNumbers);
+
+
+// Ajoutez un gestionnaire d'événements à la fenêtre pour mettre à jour les numéros de ligne lors du redimensionnement
+const resizeObserver = new ResizeObserver(sizeSync);
+
+// Ajoutez la zone de texte à la liste des éléments à surveiller
+resizeObserver.observe(textarea);
+updateLineNumbers();
+function sizeSync() {
+  // Récupérez la largeur de la zone de texte
+  const textareaHeight = textarea.clientHeight + 'px';
+
+  // Appliquez la largeur aux numéros de ligne
+  lineNumbers.style.height = textareaHeight;
+}
+// Fonction pour synchroniser le défilement avec les numéros de ligne
+function syncScroll() {
+  lineNumbers.scrollTop = textarea.scrollTop;
+}
+
+function updateLineNumbers() {
+  // Réinitialisez les numéros de ligne
+  lineNumbers.innerHTML = '';
+
+  // Séparez le contenu de la zone de texte en lignes
+  const lines = textarea.value.split('\n');
+  const totalLines = lines.length;
+
+  // Ajoutez les numéros de ligne à la division des numéros de ligne
+  for (let i = 1; i <= totalLines; i++) {
+    const lineNum = document.createElement('div');
+    lineNum.textContent = i;
+    lineNumbers.appendChild(lineNum);
+  }
+}
+}
+}  
+
+    function number_scroll_js(){
+   // Sélectionnez les éléments
+const textarea = document.getElementById('codeTextarea_js');
+const lineNumbers = document.getElementById('lineNumbers_js');
+if(textarea){
+// Ajoutez un gestionnaire d'événements de défilement à la zone de texte
+textarea.addEventListener('scroll', syncScroll);
+textarea.addEventListener('input', updateLineNumbers);
+
+// Ajoutez un gestionnaire d'événements à la fenêtre pour mettre à jour les numéros de ligne lors du redimensionnement
+const resizeObserver = new ResizeObserver(sizeSync);
+
+// Ajoutez la zone de texte à la liste des éléments à surveiller
+resizeObserver.observe(textarea);
+updateLineNumbers();
+function sizeSync() {
+  // Récupérez la largeur de la zone de texte
+  const textareaHeight = textarea.clientHeight + 'px';
+
+  // Appliquez la largeur aux numéros de ligne
+  lineNumbers.style.height = textareaHeight;
+}
+function syncScroll() {
+  lineNumbers.scrollTop = textarea.scrollTop;
+}
+function updateLineNumbers() {
+    setTimeout(() => {// Réinitialisez les numéros de ligne
+  lineNumbers.innerHTML = '';
+  
+  // Séparez le contenu de la zone de texte en lignes
+  const lines = textarea.value.split('\n');
+  const totalLines = lines.length;
+
+  // Ajoutez les numéros de ligne à la division des numéros de ligne
+  for (let i = 1; i <= totalLines; i++) {
+    const lineNum = document.createElement('div');
+    lineNum.textContent = i;
+    lineNumbers.appendChild(lineNum);
+  }
+  },1000);
+}
+}
+}
+    function number_scroll_python(){
+   // Sélectionnez les éléments
+const textarea = document.getElementById('codeTextarea_python');
+const lineNumbers = document.getElementById('lineNumbers_python');
+if(textarea){
+// Ajoutez un gestionnaire d'événements de défilement à la zone de texte
+textarea.addEventListener('scroll', syncScroll);
+textarea.addEventListener('input', updateLineNumbers);
+
+// Ajoutez un gestionnaire d'événements à la fenêtre pour mettre à jour les numéros de ligne lors du redimensionnement
+const resizeObserver = new ResizeObserver(sizeSync);
+
+// Ajoutez la zone de texte à la liste des éléments à surveiller
+resizeObserver.observe(textarea);
+updateLineNumbers();
+function sizeSync() {
+  // Récupérez la largeur de la zone de texte
+  const textareaHeight = textarea.clientHeight + 'px';
+
+  // Appliquez la largeur aux numéros de ligne
+  lineNumbers.style.height = textareaHeight;
+}
+function syncScroll() {
+  lineNumbers.scrollTop = textarea.scrollTop;
+}
+function updateLineNumbers() {
+   
+  lineNumbers.innerHTML = '';
+  
+  // Séparez le contenu de la zone de texte en lignes
+  const lines = textarea.value.split('\n');
+  const totalLines = lines.length;
+
+  // Ajoutez les numéros de ligne à la division des numéros de ligne
+  for (let i = 1; i <= totalLines; i++) {
+    const lineNum = document.createElement('div');
+    lineNum.textContent = i;
+    lineNumbers.appendChild(lineNum);
+  }
+
+}
+}
+}
+    
+number_scroll_html()
+    number_scroll_css()
+    number_scroll_js()
+    number_scroll_python()
+  });
+  
+  document.addEventListener('keydown', function (event) {
+  // Vérifiez si les touches Ctrl (ou Cmd) et L sont enfoncées simultanément
+  if ((event.ctrlKey || event.metaKey) && event.key === 'l') {
+    // Empêchez l'action par défaut (qui serait de placer le curseur dans la barre d'adresse)
+    event.preventDefault();
+
+    // Appelez la fonction pour sélectionner la ligne
+    selectCurrentLine();
+  }
+});
+
+function selectCurrentLine() {
+  const textarea = document.querySelector(".html .code_texterea");
+
+  // Récupérez la position du curseur
+  const cursorPosition = textarea.selectionStart;
+
+  // Trouvez le début de la ligne actuelle en reculant depuis la position du curseur
+  let startOfLine = cursorPosition;
+  while (startOfLine > 0 && textarea.value[startOfLine - 1] !== '\n') {
+    startOfLine--;
+  }
+
+  // Trouvez la fin de la ligne actuelle en avançant depuis la position du curseur
+  let endOfLine = cursorPosition;
+  while (endOfLine < textarea.value.length && textarea.value[endOfLine] !== '\n') {
+    endOfLine++;
+  }
+
+  // Sélectionnez la ligne
+  textarea.setSelectionRange(startOfLine, endOfLine);
+}
+document.addEventListener('keydown', function (event) {
+  // Vérifiez si les touches Shift, Alt et la flèche vers le bas sont enfoncées simultanément
+  if (event.shiftKey && event.altKey && event.key === 'ArrowDown') {
+    event.preventDefault();
+    duplicateSelection('down');
+  }
+
+  // Vérifiez si les touches Shift, Alt et la flèche vers le haut sont enfoncées simultanément
+  if (event.shiftKey && event.altKey && event.key === 'ArrowUp') {
+    event.preventDefault();
+    duplicateSelection('up');
+  }
+});
+
+function duplicateSelection(direction) {
+  const textarea = document.querySelector(".html .code_texterea");
+
+  // Vérifiez s'il y a une sélection dans le champ de texte
+  if (textarea.selectionStart !== textarea.selectionEnd) {
+    const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+    // Déterminez la position du curseur après la sélection
+    let cursorPosition = textarea.selectionEnd;
+
+    // Insérez le texte sélectionné dans la direction opposée
+    if (direction === 'down') {
+      const textBefore = textarea.value.substring(0, cursorPosition);
+      const textAfter = textarea.value.substring(cursorPosition);
+      textarea.value = textBefore + '\n' + selectedText + textAfter;
+    } else if (direction === 'up') {
+      const textBefore = textarea.value.substring(0, cursorPosition - selectedText.length);
+      const textAfter = textarea.value.substring(cursorPosition - selectedText.length);
+      textarea.value = textBefore + '\n' + selectedText + textAfter;
+    }
+
+    // Mise à jour de la sélection après duplication
+    textarea.setSelectionRange(cursorPosition, cursorPosition + selectedText.length + 1);
+  }
+}
+setTimeout(() => {// Réinitialisez les numéros de ligne
+const codeTextarea_html = document.getElementById('codeTextarea_html');
+const codeTextarea_css = document.getElementById('codeTextarea_css');
+const codeTextarea_python = document.getElementById('codeTextarea_python');
+
+if(codeTextarea_html){
+
+codeTextarea_html.addEventListener('input', function (event) {
+    const cursorPos = codeTextarea_html.selectionStart;
+    const code = codeTextarea_html.value;
+
+    // Auto-fermeture des balises
+    if (code[cursorPos - 1] === '>') {
+        const lastOpenBracket = code.lastIndexOf('<', cursorPos - 1);
+        const textBetweenBrackets = code.substring(lastOpenBracket + 1, cursorPos - 1);
+        const match = textBetweenBrackets.match(/^(\w+)/);
+        
+        if (match) {
+            const nomBalise = match[1].toLowerCase();
+            const baliseFermante = `</${nomBalise}>`;
+            codeTextarea_html.value = code.substring(0, cursorPos) +
+                baliseFermante +
+                code.substring(cursorPos);
+
+                codeTextarea_html.setSelectionRange(cursorPos, cursorPos);
+        }
+    }
+
+    // Ajout automatique des guillemets après le signe égal (=) pour "class" ou "id"
+    const beforeCursor = code.substring(0, cursorPos).toLowerCase();
+    const lastIndexOfClassOrId = Math.max(
+        beforeCursor.lastIndexOf("class="),
+        beforeCursor.lastIndexOf("id=")
+    );
+
+    if (lastIndexOfClassOrId !== -1 && !/["']/.test(beforeCursor.slice(lastIndexOfClassOrId))) {
+      codeTextarea_html.value = code.substring(0, cursorPos) +
+            '""' +
+            code.substring(cursorPos);
+        
+        const newCursorPos = cursorPos + 1;
+        codeTextarea_html.setSelectionRange(newCursorPos, newCursorPos);
+    }
+    // Auto-fermeture des accolades
+    if (code[cursorPos - 1] === `{`) {
+      codeTextarea_html.value = code.substring(0, cursorPos) +
+          `}` +
+          code.substring(cursorPos);
+
+          codeTextarea_html.setSelectionRange(cursorPos, cursorPos);
+  }
+    // Auto-fermeture des accolades
+    if (code[cursorPos - 1] === '"') {
+      codeTextarea_html.value = code.substring(0, cursorPos) +
+          '"' +
+          code.substring(cursorPos);
+
+          codeTextarea_html.setSelectionRange(cursorPos, cursorPos);
+  }
+
+  });
+
+
+  codeTextarea_css.addEventListener('input', function (event) {
+    const cursorPos = codeTextarea_css.selectionStart;
+    const code = codeTextarea_css.value;
+
+  if (code[cursorPos - 1] === `{`) {
+    codeTextarea_css.value = code.substring(0, cursorPos) +
+          `}` +
+          code.substring(cursorPos);
+
+          codeTextarea_css.setSelectionRange(cursorPos, cursorPos);
+  }
+})
+} else{
+  codeTextarea_python.addEventListener('input', function (event) {
+    const cursorPos = codeTextarea_python.selectionStart;
+    const code = codeTextarea_python.value;
+    if (code[cursorPos - 1] === '"') {
+      codeTextarea_python.value = code.substring(0, cursorPos) +
+          '"' +
+          code.substring(cursorPos);
+
+          codeTextarea_python.setSelectionRange(cursorPos, cursorPos);
+  }
+    if (code[cursorPos - 1] === '(') {
+      codeTextarea_python.value = code.substring(0, cursorPos) +
+          ')' +
+          code.substring(cursorPos);
+
+          codeTextarea_python.setSelectionRange(cursorPos, cursorPos);
+  }
+    if (code[cursorPos - 1] === `'`) {
+      codeTextarea_python.value = code.substring(0, cursorPos) +
+          `'` +
+          code.substring(cursorPos);
+
+          codeTextarea_python.setSelectionRange(cursorPos, cursorPos);
+  }
+  })
+}
+
+}, 1000)
+
+window.addEventListener("beforeunload", event => {
+  event.preventDefault();
+  event.returnValue = "";
+})
+setTimeout(() => {
+    supp_img()
+function supp_img() {
+    // Sélectionner tous les divs sur la page
+    const divs = document.querySelectorAll('div');
+
+    // Parcourir les divs pour trouver celui avec le lien spécifique
+    divs.forEach(div => {
+        // Sélectionner l'élément <a> à l'intérieur du div
+        const a_div = div.querySelector("a");
+        
+        // Vérifier si l'élément <a> existe et s'il a le href spécifique
+        if (a_div && a_div.href === "https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img") {
+            // Supprimer l'élément div du DOM
+            div.remove();
+        }
+    });
+}
+},1000)
+</script>
+</html>

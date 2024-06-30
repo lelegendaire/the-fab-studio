@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="img/Logo_fab_cvl_studio.png" />
+
+    <title>The Fab Studio: IDE</title>
+    <script src="https://cdn.jsdelivr.net/npm/animejs"></script>
+
+    <script src="js/ide.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playpen+Sans:wght@100&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body::-webkit-scrollbar {
+        display: none;
+      }
+      .card_to_projects {
+        position: fixed;
+        height: 70vh;
+        width: 60vh;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+        transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1) 0.2s,
+          transform 0.8s cubic-bezier(0.5, 0, 0, 1) 0.2s;
+        top: 10%;
+        right: 30%;
+        padding: 20px;
+        overflow-y: scroll;
+        z-index: 999;
+      }
+      .card_to_projects::-webkit-scrollbar {
+        width: 6px; /* Largeur de la barre de défilement */
+      }
+
+      .card_to_projects::-webkit-scrollbar-track {
+        background-color: transparent; /* Fond transparent */
+      }
+
+      .card_to_projects::-webkit-scrollbar-thumb {
+        background-color: rgba(
+          128,
+          128,
+          128,
+          0.3
+        ); /* Couleur de la barre de défilement */
+        border-radius: 3px; /* Coins arrondis */
+      }
+      .card_to_projects button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.375rem;
+        border-width: 1px;
+        border-color: transparent;
+        --tw-bg-opacity: 1;
+        background-color: rgba(76, 53, 222, var(--tw-bg-opacity));
+        padding: 0.625rem 1rem;
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 400;
+        --tw-text-opacity: 1;
+        color: rgba(255, 255, 255, var(--tw-text-opacity));
+        --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+          var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+      }
+      .select-language_section.active .options {
+        display: block;
+      }
+      .select-language_section .options {
+        position: relative;
+
+        margin-top: 10px;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+        display: none;
+      }
+      .select-language_section .active .select-btn i {
+        transform: rotate(-180deg);
+      }
+      .select-language_section .select-btn {
+        display: flex;
+        height: 60px;
+        background: #e7dbdb;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: 400;
+        border-radius: 8px;
+        align-items: center;
+        cursor: pointer;
+        justify-content: space-between;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+      .select-language_section::-webkit-scrollbar {
+        display: none;
+      }
+      .select-language_section {
+        width: 280px;
+        overflow-y: scroll;
+        z-index: 12;
+      }
+      .select-language_section.active {
+        width: 280px;
+        overflow-y: scroll;
+        z-index: 14;
+      }
+      .options .option {
+        display: flex;
+        height: 55px;
+        cursor: pointer;
+        padding: 10px;
+        margin-top: 15px;
+        border-radius: 8px;
+        align-items: center;
+        background: #e7dbdb;
+      }
+      .card_to_projects input {
+        display: block;
+        width: 100%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.375rem;
+        border-width: 1px;
+        border: 2px solid #000;
+        border-color: rgba(209, 213, 219, 1);
+        padding: 0.625rem 0.75rem;
+        font-size: 16px;
+        line-height: 16px;
+      }
+      .card_to_projects input[type="text"]:focus {
+        --tw-border-opacity: 1;
+        border-color: rgba(119, 100, 242, var(--tw-border-opacity));
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        --tw-ring-opacity: 1;
+        --tw-ring-color: rgba(119, 100, 242, var(--tw-ring-opacity));
+      }
+      .hello {
+        height: 100vh;
+        width: 100%;
+        background-color: #35dad2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        position: absolute;
+        z-index: 999;
+      }
+
+      .hello .hello-text {
+        font-family: "Dancing Script" !important; /* Remplacez "VotrePolice" par le nom de votre police */
+        font-size: 3em; /* Ajustez la taille de la police selon vos besoins */
+        color: #ffffff; /* Couleur du texte */
+        background-color: #35dad2; /* Couleur de fond, la même que le fond du body */
+        padding: 10px; /* Ajustez la marge intérieure selon vos besoins */
+      }
+      :root {
+        /* ===== Colors ===== */
+        --body-color: #f1f1f1;
+        --sidebar-color: #fff;
+        --primary-color: rgba(76, 53, 222, 1);
+        --primary-color-light: #f6f5ff;
+        --toggle-color: #ddd;
+        --text-color: #292929;
+        --card-color: #fff;
+
+        /* ====== Transition ====== */
+        --tran-03: all 0.2s ease;
+        --tran-03: all 0.3s ease;
+        --tran-04: all 0.3s ease;
+        --tran-05: all 0.3s ease;
+      }
+
+      body {
+        min-height: 100vh;
+        background-color: var(--body-color);
+        transition: var(--tran-05);
+        font-family: "Montserrat";
+      }
+
+      ::selection {
+        background-color: var(--primary-color);
+        color: #fff;
+      }
+
+      body.dark {
+        --body-color: #18191a;
+        --sidebar-color: #242526;
+        --primary-color: #3a3b3c;
+        --primary-color-light: #3a3b3c;
+        --toggle-color: #fff;
+        --text-color: #ccc;
+        --card-color: #242526;
+      }
+
+      /* ===== Sidebar ===== */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        padding: 10px 14px;
+        background: var(--sidebar-color);
+        transition: var(--tran-05);
+        z-index: 100;
+      }
+      .sidebar.close {
+        width: 88px;
+      }
+
+      /* ===== Reusable code - Here ===== */
+      .sidebar li {
+        height: 50px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .sidebar header .image,
+      .sidebar .icon {
+        min-width: 60px;
+        border-radius: 6px;
+      }
+
+      .sidebar .icon {
+        min-width: 60px;
+        border-radius: 6px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+
+      .sidebar .text,
+      .sidebar .icon {
+        color: var(--text-color);
+        transition: var(--tran-03);
+      }
+
+      .sidebar .text {
+        font-size: 17px;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 1;
+      }
+      .sidebar.close .text {
+        opacity: 0;
+      }
+      /* =========================== */
+
+      .sidebar header {
+        position: relative;
+      }
+
+      .sidebar header .image-text {
+        display: flex;
+        align-items: center;
+      }
+      .sidebar header .logo-text {
+        display: flex;
+        flex-direction: column;
+      }
+      header .image-text .name {
+        margin-top: 2px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      header .image-text .profession {
+        font-size: 16px;
+        margin-top: -2px;
+        display: block;
+      }
+
+      .sidebar header .image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sidebar header .image img {
+        width: 60px;
+        border-radius: 6px;
+      }
+
+      .sidebar header .toggle {
+        position: absolute;
+        top: 50%;
+        right: -25px;
+        transform: translateY(-50%) rotate(180deg);
+        height: 25px;
+        width: 25px;
+        background-color: var(--primary-color);
+        color: var(--sidebar-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        cursor: pointer;
+        transition: var(--tran-05);
+      }
+
+      body.dark .sidebar header .toggle {
+        color: var(--text-color);
+      }
+
+      .sidebar.close .toggle {
+        transform: translateY(-50%) rotate(0deg);
+      }
+
+      .sidebar .menu {
+        margin-top: 40px;
+      }
+
+      .sidebar li.search-box {
+        border-radius: 6px;
+        background-color: var(--primary-color-light);
+        cursor: pointer;
+        transition: var(--tran-05);
+      }
+
+      .sidebar li.search-box input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        border: none;
+        background-color: var(--primary-color-light);
+        color: var(--text-color);
+        border-radius: 6px;
+        font-size: 17px;
+        font-weight: 500;
+        transition: var(--tran-05);
+      }
+      .sidebar li a {
+        list-style: none;
+        height: 100%;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: var(--tran-03);
+      }
+
+      .sidebar li a:hover {
+        background-color: var(--primary-color);
+      }
+      .sidebar li a:hover .icon,
+      .sidebar li a:hover .text {
+        color: var(--sidebar-color);
+      }
+      body.dark .sidebar li a:hover .icon,
+      body.dark .sidebar li a:hover .text {
+        color: var(--text-color);
+      }
+
+      .sidebar .menu-bar {
+        height: calc(100% - 55px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow-y: scroll;
+      }
+      .menu-bar::-webkit-scrollbar {
+        display: none;
+      }
+      .sidebar .menu-bar .mode {
+        border-radius: 6px;
+        background-color: var(--primary-color-light);
+        position: relative;
+        transition: var(--tran-05);
+      }
+
+      .menu-bar .mode .sun-moon {
+        height: 50px;
+        width: 60px;
+      }
+
+      .mode .sun-moon i {
+        position: absolute;
+      }
+      .mode .sun-moon i.sun {
+        opacity: 0;
+      }
+      body.dark .mode .sun-moon i.sun {
+        opacity: 1;
+      }
+      body.dark .mode .sun-moon i.moon {
+        opacity: 0;
+      }
+
+      .menu-bar .bottom-content .toggle-switch {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        min-width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .toggle-switch .switch {
+        position: relative;
+        height: 22px;
+        width: 40px;
+        border-radius: 25px;
+        background-color: var(--toggle-color);
+        transition: var(--tran-05);
+      }
+
+      .switch::before {
+        content: "";
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        background-color: var(--sidebar-color);
+        transition: var(--tran-04);
+      }
+
+      body.dark .switch::before {
+        left: 20px;
+      }
+
+      .home {
+        position: absolute;
+        top: 0;
+        top: 0;
+        left: 250px;
+        height: 100vh;
+        width: calc(100% - 250px);
+        background-color: var(--body-color);
+        transition: var(--tran-05);
+      }
+      .home .text {
+        font-size: 30px;
+        font-weight: 500;
+        color: var(--text-color);
+        padding: 12px 60px;
+      }
+      .home h3 {
+        color: var(--text-color);
+        padding: 12px 60px;
+      }
+
+      .sidebar.close ~ .home {
+        left: 78px;
+        height: 100vh;
+        width: calc(100% - 78px);
+      }
+      body.dark .home .text {
+        color: var(--text-color);
+      }
+      .article-wrapper {
+        width: 250px;
+        -webkit-transition: 0.15s all ease-in-out;
+        transition: 0.15s all ease-in-out;
+        border-radius: 10px;
+        padding: 5px;
+        border: 4px solid transparent;
+        cursor: pointer;
+        background-color: var(--card-color);
+      }
+
+      .types {
+        gap: 10px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        place-content: flex-start;
+      }
+
+      .rounded-lg {
+        /* class tailwind */
+        border-radius: 10px;
+      }
+
+      .article-wrapper:hover .project-hover:hover {
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        background-color: #a6c2f0;
+      }
+
+      .project-info {
+        padding-top: 20px;
+        padding: 10px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .project-title {
+        font-size: 2em;
+        margin: 0;
+        font-weight: 600;
+        /* depend de la font */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: var(--text-color);
+      }
+
+      .flex-pr {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+
+      .project-type {
+        background: #b2b2fd;
+        color: #1a41cd;
+        font-weight: bold;
+        padding: 0.3em 0.7em;
+        border-radius: 15px;
+        font-size: 12px;
+        letter-spacing: -0.6px;
+        white-space: nowrap;
+      }
+      .project-type:nth-child(3) {
+        background: #fdb2b2;
+        color: #cd1a1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .project-hover {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        padding: 9px;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 21px;
+      }
+      .container-project {
+        width: 100%;
+        height: 170px;
+        background: gray;
+        overflow: hidden;
+        transition: all 0.2s ease;
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+      }
+      .container-project:hover {
+        transform: scale(110%);
+      }
+      .container-project img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+
+      .home .projects {
+        padding: 12px 60px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .home .temlates {
+        padding: 12px 60px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .card {
+        width: 80%;
+        max-width: 300px;
+        background-color: var(--card-color);
+        border-radius: 8px;
+
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        height: 156px;
+        position: relative;
+        top: -20px;
+        left: -26px;
+        border-radius: 8px;
+        width: 300px;
+        transition: all 0.2s ease;
+        background: linear-gradient(to right, #4299e1, #3182ce);
+        overflow: hidden;
+      }
+      .card-header img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        transition: all 0.2s ease;
+      }
+      .card-header:hover {
+        width: 300px;
+        height: 300px;
+      }
+
+      .card-content {
+        padding: 20px;
+      }
+
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--text-color);
+      }
+
+      .card-text {
+        font-size: 1rem;
+        color: var(--text-color);
+      }
+
+      .card-footer {
+        padding: 20px;
+      }
+
+      .btn-read-more {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--primary-color); /* Couleur du bouton */
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-read-more:hover {
+        background-color: rgb(95, 75, 223); /* Couleur du bouton au survol */
+      }
+      .ajout_projects {
+        width: 250px;
+        height: 300px;
+        border: var(--primary-color-light) 4px dashed;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 44px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hello">
+      <h3>
+        <div class="hello-text">Hello</div>
+      </h3>
+    </section>
+
+    <nav class="sidebar close">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img
+              src="https://images.unsplash.com/photo-1493916665398-143bdeabe500?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGFuaW1hdXh8ZW58MHx8MHx8fDA%3D"
+              alt=""
+            />
+          </span>
+
+          <div class="text logo-text">
+            <span class="name">The Fab Studio</span>
+            <span class="profession"></span>
+          </div>
+        </div>
+
+        <i class="bx bx-chevron-right toggle"></i>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <li class="search-box">
+            <i class="bx bx-search icon"></i>
+            <input type="text" placeholder="Rechercher..." />
+          </li>
+
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="index.html">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="text nav-text">Accueil</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a onclick="projets()">
+                <i class="bx bx-folder icon"></i>
+                <span class="text nav-text">Projets</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a onclick="templates()">
+                <i class="bx bx-file-find icon"></i>
+                <span class="text nav-text">Templates</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="condition.html">
+                <i class="bx bx-file icon"></i>
+                <span class="text nav-text">Documentation</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="#">
+                <i class="bx bx-cog icon"></i>
+                <span class="text nav-text">Paramètre</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bottom-content">
+          <li class="nav-link">
+            <a href="login.html">
+              <i class="bx bx-log-out icon"></i>
+              <span class="text nav-text">Se déconnecter</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <div class="sun-moon">
+              <i class="bx bx-moon icon moon"></i>
+              <i class="bx bx-sun icon sun"></i>
+            </div>
+            <span class="mode-text text">Mode nuit</span>
+
+            <div class="toggle-switch">
+              <span class="switch"></span>
+            </div>
+          </li>
+        </div>
+      </div>
+    </nav>
+
+    <section class="home">
+      <div class="text forProjects">The Fab Studio: IDE</div>
+      <div class="section_projets">
+        <h3>Vos projets</h3>
+        <div class="projects">
+          <article class="article-wrapper">
+            <div class="rounded-lg container-project">
+              <img src="img/Focus.png" />
+            </div>
+            <div class="project-info">
+              <div class="flex-pr">
+                <div class="project-title text-nowrap">Project 1</div>
+                <div class="project-hover" onclick="open_ide()">
+                  <i class="bx bx-right-arrow-alt"></i>
+                </div>
+              </div>
+              <div class="types">
+                <span
+                  class="project-type"
+                  style="
+                    background-color: rgba(165, 96, 247, 0.43);
+                    color: rgb(85, 27, 177);
+                  "
+                  >• 18/11/2023</span
+                ><span class="project-type">• HTML/CSS/JS</span
+                ><span class="project-type delete"
+                  ><i class="bx bx-trash"></i
+                ></span>
+              </div>
+            </div>
+          </article>
+          <div class="ajout_projects">
+            <i class="bx bx-plus-circle" onclick="Add_projects()"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="section_templates">
+        <div class="text forTemplates">Nos Templates</div>
+        <div class="temlates">
+          <div class="card">
+            <div class="card-header">
+              <img src="img/Guess_Word.png" class="Guess_Word_card_header" />
+            </div>
+            <div class="card-content">
+              <h5 class="card-title">Guess a Word</h5>
+              <p class="card-text">Un jeu pour trouver des mots aléatoires</p>
+            </div>
+            <div class="card-footer">
+              <button
+                type="button"
+                class="btn-read-more"
+                onclick="open_guess_word()"
+              >
+                Modifier
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <img src="img/Snake.png" class="Snake_card_header" />
+            </div>
+            <div class="card-content">
+              <h5 class="card-title">Jeu Snake</h5>
+              <p class="card-text">Un jeu de serpent glowing</p>
+            </div>
+            <div class="card-footer">
+              <button
+                type="button"
+                class="btn-read-more"
+                onclick="open_snake()"
+              >
+                Modifier
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const body = document.querySelector("body"),
+        sidebar = body.querySelector("nav"),
+        toggle = body.querySelector(".toggle"),
+        searchBtn = body.querySelector(".search-box"),
+        modeSwitch = body.querySelector(".toggle-switch"),
+        modeText = body.querySelector(".mode-text");
+
+      const updateTheme = () => {
+        if (body.classList.contains("dark")) {
+          modeText.innerText = "Mode clair";
+        } else {
+          modeText.innerText = "Mode nuit";
+        }
+      };
+      // Fonction pour mettre à jour le thème
+
+      // Fonction pour ouvrir la base de données IndexedDB
+
+      // Fonction pour sauvegarder l'état dans IndexedDB
+      const saveStateToIndexedDB = async () => {
+        const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+        request.addEventListener("success", function (event) {
+          const db = event.target.result;
+
+          const transaction = db.transaction(["preferences"], "readwrite");
+
+          const preferencesStore = transaction.objectStore("preferences");
+
+          preferencesStore.put({
+            name: "sidebarClosed",
+            value: sidebar.classList.contains("close"),
+          });
+
+          const request_valid = preferencesStore.put({
+            name: "darkMode",
+            value: body.classList.contains("dark"),
+          });
+        });
+      };
+
+      // Fonction pour restaurer l'état depuis IndexedDB
+      const restoreStateFromIndexedDB = async () => {
+        const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+        request.addEventListener("success", function (event) {
+          const db = event.target.result;
+          const transaction = db.transaction(["preferences"], "readonly");
+          const preferencesStore = transaction.objectStore("preferences");
+          const index = preferencesStore.index("nameIndex");
+
+          const sidebarClosedRequest = index.get("sidebarClosed");
+          const darkModeRequest = index.get("darkMode");
+
+          sidebarClosedRequest.onsuccess = function (event) {
+            const isSidebarClosed = event.target.result?.value;
+            if (isSidebarClosed) {
+              sidebar.classList.add("close");
+            }
+          };
+
+          darkModeRequest.onsuccess = function (event) {
+            const isDarkMode = event.target.result?.value;
+
+            if (isDarkMode) {
+              body.classList.add("dark");
+            }
+
+            updateTheme(); // Mettre à jour le thème après avoir restauré l'état
+          };
+        });
+      };
+
+      // Gérer les événements
+      toggle.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+        saveStateToIndexedDB();
+      });
+
+      searchBtn.addEventListener("click", () => {
+        sidebar.classList.remove("close");
+        saveStateToIndexedDB();
+      });
+
+      modeSwitch.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        saveStateToIndexedDB();
+        updateTheme();
+      });
+
+      // Restaurer l'état au chargement de la page
+      document.addEventListener("DOMContentLoaded", () => {
+        restoreStateFromIndexedDB();
+      });
+    </script>
+  </body>
+  <script>
+    const helloText = document.querySelector(".hello-text");
+
+    // Split the text content into an array of letters
+    const textContent = helloText.textContent;
+    const letters = textContent.split("");
+
+    // Replace the content of the element with spans for each letter
+    helloText.innerHTML = letters
+      .map((letter) => `<span>${letter}</span>`)
+      .join("");
+
+    // Select all the spans inside helloText
+    const letterSpans = document.querySelectorAll(".hello-text span");
+
+    // Animation for each letter
+    const textAnimation = anime({
+      targets: letterSpans,
+      opacity: [0, 1],
+      translateY: ["-50%", "0%"],
+      easing: "easeInOutSine",
+      duration: 700,
+      delay: (el, i) => i * 300, // Adjust the delay to control the stagger effect
+      loop: false, // Set loop to false for a single animation
+      complete: () => {
+        // Animation for hiding the section
+        const sectionAnimation = anime({
+          targets: ".hello",
+          translateY: ["0%", "-100%"],
+          easing: "easeInOutSine",
+          duration: 500,
+        });
+      },
+    });
+    const projectHover = document.querySelector(".project-hover");
+    const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+    request.addEventListener("success", function (event) {
+      const db = event.target.result;
+      const yes = "yes";
+      console.log("Base de données ouverte avec succès.", db);
+      const transaction = db.transaction(["Connexion"], "readwrite");
+      const objectStore = transaction.objectStore("Connexion");
+
+      // Si vous avez un index nommé "Connected", vous pouvez également l'utiliser
+      const connectedStatusIndex = objectStore.index("Connected");
+      const getRequestByConnectedStatus = connectedStatusIndex.get("yes");
+
+      // Gérez l'événement onsuccess pour obtenir les données récupérées
+      getRequestByConnectedStatus.onsuccess = function (event) {
+        const dataByConnectedStatus = event.target.result;
+
+        if (dataByConnectedStatus) {
+          const connectedValue = dataByConnectedStatus.connected;
+          const getRequest = objectStore.get(1);
+
+          // Gérez l'événement onsuccess pour obtenir les données récupérées
+          getRequest.onsuccess = function (event) {
+            const data = event.target.result;
+
+            if (data) {
+              const name_to_profil = data.name_to_profil;
+
+              if (connectedValue === "yes") {
+                const profession = document.querySelector(".profession");
+                profession.textContent = name_to_profil;
+              }
+            }
+          };
+        }
+      };
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      create_projects_in_page();
+    });
+    function create_projects() {
+      resetCards();
+      const language = localStorage.getItem("Language");
+      const Name_of_projects = localStorage.getItem("Name_of_projects");
+      const date = localStorage.getItem("Date");
+      const projects = document.querySelector(".projects");
+
+      // Create the article element
+      const article = document.createElement("article");
+      article.className = "article-wrapper";
+
+      // Create the container project div
+      const containerProject = document.createElement("div");
+      containerProject.className = "rounded-lg container-project";
+
+      const img_logo = document.createElement("img");
+      img_logo.src = "";
+      containerProject.appendChild(img_logo);
+
+      // Create the project info div
+      const projectInfo = document.createElement("div");
+      projectInfo.className = "project-info";
+
+      // Create the flex-pr div
+      const flexPr = document.createElement("div");
+      flexPr.className = "flex-pr";
+
+      // Create the project title div
+      const projectTitle = document.createElement("div");
+      projectTitle.className = "project-title text-nowrap";
+      projectTitle.textContent = Name_of_projects;
+
+      // Create the project hover div
+      const projectHover = document.createElement("div");
+      projectHover.className = "project-hover";
+      projectHover.setAttribute("onclick", "open_ide()");
+
+      // Create the right arrow icon
+      const rightArrowIcon = document.createElement("i");
+      rightArrowIcon.className = "bx bx-right-arrow-alt";
+
+      // Append the right arrow icon to the project hover div
+      projectHover.appendChild(rightArrowIcon);
+
+      // Append the project title and project hover to the flex-pr div
+      flexPr.appendChild(projectTitle);
+      flexPr.appendChild(projectHover);
+
+      // Create the types div
+      const types = document.createElement("div");
+      types.className = "types";
+
+      // Create the first project type span
+      const firstProjectType = document.createElement("span");
+      firstProjectType.style.backgroundColor = "rgba(165, 96, 247, 0.43)";
+      firstProjectType.style.color = "rgb(85, 27, 177)";
+      firstProjectType.className = "project-type";
+      firstProjectType.textContent = "• " + date; // Utilisez la date formatée
+
+      // Create the second project type span
+      const secondProjectType = document.createElement("span");
+      secondProjectType.className = "project-type";
+      secondProjectType.textContent = "• " + language;
+
+      const deleteProjectType = document.createElement("span");
+      deleteProjectType.className = "project-type delete";
+      deleteProjectType.innerHTML = `<i class='bx bx-trash' ></i>`;
+
+      // Append the project type spans to the types div
+      types.appendChild(firstProjectType);
+      types.appendChild(secondProjectType);
+      types.appendChild(deleteProjectType);
+
+      // Append all elements to the respective parent elements
+      projectInfo.appendChild(flexPr);
+      projectInfo.appendChild(types);
+
+      article.appendChild(containerProject);
+      article.appendChild(projectInfo);
+
+      // Append the article to the body or any desired container
+      projects.appendChild(article);
+      const abouProjects = document.querySelector(".ajout_projects");
+      abouProjects.parentNode.insertBefore(article, abouProjects);
+    }
+    function Add_projects() {
+      const card_to_projects = document.querySelector(".card_to_projects");
+      if (card_to_projects) {
+      } else {
+        const card_to_projects = document.createElement("div");
+        card_to_projects.classList.add("card_to_projects");
+        document.body.appendChild(card_to_projects);
+        // Création de la div principale
+        const fontHeroDiv = document.createElement("div");
+        fontHeroDiv.classList.add("language_hero");
+
+        // Création du titre
+        const title = document.createElement("h3");
+        title.textContent = "Selectionner votre language pour votre code";
+        fontHeroDiv.appendChild(title);
+        const br_2 = document.createElement("br");
+
+        fontHeroDiv.appendChild(br_2);
+        // Création de la section de sélection
+        const selectFontHeroSection = document.createElement("div");
+        selectFontHeroSection.classList.add("select-language_section");
+        fontHeroDiv.appendChild(selectFontHeroSection);
+
+        // Création du bouton de sélection
+        const selectBtn = document.createElement("div");
+        selectBtn.classList.add("select-btn");
+        selectFontHeroSection.appendChild(selectBtn);
+
+        const selectBtnText = document.createElement("span");
+        selectBtnText.classList.add("sBtn-text_hero_section");
+        selectBtnText.textContent = "HTML/CSS/JS";
+        selectBtn.appendChild(selectBtnText);
+
+        const selectBtnIcon = document.createElement("i");
+        selectBtnIcon.classList.add("bx", "bx-chevron-down");
+        selectBtn.appendChild(selectBtnIcon);
+
+        // Création de la liste des options
+        const optionsList = document.createElement("ul");
+        optionsList.classList.add("options");
+        selectFontHeroSection.appendChild(optionsList);
+
+        // Ajout des différentes options à la liste
+        const fontOptions = ["HTML/CSS/JS", "Python"];
+
+        fontOptions.forEach((option) => {
+          const listItem = document.createElement("li");
+          listItem.classList.add("option");
+          const optionText = document.createElement("span");
+          optionText.classList.add("option-text");
+          optionText.textContent = option;
+          listItem.appendChild(optionText);
+          optionsList.appendChild(listItem);
+        });
+
+        // Ajout de la div principale au document body ou à un conteneur approprié
+        card_to_projects.appendChild(fontHeroDiv);
+        const optionFont_hero_section = document.querySelector(
+            ".select-language_section"
+          ),
+          selectBtn_font_hero_section =
+            optionFont_hero_section.querySelector(".select-btn"),
+          options_font_hero_section =
+            optionFont_hero_section.querySelectorAll(".option"),
+          sBtn_text_font_hero_section = optionFont_hero_section.querySelector(
+            ".sBtn-text_hero_section"
+          );
+
+        selectBtn_font_hero_section.addEventListener("click", () =>
+          optionFont_hero_section.classList.toggle("active")
+        );
+
+        options_font_hero_section.forEach((option) => {
+          option.addEventListener("click", () => {
+            let selectedOption = option.querySelector(".option-text").innerText;
+            sBtn_text_font_hero_section.innerText = selectedOption;
+
+            optionFont_hero_section.classList.remove("active");
+          });
+        });
+        const br_19 = document.createElement("br");
+        card_to_projects.appendChild(br_19);
+        // input name
+
+        const name_custom = document.createElement("div");
+        name_custom.classList.add("name_custom");
+
+        name_custom.textContent = "Changer le nom";
+        card_to_projects.appendChild(name_custom);
+        const br_13 = document.createElement("br");
+
+        card_to_projects.appendChild(br_13);
+        const input_name_site_custom = document.createElement("input");
+        input_name_site_custom.classList.add("input_name_site_custom");
+        input_name_site_custom.value = "Projects n°1";
+        input_name_site_custom.type = "text";
+
+        card_to_projects.appendChild(input_name_site_custom);
+        const br_1 = document.createElement("br");
+
+        card_to_projects.appendChild(br_1);
+        const div_save_notext = document.createElement("div");
+
+        div_save_notext.classList.add("div_to_save");
+
+        card_to_projects.appendChild(div_save_notext);
+        const btn_save_notext = document.createElement("button");
+
+        btn_save_notext.textContent = "Sauvegarder";
+
+        div_save_notext.classList.add("btn_save_notext");
+        div_save_notext.appendChild(btn_save_notext);
+        div_save_notext.addEventListener("click", function () {
+          const SelectLanguage = document.querySelector(
+            ".select-language_section .select-btn .sBtn-text_hero_section"
+          );
+          if (SelectLanguage) {
+            localStorage.setItem("Language", SelectLanguage.textContent);
+          }
+          const Name_of_projects = document.querySelector(
+            ".input_name_site_custom"
+          );
+          if (Name_of_projects) {
+            localStorage.setItem("Name_of_projects", Name_of_projects.value);
+
+            // Obtenez la date actuelle
+            const currentDate = new Date();
+
+            // Formatez la date comme vous le souhaitez (par exemple, "dd/mm/yyyy")
+            const formattedDate = `${currentDate.getDate()}/${
+              currentDate.getMonth() + 1
+            }/${currentDate.getFullYear()}`;
+            localStorage.setItem("Date", formattedDate);
+            localStorage.setItem("codeHTML", "");
+            localStorage.setItem("codeCSS", "");
+            localStorage.setItem("codeJS", "");
+            const code_html = localStorage.getItem("codeHTML");
+            const code_css = localStorage.getItem("codeCSS");
+            const code_js = localStorage.getItem("codeJS");
+            const code_python = localStorage.getItem("codePython");
+            const Newrequest = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+            // Gérer les événements associés à la requête
+            Newrequest.addEventListener("success", function (event) {
+              const db = event.target.result;
+
+              const transaction_to_connection = db.transaction(
+                ["Connexion"],
+                "readonly"
+              );
+              const objectStore_to_connection =
+                transaction_to_connection.objectStore("Connexion");
+
+              // Si vous avez un index nommé "Connected", vous pouvez également l'utiliser
+              const getRequestByuserId2connection =
+                objectStore_to_connection.get(1);
+
+              getRequestByuserId2connection.onsuccess = function (event) {
+                const dataByuserId = event.target.result;
+
+                if (dataByuserId) {
+                  const userId = dataByuserId.id_to_create;
+                  const codeUniqueId =
+                    "code_" + Math.random().toString(36).substr(2, 9);
+                  const savedCodeInfo = {
+                    userId: userId,
+                    codeId: codeUniqueId,
+                    code_html: code_html,
+                    code_css: code_css,
+                    code_js: code_js,
+                    code_python: code_python,
+                    name: Name_of_projects.value,
+
+                    date: formattedDate,
+                    type_language: SelectLanguage.textContent,
+                  };
+
+                  const codeSavedList =
+                    JSON.parse(localStorage.getItem("var_code_saved")) || [];
+
+                  codeSavedList.push(savedCodeInfo);
+
+                  const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+                  // Gérer les événements associés à la requête
+                  request.addEventListener("success", function (event) {
+                    const db = event.target.result;
+                    const transaction = db.transaction(["Code"], "readwrite");
+                    const ObjectStore = transaction.objectStore("Code");
+
+                    // Stocker le code
+
+                    const code = {
+                      id: codeUniqueId,
+                      value: JSON.stringify(savedCodeInfo),
+                    };
+                    ObjectStore.put(code);
+                  });
+                }
+              };
+            });
+          }
+          create_projects();
+        });
+      }
+    }
+    function resetCards() {
+      const card = document.querySelector(".card_to_projects");
+      if (card) {
+        card.remove();
+      }
+    }
+    function create_projects_in_page() {
+      const codeSavedList = localStorage.getItem("var_code_saved");
+      console.log(codeSavedList);
+      const projects = document.querySelector(".projects");
+      // Assurez-vous que site_saved_card est un tableau, pas une chaîne de caractères
+      const Newrequest = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+      // Gérer les événements associés à la requête
+      Newrequest.addEventListener("success", function (event) {
+        const db = event.target.result;
+
+        const transaction_to_connection = db.transaction(
+          ["Connexion"],
+          "readonly"
+        );
+        const objectStore_to_connection =
+          transaction_to_connection.objectStore("Connexion");
+
+        // Si vous avez un index nommé "Connected", vous pouvez également l'utiliser
+        const getRequestByuserId2connection = objectStore_to_connection.get(1);
+
+        getRequestByuserId2connection.onsuccess = function (event) {
+          const dataByuserId = event.target.result;
+
+          if (dataByuserId) {
+            const userId = dataByuserId.id_to_create;
+            console.log(userId);
+            // Stocker le site
+            const transaction = db.transaction(["Code"], "readonly");
+            const ObjectStore = transaction.objectStore("Code");
+            const index = ObjectStore.index("CodeId");
+
+            const getAllRequest = index.getAll();
+
+            getAllRequest.onsuccess = function (event) {
+              const items = event.target.result;
+              const savedCodes = [];
+
+              items.forEach((item) => {
+                const key = item.id;
+
+                if (key.startsWith("code_")) {
+                  const storedItem = item.value;
+
+                  try {
+                    const parsedItem = JSON.parse(storedItem);
+                    console.log(parsedItem);
+                    if (parsedItem.userId === userId) {
+                      savedCodes.push(parsedItem);
+                    }
+                  } catch (error) {
+                    console.error(
+                      "Erreur de parsing pour la clé ",
+                      key,
+                      ":",
+                      error
+                    );
+                  }
+                }
+              });
+
+              if (savedCodes.length > 0) {
+                savedCodes.forEach((codeInfo) => {
+                  // Accédez aux informations de chaque carte
+                  const name_card = codeInfo.name;
+                  const codeHTML = codeInfo.code_html;
+                  const codeCSS = codeInfo.code_css;
+                  const codeJS = codeInfo.code_js;
+                  const date = codeInfo.date;
+                  const type = codeInfo.type_language;
+
+                  // Create the article element
+                  const article = document.createElement("article");
+                  article.className = "article-wrapper";
+
+                  // Create the container project div
+                  const containerProject = document.createElement("div");
+                  containerProject.className = "rounded-lg container-project";
+
+                  const img_logo = document.createElement("img");
+                  img_logo.src = "";
+                  containerProject.appendChild(img_logo);
+                  // Create the project info div
+                  const projectInfo = document.createElement("div");
+                  projectInfo.className = "project-info";
+
+                  // Create the flex-pr div
+                  const flexPr = document.createElement("div");
+                  flexPr.className = "flex-pr";
+
+                  // Create the project title div
+                  const projectTitle = document.createElement("div");
+                  projectTitle.className = "project-title text-nowrap";
+                  projectTitle.textContent = name_card;
+
+                  // Create the project hover div
+                  const projectHover = document.createElement("div");
+                  projectHover.className = "project-hover";
+                  projectHover.setAttribute("onclick", "open_ide()");
+
+                  // Create the right arrow icon
+                  const rightArrowIcon = document.createElement("i");
+                  rightArrowIcon.className = "bx bx-right-arrow-alt";
+
+                  // Append the right arrow icon to the project hover div
+                  projectHover.appendChild(rightArrowIcon);
+
+                  // Append the project title and project hover to the flex-pr div
+                  flexPr.appendChild(projectTitle);
+                  flexPr.appendChild(projectHover);
+
+                  // Create the types div
+                  const types = document.createElement("div");
+                  types.className = "types";
+
+                  // Create the first project type span
+                  const firstProjectType = document.createElement("span");
+                  firstProjectType.style.backgroundColor =
+                    "rgba(165, 96, 247, 0.43)";
+                  firstProjectType.style.color = "rgb(85, 27, 177)";
+                  firstProjectType.className = "project-type";
+                  firstProjectType.textContent = "• " + date;
+
+                  // Create the second project type span
+                  const secondProjectType = document.createElement("span");
+                  secondProjectType.className = "project-type";
+                  secondProjectType.textContent = "• " + type;
+
+                  const deleteProjectType = document.createElement("span");
+                  deleteProjectType.className = "project-type delete";
+                  deleteProjectType.innerHTML = `<i class='bx bx-trash' ></i>`;
+                  // Append the project type spans to the types div
+                  types.appendChild(firstProjectType);
+                  types.appendChild(secondProjectType);
+                  types.appendChild(deleteProjectType);
+                  // Append all elements to the respective parent elements
+                  projectInfo.appendChild(flexPr);
+                  projectInfo.appendChild(types);
+
+                  article.appendChild(containerProject);
+                  article.appendChild(projectInfo);
+
+                  // Append the article to the body or any desired container
+                  projects.appendChild(article);
+                  const abouProjects =
+                    document.querySelector(".ajout_projects");
+                  abouProjects.parentNode.insertBefore(article, abouProjects);
+                  deleteProjectType.addEventListener("click", function () {
+                    let confirmation = confirm(
+                      "Êtes-vous sûr de vouloir supprimer ce site ?"
+                    );
+                    if (confirmation) {
+                      const codeId = codeInfo.codeId;
+
+                      // Ouvrir une transaction en mode de lecture-écriture
+                      const transaction = db.transaction(["Code"], "readwrite");
+
+                      // Obtenir une référence à l'object store
+                      const objectStore = transaction.objectStore("Code");
+
+                      // Utiliser la méthode delete de l'object store pour supprimer l'objet spécifique
+                      const deleteRequest = objectStore.delete(codeId);
+
+                      deleteRequest.onsuccess = function (event) {
+                        console.log(
+                          "Code supprimé avec succès de la base de données."
+                        );
+                      };
+
+                      deleteRequest.onerror = function (event) {
+                        console.error(
+                          "Erreur lors de la suppression du code :",
+                          event.target.error
+                        );
+                      };
+
+                      // Mettre à jour savedCodes
+                      const index = savedCodes.findIndex(
+                        (code) => code.codeId === codeId
+                      );
+                      if (index > -1) {
+                        savedCodes.splice(index, 1);
+
+                        // Mettre à jour le localStorage
+
+                        // Supprimer l'élément du DOM
+                        abouProjects.removeChild(article);
+                      }
+                    }
+                  });
+                  projectHover.addEventListener("click", function () {
+                    localStorage.setItem(
+                      "IDE_info",
+                      codeHTML +
+                        "," +
+                        codeCSS +
+                        "," +
+                        codeJS +
+                        "name:" +
+                        name_card +
+                        "language:" +
+                        type
+                    );
+                    localStorage.setItem("confirmation", "true");
+                  });
+                });
+              }
+            };
+          }
+        };
+      });
+    }
+    function projets() {
+      const section_templates = document.querySelector(".section_templates");
+      section_templates.style.display = "none";
+      const section_projets = document.querySelector(".section_projets");
+      section_projets.style.display = "block";
+    }
+    function templates() {
+      const section_projets = document.querySelector(".section_projets");
+      section_projets.style.display = "none";
+      const section_templates = document.querySelector(".section_templates");
+      section_templates.style.display = "block";
+    }
+    setTimeout(() => {
+      supp_img();
+      function supp_img() {
+        // Sélectionner tous les divs sur la page
+        const divs = document.querySelectorAll("div");
+
+        // Parcourir les divs pour trouver celui avec le lien spécifique
+        divs.forEach((div) => {
+          // Sélectionner l'élément <a> à l'intérieur du div
+          const a_div = div.querySelector("a");
+
+          // Vérifier si l'élément <a> existe et s'il a le href spécifique
+          if (
+            a_div &&
+            a_div.href ===
+              "https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"
+          ) {
+            // Supprimer l'élément div du DOM
+            div.remove();
+          }
+        });
+      }
+    }, 1000);
+  </script>
+</html>
