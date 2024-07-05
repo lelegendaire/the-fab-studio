@@ -2393,9 +2393,10 @@ if (previewHash) {
 
         }
     }, 2000);
-}
+} 
+if (previewWidgetIntegrate) {
 if (window.self !== window.top) {
-    if (previewWidgetIntegrate) {
+   
         const siteId = decodeHash(previewHash);
         console.log('Site ID:', siteId);
         // Afficher la prévisualisation
@@ -2493,8 +2494,8 @@ if (window.self !== window.top) {
                 }
             }
         })
-    }
-} else {
+    }else {
     alert("ce code ne s'éxécute seulement dans un item frame")
 
 }
+} 
