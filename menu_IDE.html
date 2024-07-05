@@ -1546,28 +1546,5 @@
       const section_templates = document.querySelector(".section_templates");
       section_templates.style.display = "block";
     }
-    setTimeout(() => {
-      supp_img();
-      function supp_img() {
-        // Sélectionner tous les divs sur la page
-        const divs = document.querySelectorAll("div");
-
-        // Parcourir les divs pour trouver celui avec le lien spécifique
-        divs.forEach((div) => {
-          // Sélectionner l'élément <a> à l'intérieur du div
-          const a_div = div.querySelector("a");
-
-          // Vérifier si l'élément <a> existe et s'il a le href spécifique
-          if (
-            a_div &&
-            a_div.href ===
-              "https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"
-          ) {
-            // Supprimer l'élément div du DOM
-            div.remove();
-          }
-        });
-      }
-    }, 1000);
   </script>
 </html>

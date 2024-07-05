@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scrolling Div</title>
-    <link rel="stylesheet" href="styles.css" />
+    <!-- Importer le module The Fab Studio -->
+    <script
+      type="module"
+      src="https://lelegendaire.github.io/the-fab-studio/the-fab-studio.js"
+    ></script>
+
     <style>
       * {
         margin: 0;
@@ -18,42 +23,12 @@
         background-size: cover;
         margin: 0;
       }
-      .scrolling-div {
-        width: 200px;
-        height: 200px;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(1);
-        background-color: lightblue;
-        transition: all 0.3s ease; /* Pour une transition en douceur de la taille du div */
-      }
     </style>
   </head>
   <body>
-    <div id="scrollingDiv" class="scrolling-div">
-      <!-- Contenu de votre div -->
-    </div>
-
-    <script>
-      document.addEventListener("scroll", function () {
-        // Récupérer la valeur de défilement actuelle
-        var scrollValue = window.scrollY;
-
-        // Calculer la nouvelle position de fond en fonction du défilement
-        var newBackgroundPosition = "50% " + scrollValue + "px";
-
-        // Appliquer la nouvelle position de fond au body
-        document.body.style.backgroundPosition = newBackgroundPosition;
-
-        // Calculer la nouvelle taille du div en fonction de la valeur de défilement
-        var newScale = 1 + scrollValue / 200; // Vous pouvez ajuster cette formule selon vos besoins
-
-        // Appliquer la nouvelle échelle et translation au div
-        document.getElementById(
-          "scrollingDiv"
-        ).style.transform = `translate(-50%, -50%) scale(${newScale})`;
-      });
-    </script>
+    <!-- Utilisation de la balise personnalisée -->
+    <the-fab-studio
+      url="localhost:5500/index.html?widget_integrate=t84bxdn58"
+    ></the-fab-studio>
   </body>
 </html>

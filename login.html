@@ -516,7 +516,6 @@
       // Gérer les événements associés à la requête
       request.addEventListener("success", function (event) {
         const db = event.target.result;
-        console.log("Base de données ouverte avec succès.", db);
         const transaction = db.transaction(["Compte"], "readonly");
         const objectStore = transaction.objectStore("Compte");
         const index = objectStore.index("User"); // Créez un index sur l'e-mail
@@ -645,7 +644,7 @@
             }
             (async () => {
               const password = await hashPassword(password_before);
-              console.log(`Mot de passe haché: ${password}`);
+
               // Ajoutez le nouveau compte à la base de données
               addToDatabase(
                 email,
@@ -684,14 +683,13 @@
         const password_input = document.getElementById("password").value;
         const index = objectStore.index("User");
         const getRequest = index.get(email_input);
-        console.log(getRequest);
-        console.log(objectStore);
+
         getRequest.onsuccess = function (event) {
           const storedUserData = event.target.result;
-          console.log(storedUserData);
+
           if (storedUserData) {
             // La variable a été récupérée avec succès
-            console.log("Valeur de la variable :", storedUserData.value);
+
             const { email, password, name, userId } = JSON.parse(
               storedUserData.value
             );
@@ -734,7 +732,7 @@
               // Vérification du mot de passe
 
               const isCorrect = await verifyPassword(password_input, password);
-              console.log(`Mot de passe vérifié: ${isCorrect}`);
+
               if (isCorrect === true) {
                 const newTransaction = db.transaction(
                   ["Connexion"],
@@ -807,28 +805,5 @@
         };
       });
     }
-    setTimeout(() => {
-      supp_img();
-      function supp_img() {
-        // Sélectionner tous les divs sur la page
-        const divs = document.querySelectorAll("div");
-
-        // Parcourir les divs pour trouver celui avec le lien spécifique
-        divs.forEach((div) => {
-          // Sélectionner l'élément <a> à l'intérieur du div
-          const a_div = div.querySelector("a");
-
-          // Vérifier si l'élément <a> existe et s'il a le href spécifique
-          if (
-            a_div &&
-            a_div.href ===
-              "https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"
-          ) {
-            // Supprimer l'élément div du DOM
-            div.remove();
-          }
-        });
-      }
-    }, 1000);
   </script>
 </html>
