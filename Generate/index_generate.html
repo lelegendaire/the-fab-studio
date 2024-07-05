@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style_css.css" />
+    <script src="variable.js" id="variable"></script>
+
+    <script
+      src="\Jzip\chemin_Jzip\dist\jszip.js"
+      id="script_zip"
+    ></script>
+    <script type="module" src="Script.js" id="script"></script>
+    <script src="sitemap.js" id="site_map"></script>
+    <script src="code_ide.js" id="code_ide"></script>
+  </head>
+  <body>
+    <div class="header_bar_div" id="header_bar_div"> 
+      <div class="header_bar" id="header_bar">
+      <div class="return"><i class="bx bxs-left-arrow"></i></div>
+      <div class="historique">
+        <div class="ctrlZ"><i class="bx bx-undo"></i></div>
+        <div class="Shift_ctrlZ"><i class="bx bx-redo"></i></div>
+        <div class="Save_temoin">
+          <i class="bx bx-cloud"></i><i class="bx bx-check"></i>
+        </div>
+      </div>
+      <div class="name_edit"><h4 class="name_of_site"></h4></div>
+
+      <div class="download"><i class="bx bx-download"></i></div>
+      <div class="share"><i class="bx bxs-share-alt"></i></div>
+      <div class="voir_mon_site">Voir</div>
+    </div></div>
+   
+    <div class="body_index" id="body_index"></div>
+   
+   
+    <div class="custom-menu" id="custom-menu">
+      <ul>
+        <li>
+          <a href="#" class="Edit"><i class="bx bxs-edit"></i> Modifier </a>
+          <p>Ctrl + E</p>
+        </li>
+        <li>
+          <a href="#" class="Plus"><i class="bx bx-plus"></i> Ajouter</a>
+          <p>Ctrl + A</p>
+        </li>
+        <li>
+          <a href="#" class="Plus"><i class='bx bxs-magic-wand'></i></i> Générer</a>
+          <p>Ctrl + G</p>
+        </li>
+        <li>
+          <a href="#" class="Copie"><i class="bx bx-copy"></i> Copier</a>
+          <p>Ctrl + C</p>
+        </li>
+        <li>
+          <a href="#" class="Coller"><i class="bx bx-paste"></i> Coller</a>
+          <p>Ctrl + V</p>
+        </li>
+        <li>
+          <a href="#" class="Cut"><i class="bx bx-cut"></i> Couper</a>
+          <p>Ctrl + X</p>
+        </li>
+        <li>
+          <a href="#" class="from_haut"
+            ><i class="bx bx-arrow-from-bottom"></i>Vers le haut</a
+          >
+          <p>Ctrl + ↑</p>
+        </li>
+        <li>
+          <a href="#" class="from_bas"
+            ><i class="bx bx-arrow-from-top"></i>Vers le bas</a
+          >
+          <p>Ctrl + ↓</p>
+        </li>
+        <li>
+          <a href="#" class="Deleted"><i class="bx bx-trash"></i> Supprimer</a>
+          <p>Ctrl + R</p>
+        </li>
+      </ul>
+    </div>
+    <div class="side_bar_tool" id="side_bar_tool">
+      <div class="menu_icon"><i class="bx bx-menu"></i></div>
+      <div class="cache_tool">
+        <div class="sitemap"><i class="bx bx-sitemap"></i></div>
+        <div class="code_ide"><i class="bx bx-code-alt"></i></div>
+        <div class="embed_view"><i class="bx bx-tv active"></i></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+   
+
+const wrapper_carrousel = document.querySelector(".wrapper_carrousel");    
+
+if (wrapper_carrousel) {
+  const containercarrossel = wrapper_carrousel.querySelector(".container-carrossel");
+
+const carrossel = wrapper_carrousel.querySelector(".carrossel");
+const carrosselItems = carrossel.querySelectorAll(".carrossel-item");
+// Iniciamos variables que cambiaran su estado.
+let isMouseDown = false;
+let currentMousePos = 0;
+let lastMousePos = 0;
+let lastMoveTo = 0;
+let moveTo = 0;
+
+const createcarrossel = () => {
+  const carrosselProps = onResize();
+  const length = carrosselItems.length; // Longitud del array
+  const degress = 360 / length; // Grados por cada item
+  const gap = 20; // Espacio entre cada item
+  const tz = distanceZ(carrosselProps.w, length, gap);
+
+  const fov = calculateFov(carrosselProps);
+  const height = calculateHeight(tz);
+
+  wrapper_carrousel.style.width = tz * 2 + gap * length + "px";
+  wrapper_carrousel.style.height = height + "px";
+
+  carrosselItems.forEach((item, i) => {
+    const degressByItem = degress * i + "deg";
+    item.style.setProperty("--rotatey", degressByItem);
+    item.style.setProperty("--tz", tz + "px");
+  });
+};
+
+// Funcion que da suavidad a la animacion
+const lerp = (a, b, n) => {
+  return n * (a - b) + b;
+};
+
+// https://3dtransforms.desandro.com/carousel
+const distanceZ = (widthElement, length, gap) => {
+  return widthElement / 2 / Math.tan(Math.PI / length) + gap; // Distancia Z de los items
+};
+
+// Calcula el alto del contenedor usando el campo de vision y la distancia de la perspectiva
+const calculateHeight = (z) => {
+  const t = Math.atan((90 * Math.PI) / 180 / 2);
+  const height = t * 2 * z;
+
+  return height;
+};
+
+// Calcula el campo de vision del carrossel
+const calculateFov = (carrosselProps) => {
+  const perspective = window
+    .getComputedStyle(containercarrossel)
+    .perspective.split("px")[0];
+
+  const length =
+    Math.sqrt(carrosselProps.w * carrosselProps.w) +
+    Math.sqrt(carrosselProps.h * carrosselProps.h);
+  const fov = 2 * Math.atan(length / (2 * perspective)) * (180 / Math.PI);
+  return fov;
+};
+
+// Obtiene la posicion X y evalua si la posicion es derecha o izquierda
+const getPosX = (x) => {
+  currentMousePos = x;
+
+  moveTo = currentMousePos < lastMousePos ? moveTo - 2 : moveTo + 2;
+
+  lastMousePos = currentMousePos;
+};
+
+const update = () => {
+  lastMoveTo = lerp(moveTo, lastMoveTo, 0.05);
+  carrossel.style.setProperty("--rotatey", lastMoveTo + "deg");
+
+  requestAnimationFrame(update);
+};
+
+const onResize = () => {
+  // Obtiene la propiedades del tamaño de carrossel
+  const boundingcarrossel = containercarrossel.getBoundingClientRect();
+
+  const carrosselProps = {
+    w: boundingcarrossel.width,
+    h: boundingcarrossel.height,
+  };
+
+  return carrosselProps;
+};
+
+const initEvents = () => {
+  // Eventos del mouse
+  carrossel.addEventListener("mousedown", () => {
+    isMouseDown = true;
+    carrossel.style.cursor = "grabbing";
+  });
+  carrossel.addEventListener("mouseup", () => {
+    isMouseDown = false;
+    carrossel.style.cursor = "grab";
+  });
+  wrapper_carrousel.addEventListener("mouseleave", () => (isMouseDown = false));
+
+  carrossel.addEventListener(
+    "mousemove",
+    (e) => isMouseDown && getPosX(e.clientX)
+  );
+
+  // Eventos del touch
+  carrossel.addEventListener("touchstart", () => {
+    isMouseDown = true;
+    carrossel.style.cursor = "grabbing";
+  });
+  carrossel.addEventListener("touchend", () => {
+    isMouseDown = false;
+    carrossel.style.cursor = "grab";
+  });
+  wrapper_carrousel.addEventListener(
+    "touchmove",
+    (e) => isMouseDown && getPosX(e.touches[0].clientX)
+  );
+
+  window.addEventListener("resize", createcarrossel);
+
+  update();
+  createcarrossel();
+};
+
+initEvents();
+      
+     
+      
+      }
+
+      const accordionContent = document.querySelectorAll(".accordion-content");
+
+      if (accordionContent) {
+       
+        accordionContent.forEach((item, index) => {
+          let header = item.querySelector("header");
+          console.log(header);
+          header.addEventListener("click", () => {
+            item.classList.toggle("open");
+
+            let description = item.querySelector(".description");
+            if (item.classList.contains("open")) {
+              description.style.height = `${description.scrollHeight}px`; //scrollHeight property returns the height of an element including padding , but excluding borders, scrollbar or margin
+              item.querySelector("i").classList.replace("bx-plus", "bx-minus");
+            } else {
+              description.style.height = "0px";
+              item.querySelector("i").classList.replace("bx-minus", "bx-plus");
+            }
+            removeOpen(index); //calling the funtion and also passing the index number of the clicked header
+          });
+        });
+
+        function removeOpen(index1) {
+          accordionContent.forEach((item2, index2) => {
+            if (index1 != index2) {
+              item2.classList.remove("open");
+
+              let des = item2.querySelector(".description");
+              des.style.height = "0px";
+              item2.querySelector("i").classList.replace("bx-minus", "bx-plus");
+            }
+          });
+        }
+      }
+
+      const container = document.querySelector(".container");
+      if (container) {
+        container.addEventListener("click", (e) => {
+          const target = e.target.closest(".card");
+
+          if (!target) return;
+
+          container.querySelectorAll(".card").forEach((card) => {
+            card.classList.remove("active");
+          });
+
+          target.classList.add("active");
+        });
+      }
+
+      const colorOption = document.querySelector(".color-option");
+      if (colorOption) {
+        colorOption.addEventListener("click", (e) => {
+          let target = e.target;
+          if (target.classList.contains("circle")) {
+            colorOption.querySelector(".active").classList.remove("active");
+            target.classList.add("active");
+            document
+              .querySelector(".main-images .active")
+              .classList.remove("active");
+            document
+              .querySelector(`.main-images .${target.id}`)
+              .classList.add("active");
+          }
+        });
+      }
+
+      window.addEventListener("beforeunload", (event) => {
+        event.preventDefault();
+        event.returnValue = "";
+      });
+     
+      
+      const menu_icon = document.querySelector(".menu_icon");
+      const cache_tool = document.querySelector(".cache_tool");
+      cache_tool.classList.add("open");
+      
+menu_icon.addEventListener("click", function () {
+  if (cache_tool.classList.contains("open")) {
+          
+    cache_tool.style.transform = "translateX(-700px)";
+    setTimeout(() => {
+
+  cache_tool.style.opacity = "0";// Fermer le menu
+  cache_tool.style.zIndex = "-1";// mettre en arrière plan
+    }, 500);
+    cache_tool.classList.remove("open");
+  } 
+  else {
+    // Ouvrir le menu
+    cache_tool.style.opacity = "1";
+    cache_tool.style.zIndex = "1";// ouvrir le menu
+    setTimeout(() => {
+      cache_tool.classList.add("open");
+      cache_tool.style.transform = "translateX(0)";
+    }, 10); // Une petite temporisation pour permettre la transition
+  }
+});
+
+     
+      const return_btn = document.querySelector(".return");
+   
+      return_btn.addEventListener("click", function () {
+        window.location.replace("../index.html");
+      }); 
+    }, 1000);
+    });
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+
+      scroll-behavior: smooth;
+    }
+    body {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      background: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0),
+        #1b1b1b;
+      background-size: 30px 30px;
+      background-position: -5px -5px;
+    }
+    body::-webkit-scrollbar {
+      display: none;
+    }
+    section {
+      min-height: 40vh;
+    }
+    .wrapper {
+      display: flex;
+      max-width: 650px;
+      width: 100%;
+      height: 400px;
+      background: #fff;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-radius: 12px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    .wrapper i.button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 36px;
+      width: 36px;
+      background-color: #343f4f;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 36px;
+      color: var(--text_color_white);
+      font-size: 15px;
+      transition: all 0.3s linear;
+      z-index: 100;
+      cursor: pointer;
+    }
+    i.button:active {
+      transform: scale(0.94) translateY(-50%);
+    }
+    i#prev {
+      left: 25px;
+    }
+    i#next {
+      right: 25px;
+    }
+    .image-container {
+      height: 320px;
+      max-width: 500px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .image-container .carousel {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      transition: all 0.4s ease;
+    }
+    .carousel img {
+      height: 100%;
+      width: 100%;
+      border-radius: 18px;
+      border: 10px solid #fff;
+      object-fit: cover;
+    }
+
+    /* Contact section styles */
+    .contact {
+      background: var(--body_color);
+      color: var(--text_color_white);
+
+      padding-top: 80px;
+      padding-bottom: 20px;
+
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: var(--text_color_white);
+    }
+
+    .contact p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text_color_white);
+    }
+    .email {
+      display: flex;
+      justify-content: center;
+
+      color: white;
+      padding: 20px;
+    }
+    .email ul {
+      list-style: none;
+    }
+    .email .input-box input[type="text"] {
+      height: 40px;
+      width: calc(100% + 55px);
+      outline: none;
+      border: 2px solid #afafb6;
+
+      border-radius: 4px;
+      padding: 0 15px;
+      font-size: 15px;
+      color: var(--text_color_white);
+      margin-top: 5px;
+      background-color: var(--body_color);
+    }
+    .email .input-box input[type="button"] {
+      color: var(--text_color_white);
+
+      font-size: 15px;
+      font-weight: 500;
+      margin: 4px 0;
+      opacity: 0.8;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      padding: 8px;
+      border-radius: 10px;
+      background: #5f5f5f86;
+      backdrop-filter: blur(30px);
+      border: 2px solid #afafb6;
+    }
+    .nos_clients {
+      margin-left: auto;
+      margin-right: auto;
+      padding-right: 1.5rem;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      margin-left: 88px;
+      margin-right: 88px;
+    }
+    .nos_clients h2 {
+      font-size: 48px;
+      line-height: 56px;
+      margin-bottom: 1.5rem;
+    }
+    .flex_colum {
+      flex-direction: row;
+      gap: 2.5rem;
+      justify-content: flex-start;
+      display: flex;
+    }
+    .block_list img {
+      width: 300px;
+      height: 170px;
+      margin-bottom: 1.5rem;
+
+      object-fit: cover;
+
+      object-position: center center;
+      border-radius: 1rem;
+    }
+    .block_list .text_block_list p[class="text_p_title_block_list"] {
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 40px;
+      margin-bottom: 1rem;
+    }
+    .block_list .text_block_list p[class="text_p_block_list"] {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .block_list .more_info {
+      border-width: 2px;
+      border-style: solid;
+      box-shadow: none;
+      background-color: var(--btn_color);
+      color: var(--text_color_white);
+      border-radius: 8px;
+      border-color: var(--btn_color);
+      padding: 0.75rem 1rem;
+      font-size: 16px;
+      line-height: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      transition-property: all;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 0.15s;
+      margin-top: 1rem;
+      text-decoration: inherit;
+    }
+    .block_list .more_info a {
+      text-decoration: inherit;
+    }
+    .accordion {
+      max-width: 530px;
+      width: 100%;
+      background: #fff;
+      margin: 0 15px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    }
+    .accordion .accordion-content {
+      margin: 10px 0;
+      border-radius: 4px;
+      background: #fff7f0;
+      border: 1px solid #ffd6b3;
+      overflow: hidden;
+    }
+    .accordion-content:nth-child(2) {
+      background-color: #f0faff;
+      border-color: #cceeff;
+    }
+    .accordion-content:nth-child(3) {
+      background-color: #fff0f3;
+      border-color: #ffccd6;
+    }
+    .accordion-content:nth-child(4) {
+      background-color: #f0f0ff;
+      border-color: #ccccff;
+    }
+    .accordion-content.open {
+      padding-bottom: 10px;
+    }
+    .accordion-content header {
+      display: flex;
+      min-height: 50px;
+      padding: 0 15px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s linear;
+    }
+    .accordion-content.open header {
+      min-height: 35px;
+    }
+    .accordion-content header .title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text_color_black);
+    }
+    .accordion-content header i {
+      font-size: 15px;
+      color: var(--text_color_black);
+    }
+    .accordion-content .description {
+      height: 0;
+      font-size: 12px;
+      color: var(--text_color_black);
+      font-weight: 400;
+      padding: 0 15px;
+      transition: all 0.2s linear;
+    }
+  </style>
+</html>
