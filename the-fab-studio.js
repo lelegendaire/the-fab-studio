@@ -1,10 +1,10 @@
-class TheFabStudio extends HTMLElement {
+export default class TheFabStudio extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
             <style>
-                /* Style for the content */
+                /* Style pour le contenu */
                 .content {
                     padding: 10px;
                     font-family: Arial, sans-serif;
@@ -24,7 +24,7 @@ class TheFabStudio extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['url']; // Observing `url` instead of `src`
+        return ['url'];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -47,7 +47,7 @@ class TheFabStudio extends HTMLElement {
     }
 
     connectedCallback() {
-        if (this.hasAttribute('url')) { // Check for `url` instead of `src`
+        if (this.hasAttribute('url')) {
             this.loadContent(this.getAttribute('url'));
         }
     }
