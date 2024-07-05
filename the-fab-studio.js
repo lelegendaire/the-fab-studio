@@ -1,11 +1,11 @@
-exportclass TheFabStudio extends HTMLElement {
+export class TheFabStudio extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
     }
 
     static get observedAttributes() {
-        return ['url']; // Observing `url` to dynamically update iframe source
+        return ['url']; // On observe l'attribut `url` pour mettre à jour dynamiquement l'iframe
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -21,8 +21,8 @@ exportclass TheFabStudio extends HTMLElement {
         iframe.style.width = '100%';
         iframe.style.height = '100%';
 
-        this.shadowRoot.innerHTML = ''; // Clear existing content
-        this.shadowRoot.appendChild(iframe);
+        this.shadowRoot.innerHTML = ''; // Efface le contenu existant
+        this.shadowRoot.appendChild(iframe); // Ajoute l'iframe dans le Shadow DOM
     }
 
     connectedCallback() {
@@ -34,4 +34,3 @@ exportclass TheFabStudio extends HTMLElement {
 }
 
 customElements.define('the-fab-studio', TheFabStudio);
-
