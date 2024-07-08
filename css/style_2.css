@@ -2941,7 +2941,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: end;
+  
   margin-right: 20px;
 }
 .footer {
@@ -3031,18 +3031,18 @@ button[id="extension_chatpass_btn"]:hover:before {
   background: #333;
   position: relative;
   left: -66px;
-  top: 53px;
+  bottom: 112px;
 
   width: 50px;
   height: 50px;
   mix-blend-mode: darken;
-  border-top-right-radius: 36px;
+  
 }
 .outer_radius_card {
   padding: 1.5rem 1rem;
 
   background-color: #f1f1f1;
-  width: 498px;
+ 
 }
 .information {
   position: relative;
