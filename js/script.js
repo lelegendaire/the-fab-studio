@@ -1633,7 +1633,7 @@ Newrequest.addEventListener("success", function (event) {
                     const personnalisation = document.querySelector(".personnalisation ");
                     border_perso.appendChild(save_site)
                     // Insérez la nouvelle section avant la section "footer"
-                    personnalisation.style.height = "330vh"
+                   
                     const title_save_site = document.createElement("h1");
                     title_save_site.textContent = "Vos sites";
                     save_site.appendChild(title_save_site);
