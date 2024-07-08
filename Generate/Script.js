@@ -11282,17 +11282,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         moins_zoom.addEventListener("click", function () {
           const nb_zoom_var = localStorage.getItem("nb_zoom");
+          if(nb_zoom_var !== 10){
           localStorage.setItem("nb_zoom", nb_zoom_var - 10);
+          
           const nb_zoom_var_act = localStorage.getItem("nb_zoom");
           const nb_zoom = document.querySelector(".nb_zoom");
 
           nb_zoom.textContent = nb_zoom_var_act + "%";
           const body_index = document.querySelector(".body_index");
           body_index.style.transform = "scale(" + nb_zoom_var_act + "%" + ")";
+          }
         });
         plus_zoom.addEventListener("click", function () {
           const nb_zoom_var = localStorage.getItem("nb_zoom");
-
+if(nb_zoom_var !== 10){
           // Convertissez la valeur en nombre (utilisez parseInt pour convertir en entier)
           const currentNbZoom = parseInt(nb_zoom_var, 10) || 0;
 
@@ -11307,6 +11310,7 @@ document.addEventListener("DOMContentLoaded", () => {
           nb_zoom.textContent = nb_zoom_var_act + "%";
           const body_index = document.querySelector(".body_index");
           body_index.style.transform = "scale(" + nb_zoom_var_act + "%" + ")";
+}
         });
       } else {
         const phone = document.querySelector(".phone");
