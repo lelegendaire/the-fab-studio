@@ -530,7 +530,7 @@ body::-webkit-scrollbar {
   }
 }
 .personnalisation {
-  height: 243vh;
+  height: 100%;
   width: 100%;
   position: relative;
   background: linear-gradient(rgba(0, 0, 0, 0.1), #333333da),
