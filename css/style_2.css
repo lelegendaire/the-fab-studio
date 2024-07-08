@@ -2946,8 +2946,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 }
 .footer {
   height: 69vh;
-  background: linear-gradient(#333, #33333, rgba(0, 0, 0, 0.1)),
-    url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background: linear-gradient(#333, #33333, rgba(0, 0, 0, 0.1)), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
 }
 .footer_general {
   height: 100%;
