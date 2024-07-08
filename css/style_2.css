@@ -2939,9 +2939,10 @@ button[id="extension_chatpass_btn"]:hover:before {
 .angles_radius_card {
   transform: translate(0px, 0px);
   max-width: 100%;
-  position: relative;
-  top: -59px;
-  left: -20px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin-right: 20px;
 }
 .footer {
   height: 69vh;
@@ -2962,9 +2963,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   align-items: center;
   grid-column-gap: 0.5rem;
   background-color: #333;
-  position: relative;
-
-  top: 24px;
+ 
   width: 152px;
 }
 .footer_title::before {
@@ -2973,7 +2972,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   background-color: #f1f1f1;
   position: relative;
   left: -34px;
-  top: 17px;
+  top: 27px;
   width: 20px;
   height: 20px;
 }
@@ -2983,7 +2982,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   background-color: #f1f1f1;
   position: relative;
   left: 35px;
-  top: 17px;
+  top: 27px;
   width: 20px;
   height: 20px;
 }
@@ -2991,9 +2990,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   padding: 0.5rem 1rem;
 
   background-color: #333;
-  position: relative;
-
-  top: 79px;
+  
   width: 180px;
 }
 .buble_purple {
@@ -3009,9 +3006,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   padding: 0.5rem 1rem;
 
   background-color: #f1f1f1;
-  position: relative;
-
-  top: -20px;
+  
   width: 450px;
   height: 421px;
   border-bottom-left-radius: 36px;
@@ -3031,13 +3026,23 @@ button[id="extension_chatpass_btn"]:hover:before {
   mix-blend-mode: darken;
   border-top-right-radius: 36px;
 }
+.card_radius_right::after {
+  content: "";
+  background: #333;
+  position: relative;
+  left: -66px;
+  top: 53px;
+
+  width: 50px;
+  height: 50px;
+  mix-blend-mode: darken;
+  border-top-right-radius: 36px;
+}
 .outer_radius_card {
   padding: 1.5rem 1rem;
 
   background-color: #f1f1f1;
-  position: relative;
-  left: -50px;
-  top: 89px;
+  width: 498px;
 }
 .information {
   position: relative;
