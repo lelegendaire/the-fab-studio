@@ -3369,11 +3369,15 @@ button[id="extension_chatpass_btn"]:hover:before {
 }
 .hu_column {
   display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 10px;
 }
 .column_step {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 50%;
 }
 .hu_step {
   display: flex;
@@ -3419,8 +3423,11 @@ button[id="extension_chatpass_btn"]:hover:before {
   height: 30px;
   background: #21c483;
 }
+.hu_video {
+  width: 50%;
+}
 .hu_video video {
-  width: 700px;
+  width: 49vw;
   transition: all 0.3s ease;
   border-radius: 0.5rem;
   box-shadow: 0px 0px 30px#0000007c;
