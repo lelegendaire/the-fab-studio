@@ -11295,7 +11295,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         plus_zoom.addEventListener("click", function () {
           const nb_zoom_var = localStorage.getItem("nb_zoom");
-if(nb_zoom_var !== 10){
+if(nb_zoom_var !== 200){
           // Convertissez la valeur en nombre (utilisez parseInt pour convertir en entier)
           const currentNbZoom = parseInt(nb_zoom_var, 10) || 0;
 
