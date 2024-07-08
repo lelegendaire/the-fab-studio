@@ -2280,6 +2280,98 @@ function decodeHash(hash) {
     const siteId = randomPart.split('').map(reverseTransformCharacter).join(''); // Récupérer l'ID du site
     return siteId;
 }
+const page_link_expired = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de lien expiré</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, rgba(0, 0, 128, 0.8), rgba(0, 0, 0, 0.8)), url('https://i.gifer.com/8VvO.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            color: #fff;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Le lien a été expiré, veuillez régénérer un lien pour le partager.</h1>
+        <button onclick="window.history.back()">Retourner à la page précédente</button>
+    </div>
+</body>
+</html>
+
+`
+const page_link_not_allowed = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de lien non autorisé</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.8)), url('https://i.gifer.com/OzV.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            text-align: center;
+         
+        }
+        h1 {
+            font-size: 24px;
+            color: #fff;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>La page ne peut se lire que dans la balise < the-fab-studio >.</h1>
+    </div>
+</body>
+</html>
+
+`
 if (previewHash) {
     const currentUrl = window.location.href;
     const siteId = decodeHash(previewHash);
@@ -2390,14 +2482,15 @@ if (previewHash) {
 
         } else {
             console.log('Le lien de prévisualisation a expiré.');
+            document.documentElement.innerHTML = page_link_expired
 
         }
-    }, 2000);
+    }, 100);
 } 
 if (previewWidgetIntegrate) {
 if (window.self !== window.top) {
    
-        const siteId = decodeHash(previewHash);
+        const siteId = decodeHash2(previewHash);
         console.log('Site ID:', siteId);
         // Afficher la prévisualisation
         const request = window.indexedDB.open("MaBaseDeDonnees", 1);
@@ -2445,7 +2538,10 @@ if (window.self !== window.top) {
                     const scripts = tempDiv.querySelectorAll("script");
                     scripts.forEach((script) => {
                         const newScript = document.createElement("script");
-                        newScript.textContent = script.textContent;
+                        if(script.textContent !== ""){
+
+                            newScript.textContent = script.textContent;
+                        }
                         document.head.appendChild(newScript);
                     });
 
@@ -2495,7 +2591,7 @@ if (window.self !== window.top) {
             }
         })
     }else {
-    alert("ce code ne s'éxécute seulement dans un item frame")
+        document.documentElement.innerHTML = page_link_not_allowed
 
 }
 } 
