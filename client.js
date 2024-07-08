@@ -1,5 +1,43 @@
 const socket = new WebSocket('wss://serveur-cq8x.onrender.com');
 
+// Fonction pour générer un identifiant unique
+function generateUniqueID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+// Fonction pour obtenir un cookie par son nom
+function getCookie(name) {
+    let cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        let [key, value] = cookie.split('=').map(c => c.trim());
+        if (key === name) return value;
+    }
+    return null;
+}
+
+// Fonction pour définir un cookie
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+// Vérifier si un cookie 'deviceID' existe, sinon en créer un
+let deviceID = getCookie('deviceID');
+if (!deviceID) {
+    deviceID = generateUniqueID();
+    setCookie('deviceID', deviceID, 365); // Le cookie expire après 1 an
+}
+
+console.log('Identifiant unique pour cet appareil:', deviceID);
+
 
 socket.addEventListener("open", () => {
     if (!localStorage.getItem("firstTime_client")) {
@@ -27,13 +65,7 @@ document.addEventListener('visibilitychange', () => {
 });
 
 
-function requestInitialSync_FT() {
-    console.log("Demande de synchronisation initiale envoyée pour la première fois nouvelle connection.");
-    getDatabaseDateTime_TF((dateTime) => {
-        console.log(dateTime)
-        //socket.send(JSON.stringify({ action: "clientDateTime", dateTime: dateTime, first: "true" }));
-    });
-}
+
 
 
 function handleServerMessage(message) {
@@ -92,6 +124,7 @@ function syncDataToDatabase(storeName, data) {
             data.forEach(item => store.put(item));
             console.log(`Données synchronisées pour le store: ${storeName}`);
         };
+
     };
 }
 
@@ -111,3 +144,33 @@ function sendDataToServer() {
         });
     };
 }
+// Créer un nouveau Broadcast Channel
+const channel = new BroadcastChannel('device-check');
+
+// Envoyer l'identifiant de l'appareil aux autres fenêtres
+channel.postMessage({ action: 'checkDevice', deviceID: deviceID });
+
+// Écouter les messages des autres fenêtres
+channel.onmessage = function (event) {
+    if (event.data.action === 'checkDevice') {
+        if (event.data.deviceID === deviceID) {
+            console.log("Les fenêtres appartiennent au même appareil");
+        } else {
+            const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+request.addEventListener("success", function (event) {
+    const db = event.target.result;
+            console.log("Les fenêtres appartiennent à des appareils différents");
+            const newTransaction = db.transaction(["Connexion"], "readwrite");
+                                const newObjectStore = newTransaction.objectStore("Connexion");
+
+                                const newRequest = newObjectStore.put({
+                                    connexion: 1,
+                                    connected: "no",
+                                    name_to_profil: "",
+                                    email: "",
+                                    id_to_create: "",
+                                });
+})
+        }
+    }
+};
