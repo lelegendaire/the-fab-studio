@@ -11467,7 +11467,6 @@ if (nb_zoom_var < 200) { // Assurez-vous que le zoom ne dépasse pas 200%
         document.getElementById("save_notif"), // Ajoutez l'élément à exclure ici
         document.getElementById("toast"), // Ajoutez l'élément à exclure ici
         document.getElementById("header_bar"), // Ajoutez l'élément à exclure ici
-        document.getElementById("page"), // Ajoutez l'élément à exclure ici
         document.getElementById("reglage_zoom"), // Ajoutez l'élément à exclure ici
         document.getElementById("custom-menu"), // Ajoutez l'élément à exclure ici
         document.getElementById("code_ide"), // Ajoutez l'élément à exclure ici
@@ -11784,7 +11783,6 @@ ${clonedDocument.documentElement.innerHTML}
           document.getElementById("save_notif"), // Ajoutez l'élément à exclure ici
           document.getElementById("toast"), // Ajoutez l'élément à exclure ici
           document.getElementById("header_bar"), // Ajoutez l'élément à exclure ici
-          document.getElementById("page"), // Ajoutez l'élément à exclure ici
           document.getElementById("reglage_zoom"), // Ajoutez l'élément à exclure ici
           document.getElementById("custom-menu"), // Ajoutez l'élément à exclure ici
           document.getElementById("code_ide"), // Ajoutez l'élément à exclure ici
