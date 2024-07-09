@@ -3423,6 +3423,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 }
 .desc_step p {
    margin-bottom: 5px;
+}
 .title_step {
   display: flex;
   gap: 20px;
