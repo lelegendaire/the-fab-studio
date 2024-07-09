@@ -1695,6 +1695,18 @@ button[id="validateBtn_cat"] {
 .prefooter_cards {
   display: flex;
   flex-direction: column;
+  background: #ffffff69;
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+  width: 390px;
+  height: 201px;
+  padding: 20px;
+  position: relative;
+  transform: translateX(-485px); /* Changement ici */
+  z-index: -11;
+  transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  overflow: hidden;
+  display: flex;
 }
 .card__counter {
   display: flex;
