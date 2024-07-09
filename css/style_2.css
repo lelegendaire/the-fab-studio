@@ -3402,7 +3402,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   gap: 20px;
   background: #cfcfcf;
   padding: 20px;
-  height: 8%;
+  height: 7%;
   border-radius: 0.5rem;
   transition: all 0.5s ease;
   opacity: 0.5;
