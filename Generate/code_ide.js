@@ -189,7 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                         document.getElementById("save_notif"), // Ajoutez l'élément à exclure ici
                                         document.getElementById("toast"), // Ajoutez l'élément à exclure ici
                                         document.getElementById("header_bar"), // Ajoutez l'élément à exclure ici
-                                        document.getElementById("page"), // Ajoutez l'élément à exclure ici
                                         document.getElementById("reglage_zoom"), // Ajoutez l'élément à exclure ici
                                         document.getElementById("custom-menu"), // Ajoutez l'élément à exclure ici
                                         document.getElementById("code_ide"), // Ajoutez l'élément à exclure ici
@@ -241,7 +240,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                         document.getElementById("save_notif"), // Ajoutez l'élément à exclure ici
                                         document.getElementById("toast"), // Ajoutez l'élément à exclure ici
                                         document.getElementById("header_bar"), // Ajoutez l'élément à exclure ici
-                                        document.getElementById("page"), // Ajoutez l'élément à exclure ici
                                         document.getElementById("reglage_zoom"), // Ajoutez l'élément à exclure ici
                                         document.getElementById("custom-menu"), // Ajoutez l'élément à exclure ici
                                         document.getElementById("code_ide"), // Ajoutez l'élément à exclure ici
@@ -389,7 +387,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("save_notif"), // Ajoutez l'élément à exclure ici
                 document.getElementById("toast"), // Ajoutez l'élément à exclure ici
                 document.getElementById("header_bar"), // Ajoutez l'élément à exclure ici
-                document.getElementById("page"), // Ajoutez l'élément à exclure ici
                 document.getElementById("reglage_zoom"), // Ajoutez l'élément à exclure ici
                 document.getElementById("custom-menu"), // Ajoutez l'élément à exclure ici
                 document.getElementById("code_ide"), // Ajoutez l'élément à exclure ici
@@ -690,7 +687,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const embed_view = document.querySelector(".embed_view")
         const bar_edit = document.querySelector(".bar_edit")
 
-        const page = document.querySelector(".page")
+        
         const reglage_zoom = document.querySelector(".reglage_zoom")
         const headerLanguage = document.querySelector(".header_language")
         const console_log = document.querySelector(".console")
@@ -702,7 +699,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             body_index.style.display = "block"
             bar_edit.style.display = "flex"
-            page.style.display = "flex"
+            
             reglage_zoom.style.display = "flex"
             body_index.style.display = "block"
             bar_edit.style.display = "flex"
@@ -720,7 +717,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.style.overflowY = "scroll"
             body_index.style.display = "none"
             bar_edit.style.display = "none"
-            page.style.display = "none"
+            
             reglage_zoom.style.display = "none"
             headerLanguage.style.display = "flex"
             card_code.style.display = "flex"
