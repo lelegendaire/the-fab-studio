@@ -11282,35 +11282,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
         moins_zoom.addEventListener("click", function () {
           const nb_zoom_var = localStorage.getItem("nb_zoom");
-          if(nb_zoom_var !== 10){
-          localStorage.setItem("nb_zoom", nb_zoom_var - 10);
-          
-          const nb_zoom_var_act = localStorage.getItem("nb_zoom");
-          const nb_zoom = document.querySelector(".nb_zoom");
+          if (nb_zoom_var > 10) { // Assurez-vous que le zoom ne descend pas en dessous de 10%
+    nb_zoom_var -= 10;
+    localStorage.setItem("nb_zoom", nb_zoom_var);
 
-          nb_zoom.textContent = nb_zoom_var_act + "%";
-          const body_index = document.querySelector(".body_index");
-          body_index.style.transform = "scale(" + nb_zoom_var_act + "%" + ")";
-          }
+    const nb_zoom = document.querySelector(".nb_zoom");
+    nb_zoom.textContent = nb_zoom_var + "%";
+
+    const body_index = document.querySelector(".body_index");
+    body_index.style.transform = "scale(" + (nb_zoom_var / 100) + ")";
+  }
         });
         plus_zoom.addEventListener("click", function () {
           const nb_zoom_var = localStorage.getItem("nb_zoom");
-if(nb_zoom_var !== 200){
-          // Convertissez la valeur en nombre (utilisez parseInt pour convertir en entier)
-          const currentNbZoom = parseInt(nb_zoom_var, 10) || 0;
+if (nb_zoom_var < 200) { // Assurez-vous que le zoom ne dépasse pas 200%
+    nb_zoom_var += 10;
+    localStorage.setItem("nb_zoom", nb_zoom_var);
 
-          // Ajoutez 10 à la valeur actuelle
-          const newNbZoom = currentNbZoom + 10;
+    const nb_zoom = document.querySelector(".nb_zoom");
+    nb_zoom.textContent = nb_zoom_var + "%";
 
-          // Stockez la nouvelle valeur dans le localStorage
-          localStorage.setItem("nb_zoom", newNbZoom);
-          const nb_zoom_var_act = localStorage.getItem("nb_zoom");
-          const nb_zoom = document.querySelector(".nb_zoom");
-
-          nb_zoom.textContent = nb_zoom_var_act + "%";
-          const body_index = document.querySelector(".body_index");
-          body_index.style.transform = "scale(" + nb_zoom_var_act + "%" + ")";
-}
+    const body_index = document.querySelector(".body_index");
+    body_index.style.transform = "scale(" + (nb_zoom_var / 100) + ")";
+  }
         });
       } else {
         const phone = document.querySelector(".phone");
