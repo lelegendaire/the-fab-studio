@@ -3418,10 +3418,11 @@ button[id="extension_chatpass_btn"]:hover:before {
   flex-direction: column;
 
   padding-bottom: 16px;
-  height: 160px;
+  height: 100%;
   width: 700px;
 }
-
+.desc_step p {
+   margin-bottom: 5px;
 .title_step {
   display: flex;
   gap: 20px;
@@ -3454,7 +3455,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   background-color: #ddd;
   border-radius: 5px;
   overflow: hidden;
-  margin-top: 17px;
+ 
   position: relative;
 }
 
