@@ -691,10 +691,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const reglage_zoom = document.querySelector(".reglage_zoom")
         const headerLanguage = document.querySelector(".header_language")
         const console_log = document.querySelector(".console")
-        const infinitySpace = document.querySelector('.infinity_space');
+        
 
         const card_code = document.querySelector(".card_code")
         embed_view.addEventListener("click", function () {
+            const infinitySpace = document.querySelector('.infinity_space');
             document.body.style.overflowY = "scroll"
 
             body_index.style.display = "block"
@@ -713,6 +714,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
         code_btn.addEventListener("click", function () {
+            const infinitySpace = document.querySelector('.infinity_space');
             document.body.style.overflowY = "scroll"
             body_index.style.display = "none"
             bar_edit.style.display = "none"
