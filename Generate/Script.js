@@ -11283,8 +11283,8 @@ document.addEventListener("DOMContentLoaded", () => {
         moins_zoom.addEventListener("click", function () {
           const nb_zoom_var = localStorage.getItem("nb_zoom");
           if (nb_zoom_var > 10) { // Assurez-vous que le zoom ne descend pas en dessous de 10%
-    nb_zoom_var -= 10;
-    localStorage.setItem("nb_zoom", nb_zoom_var);
+    
+    localStorage.setItem("nb_zoom", nb_zoom_var - 10);
 
     const nb_zoom = document.querySelector(".nb_zoom");
     nb_zoom.textContent = nb_zoom_var + "%";
@@ -11296,8 +11296,11 @@ document.addEventListener("DOMContentLoaded", () => {
         plus_zoom.addEventListener("click", function () {
           const nb_zoom_var = localStorage.getItem("nb_zoom");
 if (nb_zoom_var < 200) { // Assurez-vous que le zoom ne dépasse pas 200%
-    nb_zoom_var += 10;
-    localStorage.setItem("nb_zoom", nb_zoom_var);
+      const currentNbZoom = parseInt(nb_zoom_var, 10) || 0;
+
+          // Ajoutez 10 Ã  la valeur actuelle
+          const newNbZoom = currentNbZoom + 10;
+    localStorage.setItem("nb_zoom", newNbZoom);
 
     const nb_zoom = document.querySelector(".nb_zoom");
     nb_zoom.textContent = nb_zoom_var + "%";
