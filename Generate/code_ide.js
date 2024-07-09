@@ -707,10 +707,9 @@ document.addEventListener("DOMContentLoaded", () => {
             card_code.style.display = "none"
             console_log.style.display = "none"
 
-            if (infinitySpace) {
 
                 infinitySpace.style.display = "none"
-            }
+            
 
         });
         code_btn.addEventListener("click", function () {
@@ -723,10 +722,10 @@ document.addEventListener("DOMContentLoaded", () => {
             card_code.style.display = "flex"
             console_log.style.display = "block"
 
-            if (infinitySpace) {
+      
 
                 infinitySpace.style.display = "none"
-            }
+            
         });
 
         document.addEventListener('keydown', function (event) {
