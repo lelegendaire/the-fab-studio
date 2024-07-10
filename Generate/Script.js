@@ -12581,7 +12581,7 @@ const btn_create_host = document.createElement("button");
 
       socket.send(message);
     };
-         input_create_host.value = "https://the-fab-studio.onrender.com/" + formattedSiteName  + "index.html"   
+         input_create_host.value = "https://the-fab-studio.onrender.com/" + formattedSiteName  + "/index.html"   
                  
                 });
                 function Generate_linkWidgetIntegrate(uniqueId) {
