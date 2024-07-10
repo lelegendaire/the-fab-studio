@@ -12518,7 +12518,7 @@ ${clonedDocument.documentElement.innerHTML}
 const h1_create_host = document.createElement("h2");
                 h1_create_host.innerHTML = `<i class='bx bx-server'></i> Création d'un hébergement de votre site`
                 body_share.appendChild(h1_create_host)
-const div_input_link_temp = document.createElement("div");
+const div_input_create_host = document.createElement("div");
                 div_input_create_host.classList.add("div_input_create_host")
                 const i_input_create_host = document.createElement("i");
                 i_input_create_host.classList.add("bx", "bx-link-external")
