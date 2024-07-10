@@ -12582,7 +12582,7 @@ const btn_create_host = document.createElement("button");
       socket.send(message);
     };
                  
-                }
+                });
                 function Generate_linkWidgetIntegrate(uniqueId) {
                   const randomPart = uniqueId.split('_')[1].slice(0, 9); // Obtient 'tbi3usvo'
                   const alphanumericPart = randomPart.replace(/[^0-9a-zA-Z]/g, ''); // Extraire uniquement les caractères alphanumériques
