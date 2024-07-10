@@ -2228,7 +2228,7 @@ function reverseTransformCharacter2(char) {
         }
     } else if (/[0-9]/.test(char)) { // Si le caractère est un chiffre
         const number = parseInt(char, 10); // Convertir en nombre
-        return (number - 1); // Récupérer le chiffre original en inversant la transformation
+        return (number + 1); // Récupérer le chiffre original en inversant la transformation
     }
     return char; // Pour tout autre caractère, on le retourne tel quel
 }
