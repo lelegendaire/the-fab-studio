@@ -7789,6 +7789,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           if (selectedSection.id === "Réseaux sociaux") {
             card_create();
+            const wrapper_btn_rs = document.querySelectorAll(".wrapper_sociaux button");
             const card_index = document.querySelector(".card_index");
             const card = document.querySelector(".body_plus");
             const body_edit = document.querySelector(".body_edit");
@@ -7806,7 +7807,8 @@ document.addEventListener("DOMContentLoaded", () => {
               card.appendChild(br1);
 
 
-              for (let i = 0; i < nb_rs; i++) {
+              wrapper_btn_rs.forEach((rs,i) =>{
+                
                 const br_4 = document.createElement("br");
 
                 card.appendChild(br_4);
@@ -7838,7 +7840,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 card.appendChild(br_5);
 
-              }
+              });
               const computedStyle = window.getComputedStyle(selectedSection);
               // code fond
               const colorfond = computedStyle.getPropertyValue("background");
