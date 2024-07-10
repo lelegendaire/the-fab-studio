@@ -4722,15 +4722,18 @@ document.addEventListener("DOMContentLoaded", () => {
         if (localStorage.getItem("isChecked") === "true") {
           input_label_fixed.checked = true;
           header.style.position = "fixed";
+          header.style.width = "90%";
         }
         // Ajouter un gestionnaire pour la case à cocher
         input_label_fixed.addEventListener("click", function () {
           if (input_label_fixed.checked) {
             localStorage.setItem("isChecked", "true");
             header.style.position = "fixed";
+            header.style.width = "90%";
           } else {
             localStorage.setItem("isChecked", "false");
             header.style.position = ""; // Définissez ici la valeur par défaut souhaitée
+            header.style.width = "100%";
           }
         });
         //fond header
