@@ -2490,7 +2490,7 @@ if (previewHash) {
 if (previewWidgetIntegrate) {
 if (window.self !== window.top) {
    
-        const siteId = decodeHash2(previewHash);
+        const siteId = decodeHash2(previewWidgetIntegrate);
         console.log('Site ID:', siteId);
         // Afficher la prévisualisation
         const request = window.indexedDB.open("MaBaseDeDonnees", 1);
