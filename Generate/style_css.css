@@ -2294,6 +2294,9 @@ body {
   height: 6px;
   width: 6px;
 }
+.body_share {
+  width: 60vh;
+}
 .body_share button[class="btn_create_host"] {
   display: flex;
     align-items: center;
@@ -2304,6 +2307,7 @@ body {
   box-shadow:0px 2px 8px 0px rgba(0, 0, 0, 0.2),
     0px 1px 0px 0px rgba(255, 255, 255, 0.2) inset;
   background: #1a1919;
+  margin: 10px 0px;
   
 }
 .body_share button[class="btn_create_host"]:hover{
