@@ -12562,6 +12562,27 @@ const btn_create_host = document.createElement("button");
               btn_create_host.classList.add("btn_create_host")
                 btn_create_host.textContent = "Créer un hébergement"
                 body_share.appendChild(btn_create_host)
+                btn_create_host.addEventListener("click",function(){
+                  const savedSiteName = localStorage.getItem("siteName");
+                  const formattedSiteName = savedSiteName.replace(/\s+/g, '-');
+                  
+ const socket = new WebSocket('wss://serveur-cq8x.onrender.com');
+
+    socket.onopen = function(event) {
+      console.log('Connected to WebSocket server 2.');
+
+      // Envoyer un message spécifique au serveur 2
+     const message = JSON.stringify({
+        action: 'create-directory',
+        dirName: formattedSiteName,
+        fileName: 'index.html',
+        content: '<html><body><h1>Hello World</h1></body></html>'
+      });
+
+      socket.send(message);
+    };
+                 
+                }
                 function Generate_linkWidgetIntegrate(uniqueId) {
                   const randomPart = uniqueId.split('_')[1].slice(0, 9); // Obtient 'tbi3usvo'
                   const alphanumericPart = randomPart.replace(/[^0-9a-zA-Z]/g, ''); // Extraire uniquement les caractères alphanumériques
