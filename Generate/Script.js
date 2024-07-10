@@ -5482,7 +5482,7 @@ document.addEventListener("DOMContentLoaded", () => {
           document.addEventListener("mouseup", () => {
             isResizing = false;
           });
-        });
+     
               });
               resetCards();
               resetLayout();
