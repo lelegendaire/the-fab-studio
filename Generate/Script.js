@@ -7806,7 +7806,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
               card.appendChild(br1);
 
-
+console.log(wrapper_btn_rs)
               wrapper_btn_rs.forEach((rs,i) =>{
                 
                 const br_4 = document.createElement("br");
@@ -12515,6 +12515,54 @@ ${clonedDocument.documentElement.innerHTML}
                 });
                 const br_share5 = document.createElement("br")
                 body_share.appendChild(br_share5)
+const h1_create_host = document.createElement("h2");
+                h1_create_host.innerHTML = `<i class='bx bx-server'></i> Création d'un hébergement de votre site`
+                body_share.appendChild(h1_create_host)
+const div_input_link_temp = document.createElement("div");
+                div_input_create_host.classList.add("div_input_create_host")
+                const i_input_create_host = document.createElement("i");
+                i_input_create_host.classList.add("bx", "bx-link-external")
+                const input_create_host = document.createElement("input");
+                input_create_host.type = "text"
+                input_create_host.style.width = "100%"
+                input_create_host.value = ""
+                div_input_create_host.appendChild(i_input_create_host)
+                div_input_create_host.appendChild(input_create_host)
+                const i_input_create_host2 = document.createElement("i");
+                i_input_create_host2.classList.add("bx", "bx-copy")
+                div_input_create_host.appendChild(i_input_create_host2)
+                i_input_create_host2.addEventListener("click", () => {
+                  // Sélectionner le contenu de l'input
+                  input_create_host.select();
+                  input_create_host.setSelectionRange(0, 99999); // Pour les navigateurs mobiles
+
+                  // Copier le texte sélectionné dans le presse-papiers
+                  document.execCommand('copy');
+
+                  // Désélectionner le texte après la copie (pour éviter de garder la sélection)
+                  input_create_host.setSelectionRange(0, 0);
+
+                  // Optionnel : Afficher une confirmation à l'utilisateur
+                  toast_valid("Copier avec succès", "success");
+                });
+                i_input_create_host.addEventListener("click", () => {
+                  // Sélectionner le contenu de l'input
+                  input_create_host.select();
+                  input_create_host.setSelectionRange(0, 99999); // Pour les navigateurs mobiles
+
+                  // Copier le texte sélectionné dans le presse-papiers
+                  window.open(input_create_host.value)
+
+                  // Désélectionner le texte après la copie (pour éviter de garder la sélection)
+                  input_create_host.setSelectionRange(0, 0);
+
+                  // Optionnel : Afficher une confirmation à l'utilisateur
+                });
+                body_share.appendChild(div_input_create_host)
+const btn_create_host = document.createElement("button");
+              btn_create_host.classList.add("btn_create_host")
+                btn_create_host.textContent = "Créer un hébergement"
+                body_share.appendChild(btn_create_host)
                 function Generate_linkWidgetIntegrate(uniqueId) {
                   const randomPart = uniqueId.split('_')[1].slice(0, 9); // Obtient 'tbi3usvo'
                   const alphanumericPart = randomPart.replace(/[^0-9a-zA-Z]/g, ''); // Extraire uniquement les caractères alphanumériques
