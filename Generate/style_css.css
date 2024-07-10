@@ -489,7 +489,7 @@ body {
 .card_index {
   position: fixed;
   height: 85vh;
-  width: 60vh;
+  min-width: 60vh;
   background: #242526;
   color: #ccc;
   border-radius: 20px;
@@ -639,6 +639,9 @@ body {
 .div_to_save {
   display: flex;
   justify-content: end;
+}
+.card_index h1{
+  width: 60vh;
 }
 .card_index button {
   display: inline-flex;
