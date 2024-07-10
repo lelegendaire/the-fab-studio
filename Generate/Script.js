@@ -5434,6 +5434,55 @@ document.addEventListener("DOMContentLoaded", () => {
                 const blur_and_darklight = document.createElement("div");
                 blur_and_darklight.classList.add("dark");
                 newSection.appendChild(blur_and_darklight);
+                const point_before = document.createElement("div");
+          point_before.classList.add("point");
+          point_before.classList.add("before");
+          blur_and_darklight.appendChild(point_before);
+          const point_after = document.createElement("div");
+          point_after.classList.add("point");
+          point_after.classList.add("after");
+          blur_and_darklight.appendChild(point_after);
+          // Variable pour stocker l'état du déplacement
+          let isResizing = false;
+          let startY;
+          let MIN_SECTION_HEIGHT = 100;
+          // Gestionnaire d'événement pour le redimensionnement vertical vers le haut
+          point_before.addEventListener("mousedown", (event) => {
+            event.preventDefault();
+            if (!section.previousElementSibling) return; // Empêcher le redimensionnement de la première section
+            isResizing = true;
+            startY = event.clientY;
+          });
+          // Gestionnaire d'événement pour le redimensionnement vertical vers le bas
+          point_after.addEventListener("mousedown", (event) => {
+            event.preventDefault();
+            if (!section.nextElementSibling) return; // Empêcher le redimensionnement de la dernière section
+            isResizing = true;
+            startY = event.clientY;
+          });
+          // Gestionnaire d'événement pour le déplacement de la souris lors du redimensionnement
+          document.addEventListener("mousemove", (event) => {
+            if (isResizing) {
+              const sectionHeight = section.offsetHeight;
+              const deltaY = event.clientY - startY;
+              const newHeight = sectionHeight + deltaY;
+              // Vérifiez si la nouvelle hauteur ne dépasse pas une certaine limite
+              if (newHeight >= MIN_SECTION_HEIGHT) {
+                section.style.height = `${newHeight}px`;
+                // Déplacez le point avant vers le haut si la section est redimensionnée vers le haut
+                if (deltaY < 0) {
+                  section.style.top = `${parseFloat(section.style.top) + deltaY}px`;
+                }
+              }
+              startY = event.clientY;
+            }
+          });
+
+          // Gestionnaire d'événement pour arrêter le redimensionnement
+          document.addEventListener("mouseup", () => {
+            isResizing = false;
+          });
+        });
               });
               resetCards();
               resetLayout();
