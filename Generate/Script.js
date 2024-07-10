@@ -6321,7 +6321,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
               if (localStorage.getItem("isChecked_parallax") === "true") {
                 input_label_parallaxe.checked = true;
-                header.style.position = "fixed";
+                 Images.style.backgroundAttachment = "fixed";
               }
               const Images = document.getElementById("Images");
               // Ajouter un gestionnaire pour la case à cocher
