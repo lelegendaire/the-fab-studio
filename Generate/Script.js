@@ -12574,9 +12574,9 @@ const btn_create_host = document.createElement("button");
       // Envoyer un message spécifique au serveur 2
      const message = JSON.stringify({
         action: 'create-directory',
-        dirName: formattedSiteName,
-        fileName: 'index.html',
-        content: '<html><body><h1>Hello World</h1></body></html>'
+       username: "fab",
+        sitename: formattedSiteName,
+        
       });
 
       socket.send(message);
