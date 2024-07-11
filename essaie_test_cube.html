@@ -26,9 +26,31 @@
     </style>
   </head>
   <body>
+     <div id="content">
+        <!-- Le contenu fictif sera injecté ici -->
+    </div>
     <!-- Utilisation de la balise personnalisée -->
     <the-fab-studio
       url="https://the-fab-studio.onrender.com/index.html?widget_integrate=xrb1v1e1x"
     ></the-fab-studio>
   </body>
+    <script>
+        // Fonction pour afficher du contenu fictif en fonction de l'URL
+        function afficherContenuFictif() {
+            // Récupérer l'URL actuelle
+            let urlActuelle = window.location.href;
+
+            // Vérifier si l'URL correspond à notre modèle souhaité
+            if (urlActuelle.includes('/User/NameOfSite/index.html')) {
+                // URL correspondante : afficher le contenu fictif
+                document.getElementById('content').innerHTML = '<h1>Contenu fictif pour NameOfSite</h1>';
+            } else {
+                // URL non gérée : afficher un message par défaut ou rediriger
+                document.getElementById('content').innerHTML = '<p>URL non gérée.</p>';
+            }
+        }
+
+        // Appeler la fonction au chargement de la page
+        window.onload = afficherContenuFictif;
+    </script>
 </html>
