@@ -12573,7 +12573,7 @@ const btn_create_host = document.createElement("button");
 
       // Envoyer un message spécifique au serveur 2
      const message = JSON.stringify({
-        action: 'create-directory',
+        action: 'create-site',
        username: "fab",
         sitename: formattedSiteName,
         
@@ -12584,8 +12584,8 @@ const btn_create_host = document.createElement("button");
                     socket.onmessage = function(event) {
       const response = JSON.parse(event.data);
       console.log('Message from server:', response.message);
-      if (response.fileUrl) {
-        console.log('File URL:', response.fileUrl);
+      if (response.message) {
+        console.log('File URL:', response.message);
       }
     };
          input_create_host.value = "https://the-fab-studio.onrender.com/" + formattedSiteName  + "/index.html"   
