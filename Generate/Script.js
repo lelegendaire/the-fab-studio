@@ -12581,6 +12581,13 @@ const btn_create_host = document.createElement("button");
 
       socket.send(message);
     };
+                    socket.onmessage = function(event) {
+      const response = JSON.parse(event.data);
+      console.log('Message from server:', response.message);
+      if (response.fileUrl) {
+        console.log('File URL:', response.fileUrl);
+      }
+    };
          input_create_host.value = "https://the-fab-studio.onrender.com/" + formattedSiteName  + "/index.html"   
                  
                 });
