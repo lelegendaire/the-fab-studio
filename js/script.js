@@ -13,13 +13,13 @@ if (step) {
             // Vérifier si le hash correspond à notre modèle souhaité
             if (hash === '#User/NameOfSite/index.html') {
                 // Afficher du contenu fictif pour ce chemin
-                document.getElementById('content').innerHTML = `
+                document.documentElement.innerHTML = `
                     <h1>Contenu fictif pour ${hash}</h1>
                     <p>Voici le contenu fictif pour ${hash}.</p>
                 `;
             } else {
                 // Afficher un message par défaut si le chemin n'est pas géré
-                document.getElementById('content').innerHTML = `
+                document.documentElement.innerHTML = `
                     <p>Le chemin ${hash} n'est pas géré. Utilisez <code>#User/NameOfSite/index.html</code> pour voir le contenu fictif.</p>
                 `;
             }
