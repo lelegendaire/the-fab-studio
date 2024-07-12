@@ -6,7 +6,27 @@ if (step) {
     localStorage.setItem("check_link", false)
 }
 
+   function afficherContenuFictif() {
+            // Récupérer le chemin de l'URL après le domaine
+            const cheminURL = window.location.pathname;
 
+            // Vérifier si le chemin correspond à notre modèle souhaité
+            if (cheminURL === '/User/NameOfSite/index.html') {
+                // Afficher du contenu fictif pour ce chemin
+                document.getElementById('content').innerHTML = `
+                    <h1>Contenu fictif pour ${cheminURL}</h1>
+                    <p>Voici le contenu fictif pour ${cheminURL}.</p>
+                `;
+            } else {
+                // Afficher un message par défaut si le chemin n'est pas géré
+                document.getElementById('content').innerHTML = `
+                    <p>Le chemin ${cheminURL} n'est pas géré. Utilisez <code>/User/NameOfSite/index.html</code> pour voir le contenu fictif.</p>
+                `;
+            }
+        }
+
+        // Appeler la fonction au chargement de la page
+        window.onload = afficherContenuFictif;
 function selectColor(element) {
     const selectedElements = document.querySelectorAll('.color');
     selectedElements.forEach((el) => {
