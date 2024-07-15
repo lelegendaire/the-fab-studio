@@ -12697,17 +12697,17 @@ const btn_create_host = document.createElement("button");
     const objectStore = transaction.objectStore("Connexion");
 
     // Accéder à l'index "Connected"
-    const index = objectStore.index("Connected");
+    const index = objectStore.get(1);
 
     // Exemple pour obtenir une valeur à partir de l'index
-    const getRequest = index.get(0);
-            console.log(getRequest)
-            getRequest.onsuccess = function (event) {
+
+           
+            index.onsuccess = function (event) {
               const user_name = event.target.result;
               console.log(user_name)
               if (user_name) {
 
-         input_create_host.value = "https://the-fab-studio.onrender.com/#/" + user_name + "/" + formattedSiteName  + "/index.html"  
+         input_create_host.value = "https://the-fab-studio.onrender.com/#/" + user_name.name_to_profil + "/" + formattedSiteName  + "/index.html"  
                 saved_create_notif("host")
               }
             }
