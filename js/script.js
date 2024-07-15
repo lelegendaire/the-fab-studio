@@ -190,7 +190,7 @@ if(codesite.etat === "host"){
         // Gérer l'erreur ici, par exemple afficher un message à l'utilisateur
     }
 }
-
+window.addEventListener('hashchange', afficherContenuFictif);
 // Appeler la fonction au chargement de la page
 window.onload = afficherContenuFictif;
 
