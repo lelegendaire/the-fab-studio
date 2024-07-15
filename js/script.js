@@ -14,6 +14,7 @@ async function getUserByName(userName) {
                 const cursor = event.target.result;
                 if (cursor) {
                     const user = cursor.value;
+                    console.log(user)
                     if (user.name === userName) {
                         resolve(user.userId);
                     }
