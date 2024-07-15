@@ -102,7 +102,7 @@ console.log(user_name)
                         const code_site = event.target.result;
                         if (code_site) {
                             const codesite = JSON.parse(code_site.value);
-
+if(codesite.etat === "no_host"){
                             document.documentElement.innerHTML = codesite.content;
                             const htmlTagMatch = codesite.content.match(/<html\s+([^>]*)>/i);
 
@@ -180,6 +180,9 @@ console.log(user_name)
                                 }
                             });
 
+                        }
+                        } else {
+                            alert("Votre site n'est pas encore hébergé")
                         }
                     }
                 });
