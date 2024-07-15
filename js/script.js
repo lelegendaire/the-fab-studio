@@ -6,23 +6,176 @@ if (step) {
     localStorage.setItem("check_link", false)
 }
 
-   function afficherContenuFictif() {
+     // Récupérer l'utilisateur depuis l'objectStore Compte
+        function getUserByName(userName) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(['Compte'], 'readonly');
+                const store = transaction.objectStore('Compte');
+                const index = store.index('User');
+                const request = index.openCursor();
+
+                request.onsuccess = (event) => {
+                     const cursor = event.target.result;
+                    if (cursor) {
+                        const user = cursor.value;
+                        if (user.name === userName) {
+                            resolve(user.userId);
+                        }
+                        cursor.continue();
+                    } else {
+                        reject('User not found');
+                    }
+                    
+                  
+                };
+
+                request.onerror = (event) => {
+                    reject('Error fetching user: ' + event.target.errorCode);
+                };
+            });
+        }
+
+        // Récupérer le site depuis l'objectStore Site
+        function getSiteByUserId(userId, siteName) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(['Site'], 'readonly');
+                const store = transaction.objectStore('Site');
+                const index = store.index('SiteId');
+                const request = index.openCursor();
+
+                request.onsuccess = (event) => {
+                    const cursor = event.target.result;
+                    if (cursor) {
+                        const site = cursor.value;
+                        if (site.userId === userId && site.name === siteName) {
+                            resolve(site.siteId);
+                        }
+                        cursor.continue();
+                    } else {
+                        reject('Site not found');
+                    }
+                };
+
+                request.onerror = (event) => {
+                    reject('Error fetching site: ' + event.target.errorCode);
+                };
+            });
+        }
+
+        // Fonction pour afficher du contenu fictif en fonction du hash de l'URL
+        async function afficherContenuFictif() {
             // Récupérer le chemin de l'URL après le domaine
            const hash = window.location.hash;
 
             // Vérifier si le hash correspond à notre modèle souhaité
-            if (hash === '#User/NameOfSite/index.html') {
-                // Afficher du contenu fictif pour ce chemin
-                document.documentElement.innerHTML = `
-                    <h1>Contenu fictif pour ${hash}</h1>
-                    <p>Voici le contenu fictif pour ${hash}.</p>
-                `;
-            } else {
-                // Afficher un message par défaut si le chemin n'est pas géré
-                document.documentElement.innerHTML = `
-                    <p>Le chemin ${hash} n'est pas géré. Utilisez <code>#User/NameOfSite/index.html</code> pour voir le contenu fictif.</p>
-                `;
+            if (hash === `#/${user_name}/${name_of_site}/index.html`) {
+                 const regex = /^#\/([^/]+)\/([^/]+)\/index\.html$/;
+            const match = hash.match(regex);
+
+            // Vérifier si le hash correspond à notre modèle souhaité
+            const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+        request.addEventListener("success", function (event) {
+            const db = event.target.result;
+                const user_name = match[1];
+                const name_of_site = match[2];
+                 const userId = await getUserByName(user_name);
+                    const siteId = await getSiteByUserId(userId, name_of_site);
+               
+            const transaction_first = db.transaction(["Site"], "readonly");
+            const objectStore_first = transaction_first.objectStore("Site");
+
+            const request2 = objectStore_first.get(siteId);
+
+            request2.onsuccess = function (event) {
+                const code_site = event.target.result;
+                if (code_site) {
+
+                    const codesite = JSON.parse(code_site.value);
+
+
+                    document.documentElement.innerHTML = codesite.content
+                    const htmlTagMatch = codesite.content.match(/<html\s+([^>]*)>/i);
+
+                    // Vérifier si une correspondance a été trouvée
+                    if (htmlTagMatch) {
+                        const htmlTag = htmlTagMatch[0]; // La balise <html ...>
+                        const attributes = htmlTagMatch[1]; // Les attributs de la balise
+
+                        console.log('Balise HTML complète:', htmlTag); // Afficher la balise <html ...>
+                        console.log('Attributs:', attributes); // Afficher les attributs
+
+                        // Expression régulière pour capturer les attributs lang et style
+                        const langMatch = attributes.match(/lang="([^"]*)"/i);
+                        const styleMatch = attributes.match(/style="([^"]*)"/i);
+
+                        const langValue = langMatch ? langMatch[1] : '';
+                        const styleValue = styleMatch ? styleMatch[1] : '';
+
+                        console.log('Valeur de lang:', langValue); // Afficher la valeur de lang
+                        console.log('Valeur de style:', styleValue); // Afficher la valeur de style
+                        document.documentElement.setAttribute("style", styleValue);
+                    } else {
+                        console.log('Aucune balise HTML trouvée.');
+                    }
+                    const tempDiv = document.createElement("div");
+                    tempDiv.innerHTML = codesite.content;
+                    const scripts = tempDiv.querySelectorAll("script");
+                    scripts.forEach((script) => {
+                        const newScript = document.createElement("script");
+                        if(script.textContent !== ""){
+
+                            newScript.textContent = script.textContent;
+                        }
+                        document.head.appendChild(newScript);
+                    });
+
+                    const body_index3 = document.documentElement.querySelector(".body_index");
+
+                    const excludedElements = [
+                        document.getElementById("button_div"),
+                        document.getElementById("bar_edit"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("header_bar_div"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("save_notif"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("toast"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("header_bar"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("page"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("reglage_zoom"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("custom-menu"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("code_ide"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("database"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("script"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("script_zip"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("site_map"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("variable"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("side_bar_tool"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("header_language"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("card_code"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("console"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("download_id"), // Ajoutez l'élément à exclure ici
+                        document.getElementById("infinity_space"), // Ajoutez l'élément à exclure ici
+                    ];
+                    body_index3.style.width = "100%";
+
+                    body_index3.style.marginBottom = "0px";
+                    body_index3.style.height = "100%";
+                    body_index3.style.overflow = "hidden";
+                    body_index3.style.borderRadius = "0px";
+                    excludedElements.forEach((excludedElement) => {
+                        if (excludedElement) {
+                            const excludedElementClone = document.getElementById(
+                                excludedElement.id
+                            );
+                            if (excludedElementClone) {
+                                excludedElementClone.remove();
+                            }
+                        }
+                    });
+
+                }
             }
+        })
+            
         }
 
         // Appeler la fonction au chargement de la page
