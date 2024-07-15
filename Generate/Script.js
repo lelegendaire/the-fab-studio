@@ -1515,7 +1515,7 @@ async function saveSite(etat_of_host) {
             if (code_site) {
                 const [siteId, codeSite] = code_site.SiteContent.split('¤');
                 const etat = etat_of_host || "no_host";
-                await saveSiteToDB(db, userId, siteId, savedSiteName, generatedContent, date_save, etat);
+                await saveSiteToDB(db, userId, siteId, savedSiteName, generatedContent, date_save, etat, type, logo);
             }
         } else {
             const uniqueId = 'site_' + Math.random().toString(36).substr(2, 9);
@@ -1564,6 +1564,9 @@ function saveSiteToDB(db, userId, siteId, savedSiteName, generatedContent, date_
     return new Promise((resolve, reject) => {
         const transaction = db.transaction(["Site"], "readwrite");
         const objectStore = transaction.objectStore("Site");
+      const savedLogo = localStorage.getItem("selectedLogo");
+      const selectedSiteType_lang = localStorage.getItem("selectedSiteType");
+  const selectedSiteType = siteTypeAliases[selectedSiteType_lang]
         const savedSiteInfo = {
             userId: userId,
             siteId: siteId,
@@ -1571,6 +1574,8 @@ function saveSiteToDB(db, userId, siteId, savedSiteName, generatedContent, date_
             content: generatedContent,
             time: date_save,
             etat: etat,
+          type: selectedSiteType,
+          logo: savedLogo,
         };
         const request = objectStore.put({ id: siteId, value: JSON.stringify(savedSiteInfo) });
         request.onsuccess = () => resolve();
