@@ -12700,7 +12700,7 @@ const btn_create_host = document.createElement("button");
     const index = objectStore.index("Connected");
 
     // Exemple pour obtenir une valeur à partir de l'index
-    const getRequest = index.get(1);
+    const getRequest = index.get(0);
             console.log(getRequest)
             getRequest.onsuccess = function (event) {
               const user_name = event.target.result;
