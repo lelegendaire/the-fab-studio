@@ -12691,11 +12691,13 @@ const btn_create_host = document.createElement("button");
 
           request.addEventListener("success", function (event) {
             const db = event.target.result;
-            const transaction_first = db.transaction(["Connexion"], "readonly");
-            const objectStore_first = transaction_first.objectStore("Connxeion");
+            // Démarrer une transaction en lecture seule sur l'objectStore "Connexion"
+    const transaction_first = db.transaction(["Connexion"], "readonly");
+    const objectStore_first = transaction_first.objectStore("Connexion");
 
-            const request2 = objectStore_first.index("Connected");
- const getRequestByConnectedStatus = request2.get(1);
+    // Accéder à l'index "Connected"
+    const request2 = objectStore_first.index("Connected");
+    const getRequestByConnectedStatus = request2.get(1);
             getRequestByConnectedStatus.onsuccess = function (event) {
               const user_name = event.target.result;
               if (user_name) {
