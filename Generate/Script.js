@@ -12693,17 +12693,16 @@ const btn_create_host = document.createElement("button");
             console.log("click_btn")
             const db = event.target.result;
             // Démarrer une transaction en lecture seule sur l'objectStore "Connexion"
-    const transaction_first = db.transaction(["Connexion"], "readonly");
-    const objectStore_first = transaction_first.objectStore("Connexion");
-console.log(transaction_first)
-            console.log(objectStore_first)
-            
+    const transaction = db.transaction(["Connexion"], "readonly");
+    const objectStore = transaction.objectStore("Connexion");
+
     // Accéder à l'index "Connected"
-    const request2 = objectStore_first.index("Connected");
-            console.log(request2)
-    const getRequestByConnectedStatus = request2.get(1);
-            console.log(getRequestByConnectedStatus)
-            getRequestByConnectedStatus.onsuccess = function (event) {
+    const index = objectStore.index("Connected");
+
+    // Exemple pour obtenir une valeur à partir de l'index
+    const getRequest = index.get(1);
+            console.log(getRequest)
+            getRequest.onsuccess = function (event) {
               const user_name = event.target.result;
               console.log(user_name)
               if (user_name) {
