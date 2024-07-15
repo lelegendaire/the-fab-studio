@@ -1,3 +1,46 @@
+const color_forEach = document.querySelectorAll(".color")
+
+    color_forEach.forEach((hex_value_all, index) => {
+        const hex_value = hex_value_all.querySelector(".hex-value")
+        const rect_box = hex_value_all.querySelector(".rect-box")
+        let matrix_color = []
+        for (let i = 0; i < 4; i++) {
+
+            const color_back = rect_box.querySelector(".color_" + (i + 1))
+
+            const color_background = getComputedStyle(color_back).backgroundColor
+            const hex = rgbToHex(color_background)
+            function rgbToHex(rgb) {
+                // Vérifier si la chaîne RGB est déjà en hexadécimal
+                if (/^#[0-9A-F]{6}$/i.test(rgb)) {
+                    return rgb;
+                }
+
+                // Diviser la chaîne RGB en valeurs de couleur individuelles
+                const colors = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                if (!colors) {
+                    // La chaîne n'est pas dans un format valide, retourner une valeur par défaut
+                    return "#000000";
+                }
+                // Convertir les valeurs de couleur en hexadécimal et les concaténer
+                const hex = "#" +
+                    ("0" + parseInt(colors[1], 10).toString(16)).slice(-2) +
+                    ("0" + parseInt(colors[2], 10).toString(16)).slice(-2) +
+                    ("0" + parseInt(colors[3], 10).toString(16)).slice(-2);
+                return hex;
+            }
+            matrix_color.push(" " + hex)
+        }
+
+
+        hex_value.textContent = matrix_color
+
+
+
+
+
+    })
+});
 function selectColor(element) {
     const selectedElements = document.querySelectorAll('.color');
     selectedElements.forEach((el) => {
@@ -1642,49 +1685,7 @@ document.addEventListener("DOMContentLoaded", () => {
             catSwitch.checked = catSwitchValue === "Yes";
         }
     }
-    const color_forEach = document.querySelectorAll(".color")
-
-    color_forEach.forEach((hex_value_all, index) => {
-        const hex_value = hex_value_all.querySelector(".hex-value")
-        const rect_box = hex_value_all.querySelector(".rect-box")
-        let matrix_color = []
-        for (let i = 0; i < 4; i++) {
-
-            const color_back = rect_box.querySelector(".color_" + (i + 1))
-
-            const color_background = getComputedStyle(color_back).backgroundColor
-            const hex = rgbToHex(color_background)
-            function rgbToHex(rgb) {
-                // Vérifier si la chaîne RGB est déjà en hexadécimal
-                if (/^#[0-9A-F]{6}$/i.test(rgb)) {
-                    return rgb;
-                }
-
-                // Diviser la chaîne RGB en valeurs de couleur individuelles
-                const colors = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-                if (!colors) {
-                    // La chaîne n'est pas dans un format valide, retourner une valeur par défaut
-                    return "#000000";
-                }
-                // Convertir les valeurs de couleur en hexadécimal et les concaténer
-                const hex = "#" +
-                    ("0" + parseInt(colors[1], 10).toString(16)).slice(-2) +
-                    ("0" + parseInt(colors[2], 10).toString(16)).slice(-2) +
-                    ("0" + parseInt(colors[3], 10).toString(16)).slice(-2);
-                return hex;
-            }
-            matrix_color.push(" " + hex)
-        }
-
-
-        hex_value.textContent = matrix_color
-
-
-
-
-
-    })
-});
+    
 const extension_chatpass_btn = document.getElementById("extension_chatpass_btn")
 extension_chatpass_btn.addEventListener("click", function () {
     window.open("https://chatpass-2.fabcvl.repl.co/")
