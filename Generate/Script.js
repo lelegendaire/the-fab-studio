@@ -1479,7 +1479,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const Save_temoin = document.querySelector(".Save_temoin");
     Save_temoin.classList.remove("active");
-
+if(etat_of_host){
+   saveSite(etat_of_host);
+}
     btn_notif.addEventListener("click", function () {
         saveSite(etat_of_host);
     });
