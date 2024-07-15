@@ -2059,7 +2059,8 @@ Newrequest.addEventListener("success", function (event) {
             };
 
         }
-    
+    }
+})
 const plus_bento = document.querySelector('.plus_bento');
 const card_size_bento_plus = document.querySelector('.card_size_bento_plus');
 const wave_h = document.querySelector('.wave_h');
