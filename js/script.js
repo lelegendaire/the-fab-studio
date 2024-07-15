@@ -64,6 +64,10 @@ if (step) {
      // Récupérer l'utilisateur depuis l'objectStore Compte
         function getUserByName(userName) {
     return new Promise((resolve, reject) => {
+         const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+        request.addEventListener("success", function (event) {
+            const db = event.target.result;
         const transaction = db.transaction(['Compte'], 'readonly');
         const store = transaction.objectStore('Compte');
         const index = store.index('User');
@@ -86,11 +90,16 @@ if (step) {
             reject('Error fetching user: ' + event.target.errorCode);
         };
     });
+    });
 }
 
         // Récupérer le site depuis l'objectStore Site
          function getSiteByUserId(userId, siteName) {
     return new Promise((resolve, reject) => {
+         const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+        request.addEventListener("success", function (event) {
+            const db = event.target.result;
         const transaction = db.transaction(['Site'], 'readonly');
         const store = transaction.objectStore('Site');
         const index = store.index('SiteId');
@@ -112,6 +121,7 @@ if (step) {
         request.onerror = (event) => {
             reject('Error fetching site: ' + event.target.errorCode);
         };
+        }); 
     });
 }
         // Fonction pour afficher du contenu fictif en fonction du hash de l'URL
