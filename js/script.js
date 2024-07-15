@@ -63,14 +63,14 @@ if (step) {
         function afficherContenuFictif() {
             // Récupérer le chemin de l'URL après le domaine
            const hash = window.location.hash;
-
-            // Vérifier si le hash correspond à notre modèle souhaité
-            if (hash === `#/${user_name}/${name_of_site}/index.html`) {
                  const regex = /^#\/([^/]+)\/([^/]+)\/index\.html$/;
             const match = hash.match(regex);
-  
-         const user_name = match[1];
+    const user_name = match[1];
                 const name_of_site = match[2];
+            // Vérifier si le hash correspond à notre modèle souhaité
+            if (hash === `#/${user_name}/${name_of_site}/index.html`) {
+
+       
             // Vérifier si le hash correspond à notre modèle souhaité
             const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
