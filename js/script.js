@@ -1785,35 +1785,31 @@ Newrequest.addEventListener("success", function (event) {
             const transaction = db.transaction(["Site"], "readonly");
             const ObjectStore = transaction.objectStore("Site");
             const index = ObjectStore.index("SiteId");
+const getAllRequest = index.getAll();
 
-         const savedSites = [];
+            getAllRequest.onsuccess = function (event) {
+                const items = event.target.result;
+                const savedSites = [];
 
-    index.openCursor().onsuccess = function (event) {
-        const cursor = event.target.result;
-        
-        if (cursor) {
-            const key = cursor.primaryKey;
+                items.forEach((item) => {
 
-            if (key.startsWith('site_')) {
-                const storedItem = cursor.value;
+                    const key = item.id;
 
-                try {
-                    const parsedItem = JSON.parse(storedItem);
+                    if (key.startsWith('site_')) {
 
-                    if (parsedItem.userId === userId) {
-                        savedSites.push(parsedItem);
+                        const storedItem = item.value;
+
+                        try {
+                            const parsedItem = JSON.parse(storedItem);
+
+                            if (parsedItem.userId === userId) {
+                                savedSites.push(parsedItem);
+                            }
+                        } catch (error) {
+                            console.error('Erreur de parsing pour la clé ', key, ':', error);
+                        }
                     }
-                } catch (error) {
-                    console.error('Erreur de parsing pour la clé ', key, ':', error);
-                }
-            }
-
-            cursor.continue();
-        } else {
-            console.log('Tous les enregistrements ont été traités.');
-            // Vous pouvez utiliser savedSites ici ou appeler une autre fonction pour les traiter
-        }
-
+                });
 
 
 
