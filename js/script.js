@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", () => {
 const step = localStorage.getItem("step")
 if (step) {
 
@@ -2771,3 +2772,4 @@ if (window.self !== window.top) {
 
 }
 } 
+    });
