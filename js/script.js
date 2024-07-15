@@ -1,195 +1,188 @@
-    // Récupérer l'utilisateur depuis l'objectStore Compte
+    // Fonction asynchrone pour récupérer l'utilisateur par son nom
 async function getUserByName(userName) {
     return new Promise((resolve, reject) => {
-         const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+        const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
         request.addEventListener("success", function (event) {
             const db = event.target.result;
-        const transaction = db.transaction(['Compte'], 'readonly');
-        const store = transaction.objectStore('Compte');
-        const index = store.index('User');
-        const request = index.openCursor();
+            const transaction = db.transaction(['Compte'], 'readonly');
+            const store = transaction.objectStore('Compte');
+            const index = store.index('User');
+            const request = index.openCursor();
 
-        request.onsuccess = (event) => {
-            const cursor = event.target.result;
-            if (cursor) {
-                const user = cursor.value;
-                if (user.name === userName) {
-                    resolve(user.userId);
+            request.onsuccess = (event) => {
+                const cursor = event.target.result;
+                if (cursor) {
+                    const user = cursor.value;
+                    if (user.name === userName) {
+                        resolve(user.userId);
+                    }
+                    cursor.continue();
+                } else {
+                    reject('User not found');
                 }
-                cursor.continue();
-            } else {
-                reject('User not found');
-            }
-        };
+            };
 
-        request.onerror = (event) => {
-            reject('Error fetching user: ' + event.target.errorCode);
-        };
-    });
+            request.onerror = (event) => {
+                reject('Error fetching user: ' + event.target.errorCode);
+            };
+        });
     });
 }
 
-        // Récupérer le site depuis l'objectStore Site
+// Fonction asynchrone pour récupérer le site par l'ID de l'utilisateur et le nom du site
 async function getSiteByUserId(userId, siteName) {
     return new Promise((resolve, reject) => {
-         const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+        const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
         request.addEventListener("success", function (event) {
             const db = event.target.result;
-        const transaction = db.transaction(['Site'], 'readonly');
-        const store = transaction.objectStore('Site');
-        const index = store.index('SiteId');
-        const request = index.openCursor();
+            const transaction = db.transaction(['Site'], 'readonly');
+            const store = transaction.objectStore('Site');
+            const index = store.index('SiteId');
+            const request = index.openCursor();
 
-        request.onsuccess = (event) => {
-            const cursor = event.target.result;
-            if (cursor) {
-                const site = cursor.value;
-                if (site.userId === userId && site.name === siteName) {
-                    resolve(site.siteId);
+            request.onsuccess = (event) => {
+                const cursor = event.target.result;
+                if (cursor) {
+                    const site = cursor.value;
+                    if (site.userId === userId && site.name === siteName) {
+                        resolve(site.siteId);
+                    }
+                    cursor.continue();
+                } else {
+                    reject('Site not found');
                 }
-                cursor.continue();
-            } else {
-                reject('Site not found');
-            }
-        };
+            };
 
-        request.onerror = (event) => {
-            reject('Error fetching site: ' + event.target.errorCode);
-        };
-        }); 
+            request.onerror = (event) => {
+                reject('Error fetching site: ' + event.target.errorCode);
+            };
+        });
     });
 }
-        // Fonction pour afficher du contenu fictif en fonction du hash de l'URL
+
+// Fonction asynchrone pour afficher le contenu fictif en fonction du hash de l'URL
 async function afficherContenuFictif() {
-    try{
-            // Récupérer le chemin de l'URL après le domaine
-           const hash = window.location.hash;
-                 const regex = /^#\/([^/]+)\/([^/]+)\/index\.html$/;
-            const match = hash.match(regex);
-            if(match){
-    const user_name = match[1];
-                const name_of_site = match[2];
+    try {
+        // Récupérer le chemin de l'URL après le domaine
+        const hash = window.location.hash;
+        const regex = /^#\/([^/]+)\/([^/]+)\/index\.html$/;
+        const match = hash.match(regex);
+        if (match) {
+            const user_name = match[1];
+            const name_of_site = match[2];
+
             // Vérifier si le hash correspond à notre modèle souhaité
             if (hash === `#/${user_name}/${name_of_site}/index.html`) {
+                const userId = await getUserByName(user_name);
+                const siteId = await getSiteByUserId(userId, name_of_site);
 
-       
-            // Vérifier si le hash correspond à notre modèle souhaité
-            const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+                const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
-        request.addEventListener("success", function (event) {
-            const db = event.target.result;
-              
-            
-                 const userId =  await getUserByName(user_name);
-                    const siteId =  await getSiteByUserId(userId, name_of_site);
-               
-            const transaction_first = db.transaction(["Site"], "readonly");
-            const objectStore_first = transaction_first.objectStore("Site");
+                request.addEventListener("success", function (event) {
+                    const db = event.target.result;
+                    const transaction_first = db.transaction(["Site"], "readonly");
+                    const objectStore_first = transaction_first.objectStore("Site");
 
-            const request2 = objectStore_first.get(siteId);
+                    const request2 = objectStore_first.get(siteId);
 
-            request2.onsuccess = function (event) {
-                const code_site = event.target.result;
-                if (code_site) {
+                    request2.onsuccess = function (event) {
+                        const code_site = event.target.result;
+                        if (code_site) {
+                            const codesite = JSON.parse(code_site.value);
 
-                    const codesite = JSON.parse(code_site.value);
+                            document.documentElement.innerHTML = codesite.content;
+                            const htmlTagMatch = codesite.content.match(/<html\s+([^>]*)>/i);
 
+                            // Vérifier si une correspondance a été trouvée
+                            if (htmlTagMatch) {
+                                const htmlTag = htmlTagMatch[0]; // La balise <html ...>
+                                const attributes = htmlTagMatch[1]; // Les attributs de la balise
 
-                    document.documentElement.innerHTML = codesite.content
-                    const htmlTagMatch = codesite.content.match(/<html\s+([^>]*)>/i);
+                                console.log('Balise HTML complète:', htmlTag); // Afficher la balise <html ...>
+                                console.log('Attributs:', attributes); // Afficher les attributs
 
-                    // Vérifier si une correspondance a été trouvée
-                    if (htmlTagMatch) {
-                        const htmlTag = htmlTagMatch[0]; // La balise <html ...>
-                        const attributes = htmlTagMatch[1]; // Les attributs de la balise
+                                // Expression régulière pour capturer les attributs lang et style
+                                const langMatch = attributes.match(/lang="([^"]*)"/i);
+                                const styleMatch = attributes.match(/style="([^"]*)"/i);
 
-                        console.log('Balise HTML complète:', htmlTag); // Afficher la balise <html ...>
-                        console.log('Attributs:', attributes); // Afficher les attributs
+                                const langValue = langMatch ? langMatch[1] : '';
+                                const styleValue = styleMatch ? styleMatch[1] : '';
 
-                        // Expression régulière pour capturer les attributs lang et style
-                        const langMatch = attributes.match(/lang="([^"]*)"/i);
-                        const styleMatch = attributes.match(/style="([^"]*)"/i);
-
-                        const langValue = langMatch ? langMatch[1] : '';
-                        const styleValue = styleMatch ? styleMatch[1] : '';
-
-                        console.log('Valeur de lang:', langValue); // Afficher la valeur de lang
-                        console.log('Valeur de style:', styleValue); // Afficher la valeur de style
-                        document.documentElement.setAttribute("style", styleValue);
-                    } else {
-                        console.log('Aucune balise HTML trouvée.');
-                    }
-                    const tempDiv = document.createElement("div");
-                    tempDiv.innerHTML = codesite.content;
-                    const scripts = tempDiv.querySelectorAll("script");
-                    scripts.forEach((script) => {
-                        const newScript = document.createElement("script");
-                        if(script.textContent !== ""){
-
-                            newScript.textContent = script.textContent;
-                        }
-                        document.head.appendChild(newScript);
-                    });
-
-                    const body_index3 = document.documentElement.querySelector(".body_index");
-
-                    const excludedElements = [
-                        document.getElementById("button_div"),
-                        document.getElementById("bar_edit"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("header_bar_div"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("save_notif"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("toast"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("header_bar"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("page"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("reglage_zoom"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("custom-menu"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("code_ide"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("database"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("script"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("script_zip"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("site_map"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("variable"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("side_bar_tool"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("header_language"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("card_code"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("console"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("download_id"), // Ajoutez l'élément à exclure ici
-                        document.getElementById("infinity_space"), // Ajoutez l'élément à exclure ici
-                    ];
-                    body_index3.style.width = "100%";
-
-                    body_index3.style.marginBottom = "0px";
-                    body_index3.style.height = "100%";
-                    body_index3.style.overflow = "hidden";
-                    body_index3.style.borderRadius = "0px";
-                    excludedElements.forEach((excludedElement) => {
-                        if (excludedElement) {
-                            const excludedElementClone = document.getElementById(
-                                excludedElement.id
-                            );
-                            if (excludedElementClone) {
-                                excludedElementClone.remove();
+                                console.log('Valeur de lang:', langValue); // Afficher la valeur de lang
+                                console.log('Valeur de style:', styleValue); // Afficher la valeur de style
+                                document.documentElement.setAttribute("style", styleValue);
+                            } else {
+                                console.log('Aucune balise HTML trouvée.');
                             }
+
+                            const tempDiv = document.createElement("div");
+                            tempDiv.innerHTML = codesite.content;
+                            const scripts = tempDiv.querySelectorAll("script");
+                            scripts.forEach((script) => {
+                                const newScript = document.createElement("script");
+                                if (script.textContent !== "") {
+                                    newScript.textContent = script.textContent;
+                                }
+                                document.head.appendChild(newScript);
+                            });
+
+                            const body_index3 = document.documentElement.querySelector(".body_index");
+
+                            const excludedElements = [
+                                document.getElementById("button_div"),
+                                document.getElementById("bar_edit"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("header_bar_div"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("save_notif"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("toast"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("header_bar"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("page"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("reglage_zoom"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("custom-menu"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("code_ide"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("database"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("script"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("script_zip"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("site_map"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("variable"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("side_bar_tool"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("header_language"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("card_code"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("console"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("download_id"), // Ajoutez l'élément à exclure ici
+                                document.getElementById("infinity_space"), // Ajoutez l'élément à exclure ici
+                            ];
+
+                            body_index3.style.width = "100%";
+                            body_index3.style.marginBottom = "0px";
+                            body_index3.style.height = "100%";
+                            body_index3.style.overflow = "hidden";
+                            body_index3.style.borderRadius = "0px";
+
+                            excludedElements.forEach((excludedElement) => {
+                                if (excludedElement) {
+                                    const excludedElementClone = document.getElementById(excludedElement.id);
+                                    if (excludedElementClone) {
+                                        excludedElementClone.remove();
+                                    }
+                                }
+                            });
+
                         }
-                    });
-
-                }
+                    }
+                });
             }
-                 
-        })
-            
         }
-        }
-        } catch (error) {
-            console.error('Error:', error);
-            // Gérer l'erreur ici, par exemple afficher un message à l'utilisateur
-        }
-} 
+    } catch (error) {
+        console.error('Error:', error);
+        // Gérer l'erreur ici, par exemple afficher un message à l'utilisateur
+    }
+}
 
-        // Appeler la fonction au chargement de la page
-        window.onload = afficherContenuFictif;
+// Appeler la fonction au chargement de la page
+window.onload = afficherContenuFictif;
+
 const color_forEach = document.querySelectorAll(".color")
 
     color_forEach.forEach((hex_value_all, index) => {
