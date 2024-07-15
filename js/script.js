@@ -177,6 +177,7 @@ if (step) {
         })
             
         }
+        }
 
         // Appeler la fonction au chargement de la page
         window.onload = afficherContenuFictif;
