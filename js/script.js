@@ -1802,7 +1802,8 @@ const getAllRequest = index.getAll();
                         try {
                             const parsedItem = JSON.parse(storedItem);
 
-                            if (parsedItem.userId === userId) {
+                            if (parsedItem.userId === userId) {'
+                                console.log(parsedItem)
                                 savedSites.push(parsedItem);
                             }
                         } catch (error) {
