@@ -12695,8 +12695,8 @@ const btn_create_host = document.createElement("button");
             const objectStore_first = transaction_first.objectStore("Connxeion");
 
             const request2 = objectStore_first.index("Connected");
-
-            request2.onsuccess = function (event) {
+ const getRequestByConnectedStatus = request2.get(1);
+            getRequestByConnectedStatus.onsuccess = function (event) {
               const user_name = event.target.result;
               if (user_name) {
 
