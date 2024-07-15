@@ -1452,10 +1452,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   // Fonction pour enregistrer une modification
-  function saved_create_notif(etat_of_host) {
-
-    resetNotif();
-    saveState()
+ function saved_create_notif(etat_of_host) {
+    resetNotif(); // Assurez-vous que cette fonction est définie ailleurs
+    saveState();  // Assurez-vous que cette fonction est définie ailleurs
 
     localStorage.setItem("Site_save", "true");
     const save_notif = document.createElement("div");
@@ -1466,459 +1465,202 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const text_notif = document.createElement("p");
     text_notif.classList.add("text_notif");
-    text_notif.textContent = "Voulez vous sauvegarder votre site ?";
-
+    text_notif.textContent = "Voulez-vous sauvegarder votre site ?";
     save_notif.appendChild(text_notif);
+
     const btn_notif = document.createElement("button");
     btn_notif.classList.add("btn_notif");
     btn_notif.textContent = "Sauvegarder";
     save_notif.appendChild(btn_notif);
+
     setTimeout(() => {
-      save_notif.style.transform = "translateY(0px)";
+        save_notif.style.transform = "translateY(0px)";
     }, 100);
+
     const Save_temoin = document.querySelector(".Save_temoin");
-    Save_temoin.classList.remove("active")
+    Save_temoin.classList.remove("active");
+
     btn_notif.addEventListener("click", function () {
-      // Récupérez le contenu HTML de la page
-      // Obtenez le style du corps
+        saveSite(etat_of_host);
+    });
+}
+async function saveSite(etat_of_host) {
+    const colors = colorhex_site.split(', ');
+    const style_couleur = '--text_color_white: ' + colors[3] + "; " + 
+                          '--text_color_black: ' + colors[0] + "; " + 
+                          '--link_color: ' + colors[2] + "; " + 
+                          '--btn_color: ' + colors[1] + "; " + 
+                          '--body_color: ' + colors[0] + ";";
 
-
-
-      const colors = colorhex_site.split(', ');
-
-      // Assigner les couleurs en fonction de l'ordre dans la liste
-      const style_couleur = '--text_color_white: ' + colors[3] + "; " + '--text_color_black: ' + colors[0] + "; " + '--link_color: ' + colors[2] + "; " + '--btn_color: ' + colors[1] + "; " + '--body_color: ' + colors[0] + ";"
-
-
-      // Générez le contenu HTML de la page en incluant les styles personnalisés
-      const generatedContent = `
+    const generatedContent = `
       <!DOCTYPE html>
       <html lang="fr" style="${style_couleur}">
       ${document.documentElement.innerHTML}
       </html>`;
 
+    const currentDate = new Date();
+    const options = { timeZone: "Europe/Paris" };
+    const date_save = currentDate.toLocaleDateString("fr-FR", options);
+    const savedSiteName = localStorage.getItem("siteName");
 
-      const currentDate = new Date();
-      const options = { timeZone: "Europe/Paris" };
-      const date_save = currentDate.toLocaleDateString("fr-FR", options);
+    try {
+        const db = await openDatabase();
+        const userId = await getUserIdFromConnection(db);
+        const contentKey = new URLSearchParams(window.location.search).get("contentKey");
 
-      const savedSiteName = localStorage.getItem("siteName");
-      // Récupérez l'état du site depuis le localStorage
-      const Newrequest = window.indexedDB.open("MaBaseDeDonnees", 1);
-
-      // Gérer les événements associés à la requête
-      Newrequest.addEventListener("success", function (event) {
-        const db = event.target.result;
-
-        const transaction_to_connection = db.transaction(["Connexion"], "readonly");
-        const objectStore_to_connection = transaction_to_connection.objectStore("Connexion");
-
-
-        // Si vous avez un index nommé "Connected", vous pouvez également l'utiliser
-        const getRequestByuserId2connection = objectStore_to_connection.get(1);
-
-        getRequestByuserId2connection.onsuccess = function (event) {
-          const dataByuserId = event.target.result;
-
-          if (dataByuserId) {
-            const userId = dataByuserId.id_to_create;
-
-
-            const contentKey = new URLSearchParams(window.location.search).get(
-              "contentKey"
-            );
-            if (contentKey) {
-              const request = window.indexedDB.open("MaBaseDeDonnees", 1);
-
-              request.addEventListener("success", function (event) {
-                const db = event.target.result;
-                const transaction_first = db.transaction(["GestionSite"], "readonly");
-                const objectStore_first = transaction_first.objectStore("GestionSite");
-
-                const request = objectStore_first.get(Number(contentKey));
-
-                request.onsuccess = function (event) {
-                  const code_site = event.target.result;
-                  if (code_site) {
-
-                    // Faites quelque chose avec les données récupérées
-                    // Récupérez le contenu HTML à partir du localStorage en utilisant la clé
-
-                    const [siteId, codeSite] = code_site.SiteContent.split('¤');
-  if (etat_of_host === undefined || etat_of_host === null) {
-                    if (generatedContent) {
-                      const savedSiteInfo = {
-                        userId: userId,
-                        siteId: siteId,
-                        name: savedSiteName,
-                        logo: savedLogo,
-                        content: generatedContent,
-                        time: date_save,
-                        type: selectedSiteType,
-                        etat: "no_host",
-                      };
-                       
-
-                      const request = window.indexedDB.open("MaBaseDeDonnees", 1);
-
-                      // Gérer les événements associés à la requête
-                      request.addEventListener("success", function (event) {
-                        const db = event.target.result;
-                        const transaction = db.transaction(["Site"], "readwrite");
-                        const ObjectStore = transaction.objectStore("Site");
-
-                        // Stocker le site
-
-                        const site = { id: siteId, value: JSON.stringify(savedSiteInfo) };
-                        ObjectStore.put(site);
-                        function getFormattedDateTime() {
-                          const currentTime = new Date();
-
-                          // Obtention des composants de la date
-                          const day = currentTime.getDate();
-                          const month = currentTime.getMonth() + 1; // Les mois sont indexés à partir de 0
-                          const year = currentTime.getFullYear();
-
-                          // Formater la date au format "dd-mm-yyyy"
-                          const formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
-
-                          // Obtention des composants de l'heure
-                          const hours = currentTime.getHours();
-                          const minutes = currentTime.getMinutes();
-
-                          // Formater l'heure au format "hh:mm"
-                          const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-
-                          // Concaténer la date et l'heure dans la chaîne de caractères finale
-                          return `${formattedDate} ${formattedTime}`;
-                        }
-                        updateDateTimeInUpdating();
-                        function updateDateTimeInUpdating() {
-                          const formattedDateTime = getFormattedDateTime();
-                          // Mettre à jour l'heure dans Updating
-                          const transaction = db.transaction(["Updating"], "readwrite");
-                          const objectStore = transaction.objectStore("Updating");
-                          objectStore.put({ MAJ: formattedDateTime, update: "maj_hour" });
-                        }
-
-                      })
-
-                    }
-    } else {
- if (generatedContent) {
-                      const savedSiteInfo = {
-                        userId: userId,
-                        siteId: siteId,
-                        name: savedSiteName,
-                        logo: savedLogo,
-                        content: generatedContent,
-                        time: date_save,
-                        type: selectedSiteType,
-                        etat: etat_of_host,
-                      };
-                       
-
-                      const request = window.indexedDB.open("MaBaseDeDonnees", 1);
-
-                      // Gérer les événements associés à la requête
-                      request.addEventListener("success", function (event) {
-                        const db = event.target.result;
-                        const transaction = db.transaction(["Site"], "readwrite");
-                        const ObjectStore = transaction.objectStore("Site");
-
-                        // Stocker le site
-
-                        const site = { id: siteId, value: JSON.stringify(savedSiteInfo) };
-                        ObjectStore.put(site);
-                        function getFormattedDateTime() {
-                          const currentTime = new Date();
-
-                          // Obtention des composants de la date
-                          const day = currentTime.getDate();
-                          const month = currentTime.getMonth() + 1; // Les mois sont indexés à partir de 0
-                          const year = currentTime.getFullYear();
-
-                          // Formater la date au format "dd-mm-yyyy"
-                          const formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
-
-                          // Obtention des composants de l'heure
-                          const hours = currentTime.getHours();
-                          const minutes = currentTime.getMinutes();
-
-                          // Formater l'heure au format "hh:mm"
-                          const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-
-                          // Concaténer la date et l'heure dans la chaîne de caractères finale
-                          return `${formattedDate} ${formattedTime}`;
-                        }
-                        updateDateTimeInUpdating();
-                        function updateDateTimeInUpdating() {
-                          const formattedDateTime = getFormattedDateTime();
-                          // Mettre à jour l'heure dans Updating
-                          const transaction = db.transaction(["Updating"], "readwrite");
-                          const objectStore = transaction.objectStore("Updating");
-                          objectStore.put({ MAJ: formattedDateTime, update: "maj_hour" });
-                        }
-
-                      })
-
-                    }
-                    }
-                  }
-                }
-              });
-            } else {
-              const uniqueId = 'site_' + Math.random().toString(36).substr(2, 9);
- if (etat_of_host === undefined || etat_of_host === null) {
-              if (generatedContent) {
-                const savedSiteInfo = {
-                  userId: userId,
-                  siteId: uniqueId,
-                  name: savedSiteName,
-                  logo: savedLogo,
-                  content: generatedContent,
-                  time: date_save,
-                  type: selectedSiteType,
-                  etat: "no_host",
-                };
-
-                const request = window.indexedDB.open("MaBaseDeDonnees", 1);
-
-                // Gérer les événements associés à la requête
-                request.addEventListener("success", function (event) {
-                  const db = event.target.result;
-                  const transaction = db.transaction(["Site"], "readwrite");
-                  const ObjectStore = transaction.objectStore("Site");
-
-                  // Stocker le site
-
-                  const site = { id: uniqueId, value: JSON.stringify(savedSiteInfo) };
-                  ObjectStore.put(site);
-                  function getFormattedDateTime() {
-                    const currentTime = new Date();
-
-                    // Obtention des composants de la date
-                    const day = currentTime.getDate();
-                    const month = currentTime.getMonth() + 1; // Les mois sont indexés à partir de 0
-                    const year = currentTime.getFullYear();
-
-                    // Formater la date au format "dd-mm-yyyy"
-                    const formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
-
-                    // Obtention des composants de l'heure
-                    const hours = currentTime.getHours();
-                    const minutes = currentTime.getMinutes();
-
-                    // Formater l'heure au format "hh:mm"
-                    const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-
-                    // Concaténer la date et l'heure dans la chaîne de caractères finale
-                    return `${formattedDate} ${formattedTime}`;
-                  }
-                  updateDateTimeInUpdating();
-                  function updateDateTimeInUpdating() {
-                    const formattedDateTime = getFormattedDateTime();
-                    // Mettre à jour l'heure dans Updating
-                    const transaction = db.transaction(["Updating"], "readwrite");
-                    const objectStore = transaction.objectStore("Updating");
-                    objectStore.put({ MAJ: formattedDateTime, update: "maj_hour" });
-                  }
-
-                })
-
-              }
-   } else {
- if (generatedContent) {
-                const savedSiteInfo = {
-                  userId: userId,
-                  siteId: uniqueId,
-                  name: savedSiteName,
-                  logo: savedLogo,
-                  content: generatedContent,
-                  time: date_save,
-                  type: selectedSiteType,
-                  etat: etat_of_host,
-                };
-
-                const request = window.indexedDB.open("MaBaseDeDonnees", 1);
-
-                // Gérer les événements associés à la requête
-                request.addEventListener("success", function (event) {
-                  const db = event.target.result;
-                  const transaction = db.transaction(["Site"], "readwrite");
-                  const ObjectStore = transaction.objectStore("Site");
-
-                  // Stocker le site
-
-                  const site = { id: uniqueId, value: JSON.stringify(savedSiteInfo) };
-                  ObjectStore.put(site);
-                  function getFormattedDateTime() {
-                    const currentTime = new Date();
-
-                    // Obtention des composants de la date
-                    const day = currentTime.getDate();
-                    const month = currentTime.getMonth() + 1; // Les mois sont indexés à partir de 0
-                    const year = currentTime.getFullYear();
-
-                    // Formater la date au format "dd-mm-yyyy"
-                    const formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
-
-                    // Obtention des composants de l'heure
-                    const hours = currentTime.getHours();
-                    const minutes = currentTime.getMinutes();
-
-                    // Formater l'heure au format "hh:mm"
-                    const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-
-                    // Concaténer la date et l'heure dans la chaîne de caractères finale
-                    return `${formattedDate} ${formattedTime}`;
-                  }
-                  updateDateTimeInUpdating();
-                  function updateDateTimeInUpdating() {
-                    const formattedDateTime = getFormattedDateTime();
-                    // Mettre à jour l'heure dans Updating
-                    const transaction = db.transaction(["Updating"], "readwrite");
-                    const objectStore = transaction.objectStore("Updating");
-                    objectStore.put({ MAJ: formattedDateTime, update: "maj_hour" });
-                  }
-
-                })
-
-              }
-                    }
+        if (contentKey) {
+            const code_site = await getCodeSiteFromGestionSite(db, Number(contentKey));
+            if (code_site) {
+                const [siteId, codeSite] = code_site.SiteContent.split('¤');
+                const etat = etat_of_host || "no_host";
+                await saveSiteToDB(db, userId, siteId, savedSiteName, generatedContent, date_save, etat);
             }
-          }
+        } else {
+            const uniqueId = 'site_' + Math.random().toString(36).substr(2, 9);
+            const etat = etat_of_host || "no_host";
+            await saveSiteToDB(db, userId, uniqueId, savedSiteName, generatedContent, date_save, etat);
         }
-      })
-
-      // Réinitialisez la notification (assurez-vous que resetNotif() est défini ailleurs dans votre code)
-      resetNotif();
-
-
-      toast_valid("Sauvegarder avec succès", "success");
-      const Save_temoin = document.querySelector(".Save_temoin");
-      Save_temoin.classList.add("active")
-
-    });
-
-
-  }
-
-
-  function toast_valid(text, event) {
-    const toastDiv = document.querySelector(".toast");
-    if (toastDiv) {
-    } else {
-      // Créer la div principale avec la classe "toast"
-      const toastDiv = document.createElement("div");
-      toastDiv.classList.add("toast");
-      toastDiv.id = "toast";
-
-      // Créer le contenu du toast
-      const toastContentDiv = document.createElement("div");
-      toastContentDiv.classList.add("toast-content");
-
-      const messageDiv = document.createElement("div");
-      messageDiv.classList.add("message");
-
-      const text2Span = document.createElement("span");
-      text2Span.classList.add("text", "text-2");
-      text2Span.textContent = text;
-
-      messageDiv.appendChild(text2Span);
-      toastContentDiv.appendChild(messageDiv);
-      if (event === "success") {
-        const checkIcon = document.createElement("i");
-        checkIcon.classList.add("bx", "bxs-check-circle");
-        checkIcon.style.color = "#0dff8ca8";
-        checkIcon.style.fontSize = "31px";
-        toastContentDiv.appendChild(checkIcon);
-      } else if (event === "error") {
-        const checkIcon = document.createElement("i");
-        checkIcon.classList.add("bx", "bxs-error-circle");
-        checkIcon.style.color = "#ff0d0da8";
-        checkIcon.style.fontSize = "31px";
-        toastContentDiv.appendChild(checkIcon);
-      }
-
-
-
-
-
-      // Ajouter les éléments au toastDiv
-      toastDiv.appendChild(toastContentDiv);
-
-
-      // Ajouter le toastDiv à un élément parent existant (par exemple, le body)
-      document.body.appendChild(toastDiv);
-      const style = `
-   .toast{
-    z-index: 999;
-       position: absolute;
-       top: 150px;
-       box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.7), inset 0px 0px 10px rgb(0, 0, 0, 0.7);
-       background: #242020;
-       border: 2px solid rgb(66 66 66);
-      
-       border-radius: 10px;
-    
-       padding: 9px;
-       overflow: hidden;
-       transform: translateY(-250px);
-       transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
-   }
-   .toast.active{
-       transform: translateY(0%);
-   }
-   .toast .toast-content{
-       display: flex;
-       align-items: center;
-   }
-   .toast-content .check{
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       height: 35px;
-       width: 35px;
-       background-color: #4070f4;
-       color: #fff;
-       font-size: 20px;
-       border-radius: 50%;
-   }
-   .toast-content .message{
-       display: flex;
-       flex-direction: column;
-       margin: 0 12px;
-   }
-   .message .text{
-       font-size: 20px;
-       font-weight: 400;
-       color: #666666;
-   }
-   .message .text.text-1{
-       font-weight: 600;
-       color: #333;
-   }
- 
-  
-`;
-
-      // Créer une balise style
-      const styleElement = document.createElement("style");
-
-      // Ajouter le style au contenu
-      styleElement.appendChild(document.createTextNode(style));
-
-      // Ajouter le style au head du document
-      document.head.appendChild(styleElement);
-      setTimeout(() => {
-        toastDiv.classList.add("active");
-      }, 500); //1s = 1000 milliseconds
-      setTimeout(() => {
-        toastDiv.classList.remove("active");
-      }, 5000); //1s = 1000 milliseconds
+        resetNotif();
+        toast_valid("Sauvegarder avec succès", "success");
+        const Save_temoin = document.querySelector(".Save_temoin");
+        Save_temoin.classList.add("active");
+    } catch (error) {
+        console.error("Error saving site:", error);
+        toast_valid("Erreur lors de la sauvegarde", "error");
     }
-  }
+}
+
+function openDatabase() {
+    return new Promise((resolve, reject) => {
+        const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = (event) => reject(event.target.errorCode);
+    });
+}
+
+function getUserIdFromConnection(db) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction(["Connexion"], "readonly");
+        const objectStore = transaction.objectStore("Connexion");
+        const request = objectStore.get(1);
+        request.onsuccess = (event) => resolve(event.target.result.id_to_create);
+        request.onerror = (event) => reject(event.target.errorCode);
+    });
+}
+
+function getCodeSiteFromGestionSite(db, contentKey) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction(["GestionSite"], "readonly");
+        const objectStore = transaction.objectStore("GestionSite");
+        const request = objectStore.get(contentKey);
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = (event) => reject(event.target.errorCode);
+    });
+}
+
+function saveSiteToDB(db, userId, siteId, savedSiteName, generatedContent, date_save, etat) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction(["Site"], "readwrite");
+        const objectStore = transaction.objectStore("Site");
+        const savedSiteInfo = {
+            userId: userId,
+            siteId: siteId,
+            name: savedSiteName,
+            content: generatedContent,
+            time: date_save,
+            etat: etat,
+        };
+        const request = objectStore.put({ id: siteId, value: JSON.stringify(savedSiteInfo) });
+        request.onsuccess = () => resolve();
+        request.onerror = (event) => reject(event.target.errorCode);
+    });
+}
+
+
+
+ function toast_valid(text, event) {
+    const existingToast = document.querySelector(".toast");
+    if (existingToast) return;
+
+    const toastDiv = document.createElement("div");
+    toastDiv.classList.add("toast");
+    toastDiv.id = "toast";
+
+    const toastContentDiv = document.createElement("div");
+    toastContentDiv.classList.add("toast-content");
+
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("message");
+
+    const text2Span = document.createElement("span");
+    text2Span.classList.add("text", "text-2");
+    text2Span.textContent = text;
+
+    messageDiv.appendChild(text2Span);
+    toastContentDiv.appendChild(messageDiv);
+
+    const icon = document.createElement("i");
+    if (event === "success") {
+        icon.classList.add("bx", "bxs-check-circle");
+        icon.style.color = "#0dff8ca8";
+    } else if (event === "error") {
+        icon.classList.add("bx", "bxs-error-circle");
+        icon.style.color = "#ff0d0da8";
+    }
+    icon.style.fontSize = "31px";
+    toastContentDiv.appendChild(icon);
+
+    toastDiv.appendChild(toastContentDiv);
+    document.body.appendChild(toastDiv);
+
+    const style = `
+        .toast {
+            z-index: 999;
+            position: absolute;
+            top: 150px;
+            box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.7), inset 0px 0px 10px rgb(0, 0, 0, 0.7);
+            background: #242020;
+            border: 2px solid rgb(66 66 66);
+            border-radius: 10px;
+            padding: 9px;
+            overflow: hidden;
+            transform: translateY(-250px);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+        }
+        .toast.active {
+            transform: translateY(0%);
+        }
+        .toast .toast-content {
+            display: flex;
+            align-items: center;
+        }
+        .toast-content .message {
+            display: flex;
+            flex-direction: column;
+            margin: 0 12px;
+        }
+        .message .text {
+            font-size: 20px;
+            font-weight: 400;
+            color: #666666;
+        }
+        .message .text.text-1 {
+            font-weight: 600;
+            color: #333;
+        }
+    `;
+
+    const styleElement = document.createElement("style");
+    styleElement.appendChild(document.createTextNode(style));
+    document.head.appendChild(styleElement);
+
+    setTimeout(() => toastDiv.classList.add("active"), 500);
+    setTimeout(() => {
+        toastDiv.classList.remove("active");
+        toastDiv.remove();
+    }, 5000);
+}
+
   const bar_edit = document.querySelector(".bar_edit");
 
   if (!bar_edit) {
