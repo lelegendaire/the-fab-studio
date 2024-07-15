@@ -65,6 +65,7 @@ if (step) {
            const hash = window.location.hash;
                  const regex = /^#\/([^/]+)\/([^/]+)\/index\.html$/;
             const match = hash.match(regex);
+            if(match){
     const user_name = match[1];
                 const name_of_site = match[2];
             // Vérifier si le hash correspond à notre modèle souhaité
@@ -176,6 +177,7 @@ if (step) {
                  
         })
             
+        }
         }
         }
 
