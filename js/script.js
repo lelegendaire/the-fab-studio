@@ -2191,8 +2191,7 @@ plus_bento.addEventListener("click", function () {
 
 
 
-const cube = document.querySelector(".cube");
-const initialCubeSize = 1;
+
 
 
 document.body.addEventListener("mousemove", (event) => {
@@ -2762,6 +2761,8 @@ if (window.self !== window.top) {
 } 
     });
 document.addEventListener("scroll", function () {
+    const cube = document.querySelector(".cube");
+const initialCubeSize = 1;
     var scrollValue = window.scrollY;
 
     var newScale = initialCubeSize + scrollValue / 200; // Ajustez cette formule selon vos besoins
