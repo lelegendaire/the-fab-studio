@@ -46,6 +46,7 @@ async function getSiteByUserId(userId, siteName) {
                 const cursor = event.target.result;
                 if (cursor) {
                     const site = cursor.value;
+                    console.log(site)
                     if (site.userId === userId && site.name === siteName) {
                         resolve(site.siteId);
                     }
@@ -77,6 +78,7 @@ console.log(user_name)
             // Vérifier si le hash correspond à notre modèle souhaité
             if (hash === `#/${user_name}/${name_of_site}/index.html`) {
                 const userId = await getUserByName(user_name);
+                 console.log('User ID:', userId); 
                 const siteId = await getSiteByUserId(userId, name_of_site);
 
                 const request = window.indexedDB.open("MaBaseDeDonnees", 1);
