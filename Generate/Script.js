@@ -12690,16 +12690,22 @@ const btn_create_host = document.createElement("button");
                  const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
           request.addEventListener("success", function (event) {
+            console.log("click_btn)
             const db = event.target.result;
             // Démarrer une transaction en lecture seule sur l'objectStore "Connexion"
     const transaction_first = db.transaction(["Connexion"], "readonly");
     const objectStore_first = transaction_first.objectStore("Connexion");
-
+console.log(transaction_first)
+            console.log(objectStore_first)
+            
     // Accéder à l'index "Connected"
     const request2 = objectStore_first.index("Connected");
+            console.log(request2)
     const getRequestByConnectedStatus = request2.get(1);
+            console.log(getRequestByConnectedStatus)
             getRequestByConnectedStatus.onsuccess = function (event) {
               const user_name = event.target.result;
+              console.log(user_name)
               if (user_name) {
 
          input_create_host.value = "https://the-fab-studio.onrender.com/#/" + user_name + "/" + formattedSiteName  + "/index.html"  
