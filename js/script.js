@@ -60,7 +60,7 @@ if (step) {
     });
 }
         // Fonction pour afficher du contenu fictif en fonction du hash de l'URL
-        async function afficherContenuFictif() {
+        function afficherContenuFictif() {
             // Récupérer le chemin de l'URL après le domaine
            const hash = window.location.hash;
 
@@ -68,7 +68,7 @@ if (step) {
             if (hash === `#/${user_name}/${name_of_site}/index.html`) {
                  const regex = /^#\/([^/]+)\/([^/]+)\/index\.html$/;
             const match = hash.match(regex);
-     try {  
+  
          const user_name = match[1];
                 const name_of_site = match[2];
             // Vérifier si le hash correspond à notre modèle souhaité
@@ -173,9 +173,7 @@ if (step) {
 
                 }
             }
-                 } catch (error) {
-                    document.getElementById('content').innerHTML = `<p>${error}</p>`;
-                }
+                 
         })
             
         }
