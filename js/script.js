@@ -1,3 +1,14 @@
+function selectColor(element) {
+    const selectedElements = document.querySelectorAll('.color');
+    selectedElements.forEach((el) => {
+        el.classList.remove('selected');
+    });
+
+    element.classList.add('selected');
+    const hexValue = element.querySelector('.hex-value').textContent;
+
+    localStorage.setItem('colorhex_site', hexValue);
+}
 document.addEventListener("DOMContentLoaded", () => {
 const step = localStorage.getItem("step")
 if (step) {
@@ -184,17 +195,7 @@ if (step) {
 
         // Appeler la fonction au chargement de la page
         window.onload = afficherContenuFictif;
-function selectColor(element) {
-    const selectedElements = document.querySelectorAll('.color');
-    selectedElements.forEach((el) => {
-        el.classList.remove('selected');
-    });
 
-    element.classList.add('selected');
-    const hexValue = element.querySelector('.hex-value').textContent;
-
-    localStorage.setItem('colorhex_site', hexValue);
-}
 
 const delog = document.querySelector(".delog");
 const login = document.querySelector(".log_in");
