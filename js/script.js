@@ -17,7 +17,7 @@ async function getUserByName(userName) {
                     const user_name = user.value
                     
                    const json_username = JSON.parse(user_name)
-                       console.log(json_username.name)
+                       
                     if (json_username.name === userName) {
                         resolve(json_username.userId);
                     }
@@ -50,11 +50,11 @@ async function getSiteByUserId(userId, siteName) {
                 const cursor = event.target.result;
                 if (cursor) {
                     const site = cursor.value;
-                    console.log(site)
+                
                     const site_name = site.value
                     
                    const json_siteName = JSON.parse(site_name)
-                       console.log(json_siteName.name)
+           
                     if (json_siteName.userId === userId && json_siteName.name === siteName) {
                         resolve(json_siteName.siteId);
                     }
@@ -81,12 +81,11 @@ async function afficherContenuFictif() {
         if (match) {
             const user_name = match[1];
             const name_of_site = match[2];
-console.log(user_name)
-            console.log(name_of_site)
+
             // Vérifier si le hash correspond à notre modèle souhaité
             if (hash === `#/${user_name}/${name_of_site}/index.html`) {
                 const userId = await getUserByName(user_name);
-                 console.log('User ID:', userId); 
+           
                 const siteId = await getSiteByUserId(userId, name_of_site);
 
                 const request = window.indexedDB.open("MaBaseDeDonnees", 1);
@@ -102,7 +101,7 @@ console.log(user_name)
                         const code_site = event.target.result;
                         if (code_site) {
                             const codesite = JSON.parse(code_site.value);
-if(codesite.etat === "no_host"){
+if(codesite.etat === "host"){
                             document.documentElement.innerHTML = codesite.content;
                             const htmlTagMatch = codesite.content.match(/<html\s+([^>]*)>/i);
 
@@ -111,8 +110,7 @@ if(codesite.etat === "no_host"){
                                 const htmlTag = htmlTagMatch[0]; // La balise <html ...>
                                 const attributes = htmlTagMatch[1]; // Les attributs de la balise
 
-                                console.log('Balise HTML complète:', htmlTag); // Afficher la balise <html ...>
-                                console.log('Attributs:', attributes); // Afficher les attributs
+                                
 
                                 // Expression régulière pour capturer les attributs lang et style
                                 const langMatch = attributes.match(/lang="([^"]*)"/i);
@@ -121,8 +119,7 @@ if(codesite.etat === "no_host"){
                                 const langValue = langMatch ? langMatch[1] : '';
                                 const styleValue = styleMatch ? styleMatch[1] : '';
 
-                                console.log('Valeur de lang:', langValue); // Afficher la valeur de lang
-                                console.log('Valeur de style:', styleValue); // Afficher la valeur de style
+                              
                                 document.documentElement.setAttribute("style", styleValue);
                             } else {
                                 console.log('Aucune balise HTML trouvée.');
@@ -180,10 +177,10 @@ if(codesite.etat === "no_host"){
                                 }
                             });
 
-                        }
-                        } else {
+                        }else {
                             alert("Votre site n'est pas encore hébergé")
                         }
+                        } 
                     }
                 });
             }
@@ -1307,7 +1304,7 @@ const option_langue = document.querySelector(".select-langue"),
     option_lang_social_footer = document.querySelectorAll(".select-langue .options .option"),
 
     diff_menu_nav_a = document.querySelectorAll(".Menu .nav_bar a");
-console.log(form_span)
+
 selectBtn_langue.addEventListener("click", () =>
     option_langue.classList.toggle("active")
 );
@@ -1379,7 +1376,7 @@ function translate_auto(selectedOption) {
         }
     })
     details_span2.forEach((content, i) => {
-        console.log(content)
+      
         if (i === 1) { // Si c'est le deuxième élément (index 1)
             content.textContent = data_lang[selectedOption].part[3]
             return
@@ -1502,7 +1499,7 @@ options_langue.forEach((option, index) => {
         localStorage.setItem("Language", selectedOption);
         option_langue.classList.remove("active");
         const mainKey = languageAliases[selectedOption];
-        console.log(mainKey)
+       
         translate_auto(mainKey)
     });
 });
@@ -2418,7 +2415,7 @@ function reverseTransformCharacter(char) {
 function checkLinkValidity(link) {
     const urlParams = new URLSearchParams(new URL(link).search);
     const expirationTimeString = urlParams.get('expires');
-    console.log(expirationTimeString)
+  
     if (expirationTimeString) {
         const expirationTime = parseInt(expirationTimeString, 10);
         const currentTime = Date.now();
@@ -2542,7 +2539,7 @@ const page_link_not_allowed = `
 if (previewHash) {
     const currentUrl = window.location.href;
     const siteId = decodeHash(previewHash);
-    console.log('Site ID:', siteId);
+
 
 
 
@@ -2576,8 +2573,6 @@ if (previewHash) {
                             const htmlTag = htmlTagMatch[0]; // La balise <html ...>
                             const attributes = htmlTagMatch[1]; // Les attributs de la balise
 
-                            console.log('Balise HTML complète:', htmlTag); // Afficher la balise <html ...>
-                            console.log('Attributs:', attributes); // Afficher les attributs
 
                             // Expression régulière pour capturer les attributs lang et style
                             const langMatch = attributes.match(/lang="([^"]*)"/i);
@@ -2586,8 +2581,6 @@ if (previewHash) {
                             const langValue = langMatch ? langMatch[1] : '';
                             const styleValue = styleMatch ? styleMatch[1] : '';
 
-                            console.log('Valeur de lang:', langValue); // Afficher la valeur de lang
-                            console.log('Valeur de style:', styleValue); // Afficher la valeur de style
                             document.documentElement.setAttribute("style", styleValue);
                         } else {
                             console.log('Aucune balise HTML trouvée.');
@@ -2658,7 +2651,7 @@ if (previewWidgetIntegrate) {
 if (window.self !== window.top) {
    
         const siteId = decodeHash2(previewWidgetIntegrate);
-        console.log('Site ID:', siteId);
+      
         // Afficher la prévisualisation
         const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
@@ -2684,8 +2677,7 @@ if (window.self !== window.top) {
                         const htmlTag = htmlTagMatch[0]; // La balise <html ...>
                         const attributes = htmlTagMatch[1]; // Les attributs de la balise
 
-                        console.log('Balise HTML complète:', htmlTag); // Afficher la balise <html ...>
-                        console.log('Attributs:', attributes); // Afficher les attributs
+                   
 
                         // Expression régulière pour capturer les attributs lang et style
                         const langMatch = attributes.match(/lang="([^"]*)"/i);
@@ -2694,8 +2686,7 @@ if (window.self !== window.top) {
                         const langValue = langMatch ? langMatch[1] : '';
                         const styleValue = styleMatch ? styleMatch[1] : '';
 
-                        console.log('Valeur de lang:', langValue); // Afficher la valeur de lang
-                        console.log('Valeur de style:', styleValue); // Afficher la valeur de style
+                     
                         document.documentElement.setAttribute("style", styleValue);
                     } else {
                         console.log('Aucune balise HTML trouvée.');
