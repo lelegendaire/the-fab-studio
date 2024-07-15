@@ -1803,7 +1803,7 @@ const getAllRequest = index.getAll();
                             const parsedItem = JSON.parse(storedItem);
 
                             if (parsedItem.userId === userId) {
-                                console.log(parsedItem)
+                           
                                 savedSites.push(parsedItem);
                             }
                         } catch (error) {
@@ -1846,8 +1846,7 @@ const getAllRequest = index.getAll();
 
                     savedSites.forEach((siteInfo) => {
 
-console.log(siteInfo)
-                        console.log(savedSites)
+
                         
                         // Accédez aux informations de chaque carte
                         const name_card = siteInfo.name;
