@@ -12690,7 +12690,7 @@ const btn_create_host = document.createElement("button");
                  const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
           request.addEventListener("success", function (event) {
-            console.log("click_btn)
+            console.log("click_btn")
             const db = event.target.result;
             // Démarrer une transaction en lecture seule sur l'objectStore "Connexion"
     const transaction_first = db.transaction(["Connexion"], "readonly");
