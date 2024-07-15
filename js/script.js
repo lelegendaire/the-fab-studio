@@ -2184,41 +2184,7 @@ document.body.addEventListener("mousemove", (event) => {
     gsap.to(".cube", { rotationY: rotationY, rotationX: rotationX });
 });
 
-document.addEventListener("scroll", function () {
-    var scrollValue = window.scrollY;
 
-    var newScale = initialCubeSize + scrollValue / 200; // Ajustez cette formule selon vos besoins
-    newScale = Math.max(newScale, 0.2); // Vous pouvez ajuster la valeur minimale
-
-
-    // Appliquer la nouvelle échelle au cube avec une animation fluide
-    gsap.to(".cube", { scale: newScale });
-
-    // Mettre à jour la valeur dans le localStorage
-    localStorage.setItem("scale_cube", newScale);
-    // Exemple d'animation d'opacité
-    gsap.to([".Menu", ".logo", ".text_hero", ".text_hero1"], { opacity: Math.max(1 - scrollValue / 700, 0) });
-
-    // Exemple d'animation de fond
-    gsap.to(".header_banner_hero", { backgroundPosition: `center ${scrollValue}px` });
-
-    // Exemple d'animation de position horizontale
-
-
-
-});
-document.addEventListener("DOMContentLoaded", () => {
-    const cubeContainer = document.querySelector(".cube-container");
-    const Menu = document.querySelector(".Menu");
-    const logo = document.querySelector(".logo");
-
-    // Appliquer une transformation après un court délai (par exemple, 100 ms)
-    setTimeout(() => {
-        cubeContainer.style.transform = "translateY(-80%)";
-        Menu.style.transform = "translateY(0px)";
-        logo.style.scale = "100%"
-    }, 100);
-});
 function changeTab(tabIndex) {
     // Obtenir les éléments
     var currentTabCard = document.getElementById('tabContent');
@@ -2773,3 +2739,38 @@ if (window.self !== window.top) {
 }
 } 
     });
+document.addEventListener("scroll", function () {
+    var scrollValue = window.scrollY;
+
+    var newScale = initialCubeSize + scrollValue / 200; // Ajustez cette formule selon vos besoins
+    newScale = Math.max(newScale, 0.2); // Vous pouvez ajuster la valeur minimale
+
+
+    // Appliquer la nouvelle Ã©chelle au cube avec une animation fluide
+    gsap.to(".cube", { scale: newScale });
+
+    // Mettre Ã  jour la valeur dans le localStorage
+    localStorage.setItem("scale_cube", newScale);
+    // Exemple d'animation d'opacitÃ©
+    gsap.to([".Menu", ".logo", ".text_hero", ".text_hero1"], { opacity: Math.max(1 - scrollValue / 700, 0) });
+
+    // Exemple d'animation de fond
+    gsap.to(".header_banner_hero", { backgroundPosition: `center ${scrollValue}px` });
+
+    // Exemple d'animation de position horizontale
+
+
+
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const cubeContainer = document.querySelector(".cube-container");
+    const Menu = document.querySelector(".Menu");
+    const logo = document.querySelector(".logo");
+
+    // Appliquer une transformation aprÃ¨s un court dÃ©lai (par exemple, 100 ms)
+    setTimeout(() => {
+        cubeContainer.style.transform = "translateY(-80%)";
+        Menu.style.transform = "translateY(0px)";
+        logo.style.scale = "100%"
+    }, 100);
+});
