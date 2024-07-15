@@ -72,7 +72,8 @@ async function afficherContenuFictif() {
         if (match) {
             const user_name = match[1];
             const name_of_site = match[2];
-
+console.log(user_name)
+            console.log(name_of_site)
             // Vérifier si le hash correspond à notre modèle souhaité
             if (hash === `#/${user_name}/${name_of_site}/index.html`) {
                 const userId = await getUserByName(user_name);
