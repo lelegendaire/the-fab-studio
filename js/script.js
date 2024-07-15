@@ -62,7 +62,7 @@ if (step) {
 }
 
      // Récupérer l'utilisateur depuis l'objectStore Compte
-        function getUserByName(userName) {
+async function getUserByName(userName) {
     return new Promise((resolve, reject) => {
          const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
@@ -94,7 +94,7 @@ if (step) {
 }
 
         // Récupérer le site depuis l'objectStore Site
-         function getSiteByUserId(userId, siteName) {
+async function getSiteByUserId(userId, siteName) {
     return new Promise((resolve, reject) => {
          const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
@@ -125,7 +125,8 @@ if (step) {
     });
 }
         // Fonction pour afficher du contenu fictif en fonction du hash de l'URL
-        function afficherContenuFictif() {
+async function afficherContenuFictif() {
+    try{
             // Récupérer le chemin de l'URL après le domaine
            const hash = window.location.hash;
                  const regex = /^#\/([^/]+)\/([^/]+)\/index\.html$/;
@@ -144,8 +145,8 @@ if (step) {
             const db = event.target.result;
               
             
-                 const userId =  getUserByName(user_name);
-                    const siteId =  getSiteByUserId(userId, name_of_site);
+                 const userId =  await getUserByName(user_name);
+                    const siteId =  await getSiteByUserId(userId, name_of_site);
                
             const transaction_first = db.transaction(["Site"], "readonly");
             const objectStore_first = transaction_first.objectStore("Site");
@@ -244,7 +245,11 @@ if (step) {
             
         }
         }
+        } catch (error) {
+            console.error('Error:', error);
+            // Gérer l'erreur ici, par exemple afficher un message à l'utilisateur
         }
+} 
 
         // Appeler la fonction au chargement de la page
         window.onload = afficherContenuFictif;
