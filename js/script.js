@@ -1846,7 +1846,9 @@ const getAllRequest = index.getAll();
 
                     savedSites.forEach((siteInfo) => {
 
-
+console.log(siteInfo)
+                        console.log(savedSites)
+                        
                         // Accédez aux informations de chaque carte
                         const name_card = siteInfo.name;
                         const img_card = siteInfo.logo;
