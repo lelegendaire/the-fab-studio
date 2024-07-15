@@ -14,9 +14,12 @@ async function getUserByName(userName) {
                 const cursor = event.target.result;
                 if (cursor) {
                     const user = cursor.value;
-                    console.log(user.value)
-                    if (user.name === userName) {
-                        resolve(user.userId);
+                    const user_name = user.value
+                    
+                   const json_username = JSON.parse(user_name)
+                       console.log(json_username.name)
+                    if (json_username.name === userName) {
+                        resolve(json_username.userId);
                     }
                     cursor.continue();
                 } else {
