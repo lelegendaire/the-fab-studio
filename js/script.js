@@ -7,61 +7,58 @@ if (step) {
 }
 
      // Récupérer l'utilisateur depuis l'objectStore Compte
-        function getUserByName(userName) {
-            return new Promise((resolve, reject) => {
-                const transaction = db.transaction(['Compte'], 'readonly');
-                const store = transaction.objectStore('Compte');
-                const index = store.index('User');
-                const request = index.openCursor();
+       async function getUserByName(userName) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction(['Compte'], 'readonly');
+        const store = transaction.objectStore('Compte');
+        const index = store.index('User');
+        const request = index.openCursor();
 
-                request.onsuccess = (event) => {
-                     const cursor = event.target.result;
-                    if (cursor) {
-                        const user = cursor.value;
-                        if (user.name === userName) {
-                            resolve(user.userId);
-                        }
-                        cursor.continue();
-                    } else {
-                        reject('User not found');
-                    }
-                    
-                  
-                };
+        request.onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+                const user = cursor.value;
+                if (user.name === userName) {
+                    resolve(user.userId);
+                }
+                cursor.continue();
+            } else {
+                reject('User not found');
+            }
+        };
 
-                request.onerror = (event) => {
-                    reject('Error fetching user: ' + event.target.errorCode);
-                };
-            });
-        }
+        request.onerror = (event) => {
+            reject('Error fetching user: ' + event.target.errorCode);
+        };
+    });
+}
 
         // Récupérer le site depuis l'objectStore Site
-        function getSiteByUserId(userId, siteName) {
-            return new Promise((resolve, reject) => {
-                const transaction = db.transaction(['Site'], 'readonly');
-                const store = transaction.objectStore('Site');
-                const index = store.index('SiteId');
-                const request = index.openCursor();
+        async function getSiteByUserId(userId, siteName) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction(['Site'], 'readonly');
+        const store = transaction.objectStore('Site');
+        const index = store.index('SiteId');
+        const request = index.openCursor();
 
-                request.onsuccess = (event) => {
-                    const cursor = event.target.result;
-                    if (cursor) {
-                        const site = cursor.value;
-                        if (site.userId === userId && site.name === siteName) {
-                            resolve(site.siteId);
-                        }
-                        cursor.continue();
-                    } else {
-                        reject('Site not found');
-                    }
-                };
+        request.onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+                const site = cursor.value;
+                if (site.userId === userId && site.name === siteName) {
+                    resolve(site.siteId);
+                }
+                cursor.continue();
+            } else {
+                reject('Site not found');
+            }
+        };
 
-                request.onerror = (event) => {
-                    reject('Error fetching site: ' + event.target.errorCode);
-                };
-            });
-        }
-
+        request.onerror = (event) => {
+            reject('Error fetching site: ' + event.target.errorCode);
+        };
+    });
+}
         // Fonction pour afficher du contenu fictif en fonction du hash de l'URL
         async function afficherContenuFictif() {
             // Récupérer le chemin de l'URL après le domaine
@@ -71,15 +68,16 @@ if (step) {
             if (hash === `#/${user_name}/${name_of_site}/index.html`) {
                  const regex = /^#\/([^/]+)\/([^/]+)\/index\.html$/;
             const match = hash.match(regex);
-
+     try {  
+         const user_name = match[1];
+                const name_of_site = match[2];
             // Vérifier si le hash correspond à notre modèle souhaité
             const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
         request.addEventListener("success", function (event) {
             const db = event.target.result;
-                const user_name = match[1];
-                const name_of_site = match[2];
-                 try {
+              
+            
                  const userId = await getUserByName(user_name);
                     const siteId = await getSiteByUserId(userId, name_of_site);
                
