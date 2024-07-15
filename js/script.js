@@ -79,6 +79,7 @@ if (step) {
             const db = event.target.result;
                 const user_name = match[1];
                 const name_of_site = match[2];
+                 try {
                  const userId = await getUserByName(user_name);
                     const siteId = await getSiteByUserId(userId, name_of_site);
                
@@ -174,6 +175,9 @@ if (step) {
 
                 }
             }
+                 } catch (error) {
+                    document.getElementById('content').innerHTML = `<p>${error}</p>`;
+                }
         })
             
         }
