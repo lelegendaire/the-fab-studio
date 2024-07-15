@@ -7,7 +7,7 @@ if (step) {
 }
 
      // Récupérer l'utilisateur depuis l'objectStore Compte
-       async function getUserByName(userName) {
+        function getUserByName(userName) {
     return new Promise((resolve, reject) => {
         const transaction = db.transaction(['Compte'], 'readonly');
         const store = transaction.objectStore('Compte');
@@ -34,7 +34,7 @@ if (step) {
 }
 
         // Récupérer le site depuis l'objectStore Site
-        async function getSiteByUserId(userId, siteName) {
+         function getSiteByUserId(userId, siteName) {
     return new Promise((resolve, reject) => {
         const transaction = db.transaction(['Site'], 'readonly');
         const store = transaction.objectStore('Site');
@@ -78,8 +78,8 @@ if (step) {
             const db = event.target.result;
               
             
-                 const userId = await getUserByName(user_name);
-                    const siteId = await getSiteByUserId(userId, name_of_site);
+                 const userId =  getUserByName(user_name);
+                    const siteId =  getSiteByUserId(userId, name_of_site);
                
             const transaction_first = db.transaction(["Site"], "readonly");
             const objectStore_first = transaction_first.objectStore("Site");
