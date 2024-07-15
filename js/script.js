@@ -40,7 +40,7 @@ const color_forEach = document.querySelectorAll(".color")
 
 
     })
-});
+
 function selectColor(element) {
     const selectedElements = document.querySelectorAll('.color');
     selectedElements.forEach((el) => {
@@ -1685,7 +1685,7 @@ document.addEventListener("DOMContentLoaded", () => {
             catSwitch.checked = catSwitchValue === "Yes";
         }
     }
-    
+    });
 const extension_chatpass_btn = document.getElementById("extension_chatpass_btn")
 extension_chatpass_btn.addEventListener("click", function () {
     window.open("https://chatpass-2.fabcvl.repl.co/")
