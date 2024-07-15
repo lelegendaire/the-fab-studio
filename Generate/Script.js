@@ -1515,7 +1515,7 @@ async function saveSite(etat_of_host) {
             if (code_site) {
                 const [siteId, codeSite] = code_site.SiteContent.split('¤');
                 const etat = etat_of_host || "no_host";
-                await saveSiteToDB(db, userId, siteId, savedSiteName, generatedContent, date_save, etat, type, logo);
+                await saveSiteToDB(db, userId, siteId, savedSiteName, generatedContent, date_save, etat);
             }
         } else {
             const uniqueId = 'site_' + Math.random().toString(36).substr(2, 9);
