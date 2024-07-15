@@ -1452,7 +1452,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   // Fonction pour enregistrer une modification
-  function saved_create_notif() {
+  function saved_create_notif(etat_of_host) {
 
     resetNotif();
     saveState()
@@ -1545,7 +1545,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Récupérez le contenu HTML à partir du localStorage en utilisant la clé
 
                     const [siteId, codeSite] = code_site.SiteContent.split('¤');
-
+  if (etat_of_host === undefined || etat_of_host === null) {
                     if (generatedContent) {
                       const savedSiteInfo = {
                         userId: userId,
@@ -1555,7 +1555,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         content: generatedContent,
                         time: date_save,
                         type: selectedSiteType,
+                        etat: etat_of_host,
                       };
+                       
 
                       const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
@@ -1602,12 +1604,72 @@ document.addEventListener("DOMContentLoaded", () => {
                       })
 
                     }
+    } else {
+ if (generatedContent) {
+                      const savedSiteInfo = {
+                        userId: userId,
+                        siteId: siteId,
+                        name: savedSiteName,
+                        logo: savedLogo,
+                        content: generatedContent,
+                        time: date_save,
+                        type: selectedSiteType,
+                        etat: "no_host",
+                      };
+                       
+
+                      const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+                      // Gérer les événements associés à la requête
+                      request.addEventListener("success", function (event) {
+                        const db = event.target.result;
+                        const transaction = db.transaction(["Site"], "readwrite");
+                        const ObjectStore = transaction.objectStore("Site");
+
+                        // Stocker le site
+
+                        const site = { id: siteId, value: JSON.stringify(savedSiteInfo) };
+                        ObjectStore.put(site);
+                        function getFormattedDateTime() {
+                          const currentTime = new Date();
+
+                          // Obtention des composants de la date
+                          const day = currentTime.getDate();
+                          const month = currentTime.getMonth() + 1; // Les mois sont indexés à partir de 0
+                          const year = currentTime.getFullYear();
+
+                          // Formater la date au format "dd-mm-yyyy"
+                          const formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
+
+                          // Obtention des composants de l'heure
+                          const hours = currentTime.getHours();
+                          const minutes = currentTime.getMinutes();
+
+                          // Formater l'heure au format "hh:mm"
+                          const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+
+                          // Concaténer la date et l'heure dans la chaîne de caractères finale
+                          return `${formattedDate} ${formattedTime}`;
+                        }
+                        updateDateTimeInUpdating();
+                        function updateDateTimeInUpdating() {
+                          const formattedDateTime = getFormattedDateTime();
+                          // Mettre à jour l'heure dans Updating
+                          const transaction = db.transaction(["Updating"], "readwrite");
+                          const objectStore = transaction.objectStore("Updating");
+                          objectStore.put({ MAJ: formattedDateTime, update: "maj_hour" });
+                        }
+
+                      })
+
+                    }
+                    }
                   }
                 }
               });
             } else {
               const uniqueId = 'site_' + Math.random().toString(36).substr(2, 9);
-
+ if (etat_of_host === undefined || etat_of_host === null) {
               if (generatedContent) {
                 const savedSiteInfo = {
                   userId: userId,
@@ -1617,6 +1679,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   content: generatedContent,
                   time: date_save,
                   type: selectedSiteType,
+                  etat: etat_of_host,
                 };
 
                 const request = window.indexedDB.open("MaBaseDeDonnees", 1);
@@ -1664,6 +1727,65 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
 
               }
+   } else {
+ if (generatedContent) {
+                const savedSiteInfo = {
+                  userId: userId,
+                  siteId: uniqueId,
+                  name: savedSiteName,
+                  logo: savedLogo,
+                  content: generatedContent,
+                  time: date_save,
+                  type: selectedSiteType,
+                  etat: "no_host",
+                };
+
+                const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+                // Gérer les événements associés à la requête
+                request.addEventListener("success", function (event) {
+                  const db = event.target.result;
+                  const transaction = db.transaction(["Site"], "readwrite");
+                  const ObjectStore = transaction.objectStore("Site");
+
+                  // Stocker le site
+
+                  const site = { id: uniqueId, value: JSON.stringify(savedSiteInfo) };
+                  ObjectStore.put(site);
+                  function getFormattedDateTime() {
+                    const currentTime = new Date();
+
+                    // Obtention des composants de la date
+                    const day = currentTime.getDate();
+                    const month = currentTime.getMonth() + 1; // Les mois sont indexés à partir de 0
+                    const year = currentTime.getFullYear();
+
+                    // Formater la date au format "dd-mm-yyyy"
+                    const formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
+
+                    // Obtention des composants de l'heure
+                    const hours = currentTime.getHours();
+                    const minutes = currentTime.getMinutes();
+
+                    // Formater l'heure au format "hh:mm"
+                    const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+
+                    // Concaténer la date et l'heure dans la chaîne de caractères finale
+                    return `${formattedDate} ${formattedTime}`;
+                  }
+                  updateDateTimeInUpdating();
+                  function updateDateTimeInUpdating() {
+                    const formattedDateTime = getFormattedDateTime();
+                    // Mettre à jour l'heure dans Updating
+                    const transaction = db.transaction(["Updating"], "readwrite");
+                    const objectStore = transaction.objectStore("Updating");
+                    objectStore.put({ MAJ: formattedDateTime, update: "maj_hour" });
+                  }
+
+                })
+
+              }
+                    }
             }
           }
         }
@@ -12565,30 +12687,24 @@ const btn_create_host = document.createElement("button");
                 btn_create_host.addEventListener("click",function(){
                   const savedSiteName = localStorage.getItem("siteName");
                   const formattedSiteName = savedSiteName.replace(/\s+/g, '-');
-                  
- const socket = new WebSocket('wss://serveur-cq8x.onrender.com');
+                 const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
-    socket.onopen = function(event) {
-      console.log('Connected to WebSocket server 2.');
+          request.addEventListener("success", function (event) {
+            const db = event.target.result;
+            const transaction_first = db.transaction(["Connexion"], "readonly");
+            const objectStore_first = transaction_first.objectStore("Connxeion");
 
-      // Envoyer un message spécifique au serveur 2
-     const message = JSON.stringify({
-        action: 'create-site',
-       username: "fab",
-        sitename: formattedSiteName,
-        
-      });
+            const request2 = objectStore_first.index("Connected");
 
-      socket.send(message);
-    };
-                    socket.onmessage = function(event) {
-      const response = JSON.parse(event.data);
-      console.log('Message from server:', response.message);
-      if (response.message) {
-        console.log('File URL:', response.message);
-      }
-    };
-         input_create_host.value = "https://the-fab-studio.onrender.com/" + formattedSiteName  + "/index.html"   
+            request2.onsuccess = function (event) {
+              const user_name = event.target.result;
+              if (user_name) {
+
+         input_create_host.value = "https://the-fab-studio.onrender.com/#/" + user_name + "/" + formattedSiteName  + "/index.html"  
+                saved_create_notif("host")
+              }
+            }
+          });
                  
                 });
                 function Generate_linkWidgetIntegrate(uniqueId) {
