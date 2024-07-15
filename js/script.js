@@ -54,7 +54,7 @@ async function getSiteByUserId(userId, siteName) {
                     const site_name = site.value
                     
                    const json_siteName = JSON.parse(site_name)
-           
+           console.log(json_siteName)
                     if (json_siteName.userId === userId && json_siteName.name === siteName) {
                         resolve(json_siteName.siteId);
                     }
