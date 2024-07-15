@@ -1555,7 +1555,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         content: generatedContent,
                         time: date_save,
                         type: selectedSiteType,
-                        etat: etat_of_host,
+                        etat: "no_host",
                       };
                        
 
@@ -1614,7 +1614,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         content: generatedContent,
                         time: date_save,
                         type: selectedSiteType,
-                        etat: "no_host",
+                        etat: etat_of_host,
                       };
                        
 
@@ -1679,7 +1679,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   content: generatedContent,
                   time: date_save,
                   type: selectedSiteType,
-                  etat: etat_of_host,
+                  etat: "no_host",
                 };
 
                 const request = window.indexedDB.open("MaBaseDeDonnees", 1);
@@ -1737,7 +1737,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   content: generatedContent,
                   time: date_save,
                   type: selectedSiteType,
-                  etat: "no_host",
+                  etat: etat_of_host,
                 };
 
                 const request = window.indexedDB.open("MaBaseDeDonnees", 1);
