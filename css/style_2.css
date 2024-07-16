@@ -2941,7 +2941,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 .angles_radius {
   transform: translate(0px, 0px);
   height: 90px;
-  top: -63px;
+  top: -71px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -2950,7 +2950,8 @@ button[id="extension_chatpass_btn"]:hover:before {
 }
 .angles_radius_card {
   transform: translate(0px, 0px);
-  max-width: 100%;
+  width: 30%;
+  min-width: 10%;
   display: flex;
   flex-direction: column;
   
@@ -2972,37 +2973,36 @@ button[id="extension_chatpass_btn"]:hover:before {
   padding: 1rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   grid-column-gap: 0.5rem;
   background-color: #333;
  
-  width: 152px;
+  width: 150px;
 }
-.footer_title::before {
+.outer_radius::before {
   content: "";
   border-radius: 0 0 0.9rem;
   background-color: #f1f1f1;
   position: relative;
-  left: -34px;
-  top: 27px;
+ display: flex;
   width: 20px;
   height: 20px;
 }
-.footer_title::after {
+.outer_radius::after {
   content: "";
   border-radius: 0 0 0 0.9rem;
   background-color: #f1f1f1;
   position: relative;
-  left: 35px;
-  top: 27px;
+  display: flex;
   width: 20px;
   height: 20px;
 }
 .outer_radius {
-  padding: 0.5rem 1rem;
-
-  background-color: #333;
-  
-  width: 180px;
+background-color: #333;
+    width: 180px;
+    display: flex;
+    justify-content: space-around;
+    gap: 150px;
 }
 .buble_purple {
   width: 0.5rem;
@@ -3018,7 +3018,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 
   background-color: #f1f1f1;
   
-  width: 450px;
+ 
   height: 421px;
   border-bottom-left-radius: 36px;
   border-bottom-right-radius: 36px;
