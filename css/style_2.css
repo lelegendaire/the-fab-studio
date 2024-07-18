@@ -2519,7 +2519,8 @@ button[id="extension_chatpass_btn"]:hover:before {
   z-index: -1;
 }
 .section_info {
-  gap: 10vw;
+ width: 100%;
+    justify-content: space-between;
   padding: 20px;
 }
 
