@@ -731,29 +731,35 @@ body::-webkit-scrollbar {
 .personnalisé_prefooter {
   position: relative;
   right: -80px;
+  overflow: hidden;
   margin-top: 10px;
 }
 .personnalisé_footer {
   position: relative;
   left: -80px;
+  overflow: hidden;
   margin-top: 30px;
 }
 .personnalisé_header {
   position: relative;
+  overflow: hidden;
   right: -80px;
 }
 .personnalisé_nav {
   position: relative;
+  overflow: hidden;
   left: -80px;
   margin-top: 10px;
 }
 .personnalisé_main_content {
   position: relative;
+  overflow: hidden;
   left: -80px;
   margin-top: 10px;
 }
 .personnalisé_hero_section {
   position: relative;
+  overflow: hidden;
   right: -80px;
   margin-top: 10px;
 }
