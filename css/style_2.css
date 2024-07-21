@@ -1522,11 +1522,12 @@ button[id="validateBtn_cat"] {
   text-align: center;
 }
 .info {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 150px;
   background-image: radial-gradient(rgb(0 0 0 / 17%) 2px, transparent 0);
   background-size: 30px 30px;
   background-position: -5px -5px;
@@ -1534,8 +1535,8 @@ button[id="validateBtn_cat"] {
 }
 .cards_3d_info {
   perspective: 1000px;
-  margin-left: -40px;
-  scale: 150%;
+ 
+
   transition: all 1s ease;
 
   animation: autoShowAnimation2 both;
@@ -1554,8 +1555,7 @@ button[id="validateBtn_cat"] {
 .info_description {
   width: 410px;
   height: 454px;
-  position: relative;
-  right: 90px;
+  
 }
 .partie1 {
   transition: transform 1s ease;
@@ -1589,12 +1589,12 @@ button[id="validateBtn_cat"] {
   height: 170px;
   position: relative;
   right: 160px;
-  top: -340px;
+  top: -440px;
   transform: rotateY(180deg);
 }
 .card_info {
-  width: 240px;
-  height: 354px;
+  max-width: 300px;
+  height: 100%;
   margin: 0 auto;
   background-color: #011522;
   border-radius: 8px;
@@ -1639,9 +1639,10 @@ button[id="validateBtn_cat"] {
 }
 .card__content {
   transform-style: preserve-3d;
-  font-size: 10px;
-  width: 210px;
+
+  width: 100%;
   font-weight: 50;
+  padding: 30px 10px;
 }
 .card__content h3 {
   font-weight: 200;
