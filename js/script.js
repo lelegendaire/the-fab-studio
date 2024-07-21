@@ -765,6 +765,8 @@ function resetBtnActive() {
 personnalisé_btn_header.addEventListener("click", () => {
     const step = localStorage.getItem("step")
     if (step === "1") {
+        const personnalisé_header_overflow = document.querySelector(".personnalisé_header");
+        personnalisé_header_overflow.style.overflow = "visible";
         header_cards.style.transform = "translateX(-200px) scale(2.5)";
         header_cards.style.zIndex = "11";
         row_2.forEach((row) => {
@@ -778,6 +780,8 @@ personnalisé_btn_header.addEventListener("click", () => {
 personnalisé_btn_nav.addEventListener("click", () => {
     const step = localStorage.getItem("step")
     if (step === "2") {
+        const personnalisé_nav_overflow = document.querySelector(".personnalisé_nav");
+        personnalisé_nav_overflow.style.overflow = "visible";
         nav_cards.style.transform = "translateX(200px) scale(2.5)";
         nav_cards.style.zIndex = "11";
         row_1.forEach((row) => {
@@ -790,6 +794,8 @@ personnalisé_btn_nav.addEventListener("click", () => {
 personnalisé_btn_prefooter.addEventListener("click", () => {
     const step = localStorage.getItem("step")
     if (step === "5") {
+        const personnalisé_prefooter_overflow = document.querySelector(".personnalisé_prefooter");
+        personnalisé_prefooter_overflow.style.overflow = "visible";
         main_content_cards.style.transform = "translateX(485px)";
         main_content_cards.style.zIndex = "-11";
         prefooter_cards.style.transform = "translateX(-200px) scale(2.5)";
@@ -808,6 +814,8 @@ personnalisé_btn_prefooter.addEventListener("click", () => {
 personnalisé_btn_footer.addEventListener("click", () => {
     const step = localStorage.getItem("step")
     if (step === "6") {
+        const personnalisé_footer_overflow = document.querySelector(".personnalisé_footer");
+        personnalisé_footer_overflow.style.overflow = "visible";
         prefooter_cards.style.transform = "translateX(-485px)";
         prefooter_cards.style.zIndex = "-11";
         footer_cards.style.transform = "translateX(200px) scale(2.5)";
@@ -821,6 +829,8 @@ personnalisé_btn_footer.addEventListener("click", () => {
 personnalisé_btn_hero_section.addEventListener("click", () => {
     const step = localStorage.getItem("step")
     if (step === "3") {
+        const personnalisé_hero_section_overflow = document.querySelector(".personnalisé_hero_section");
+        personnalisé_hero_section_overflow.style.overflow = "visible";
         hero_section_cards.style.transform = "translateX(-200px) scale(2.5)";
         hero_section_cards.style.zIndex = "11";
         row_2.forEach((row) => {
@@ -832,6 +842,8 @@ personnalisé_btn_hero_section.addEventListener("click", () => {
 personnalisé_btn_main_content.addEventListener("click", () => {
     const step = localStorage.getItem("step")
     if (step === "4") {
+        const personnalisé_main_content_overflow = document.querySelector(".personnalisé_main_content");
+        personnalisé_main_content_overflow.style.overflow = "visible";
         main_content_cards.style.transform = "translateX(200px) scale(2.5)";
         main_content_cards.style.zIndex = "11";
         row_1.forEach((row) => {
