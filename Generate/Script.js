@@ -1351,7 +1351,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.head.appendChild(linkElement);
 
       // Changez la police du corps
-      document.body.style.cssText = `font-family: ${font_family.replace(
+      body_index.style.cssText = `font-family: ${font_family.replace(
         /\+/g,
         " "
       )}, sans-serif !important`;
