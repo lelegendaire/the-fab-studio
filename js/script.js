@@ -926,6 +926,8 @@ const validateBtn_hero_section_color = document.getElementById("validateBtn_hero
 validateBtn_hero_section_color.addEventListener("click", () => {
     const hexValue = localStorage.getItem('colorhex_site');
     if (hexValue) {
+        const personnalisé_hero_section_overflow = document.querySelector(".personnalisé_hero_section");
+        personnalisé_hero_section_overflow.style.overflow = "hidden";
         hero_section_cards.style.transform = "translateX(-507px) scale(0.5)";
         hero_section_cards.style.zIndex = "-11";
         localStorage.setItem("step", "4")
