@@ -564,6 +564,21 @@ body::-webkit-scrollbar {
 }
 .wrapper_perso .row {
   display: flex;
+  animation: autoBlurAnimation linear both;
+  animation-timeline: view();
+}
+@keyframes autoBlurAnimation{
+0%{
+filter: blur(40px)
+}
+  45%,55%{
+filter: blur(0px)
+  }
+  100%{
+filter: blur(40px)
+  }
+
+  
 }
 .wrapper_perso .row-1 {
   justify-content: flex-start;
