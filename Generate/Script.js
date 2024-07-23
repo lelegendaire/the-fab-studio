@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
              
         },
         Gradiant: {
-          headerBackground: "linear-gradient(45deg, #FFC3A0, #FFAFBD)", txt_color_header: "var(--text_color_white)
+          headerBackground: "linear-gradient(135deg, var(--text_color_black), var(--text_color_white))", txt_color_header: "var(--text_color_white)
         },
         Noir: { headerBackground: "#000", txt_color_header: "var(--text_color_white)" },
         Blanc: { headerBackground: "#fff", txt_color_header: "var(--text_color_black)" },
@@ -153,7 +153,7 @@ a.style.color = txt_color_header
           //code login1
           if (selectedImage === "img/login.png") {
             const btn = document.createElement("button");
-            btn.textContent = "Se connecter";
+            btn.textContent = splited_lien_site[(splited_lien_site.length - 1)];
             a_btn.appendChild(btn);
 
             // Ajouter des styles au bouton
@@ -191,7 +191,7 @@ a.style.color = txt_color_header
             document.head.appendChild(styleSheet);
           } else if (selectedImage === "img/login3.png") {
             const btn = document.createElement("button");
-            btn.textContent = "Se connecter";
+            btn.textContent = splited_lien_site[(splited_lien_site.length - 1)];
             a_btn.appendChild(btn);
 
             // Ajouter des styles au bouton
@@ -257,7 +257,7 @@ a.style.color = txt_color_header
             btn.classList.add("button");
             const span = document.createElement("span");
             span.classList.add("button-content");
-            span.textContent = "Se connecter";
+            span.textContent = splited_lien_site[(splited_lien_site.length - 1)];
             btn.appendChild(span);
             a_btn.appendChild(btn);
 
