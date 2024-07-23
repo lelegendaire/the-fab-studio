@@ -3413,7 +3413,7 @@ background-color: #333;
   justify-content: center;
   padding: 10px;
   animation: autoShowAnimation_scale both;
-  animation-timeline: view();
+  animation-timeline: view(block 80% 10%);
 }
 @keyframes autoShowAnimation_scale {
   from {
