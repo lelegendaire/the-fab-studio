@@ -61,11 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
           borderBottomLeftRadius: "10px",
           borderBottomRightRadius: "10px",
           border: "1px solid rgba(255,255,255,0.7)",
-           txt_color_header: "var(--text_color_white),
+           txt_color_header: "var(--text_color_white)",
              
         },
         Gradiant: {
-          headerBackground: "linear-gradient(135deg, var(--text_color_black), var(--text_color_white))", txt_color_header: "var(--text_color_white)
+          headerBackground: "linear-gradient(135deg, var(--text_color_black), var(--text_color_white))", txt_color_header: "var(--text_color_white)"
         },
         Noir: { headerBackground: "#000", txt_color_header: "var(--text_color_white)" },
         Blanc: { headerBackground: "#fff", txt_color_header: "var(--text_color_black)" },
