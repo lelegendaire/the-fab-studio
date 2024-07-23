@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         Noir: { headerBackground: "#000", txt_color_header: "--text_color_white" },
         Blanc: { headerBackground: "#fff", txt_color_header: "--text_color_black" },
-        Couleur: { headerBackground: "#bbab1a" },
+        Couleur: { headerBackground: "var(--body_color)" },
         Transparent: { headerBackground: "#00000000" },
         // ... ajoutez les autres styles de fond ici
       };
