@@ -65,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
         Gradiant: {
           headerBackground: "linear-gradient(45deg, #FFC3A0, #FFAFBD)",
         },
-        Noir: { headerBackground: "#000", txt_color_header: "--text_color_white" },
-        Blanc: { headerBackground: "#fff", txt_color_header: "--text_color_black" },
+        Noir: { headerBackground: "#000", txt_color_header: "var(--text_color_white)" },
+        Blanc: { headerBackground: "#fff", txt_color_header: "var(--text_color_black)" },
         Couleur: { headerBackground: "var(--body_color)" },
         Transparent: { headerBackground: "#00000000" },
         // ... ajoutez les autres styles de fond ici
