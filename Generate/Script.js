@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
           borderBottomLeftRadius,
           borderBottomRightRadius,
           border,
-          txt_color_header
+          txt_color_header,
         } = backgroundMappings[selectedBackground];
 
         // Appliquer le style au body
