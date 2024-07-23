@@ -61,14 +61,16 @@ document.addEventListener("DOMContentLoaded", () => {
           borderBottomLeftRadius: "10px",
           borderBottomRightRadius: "10px",
           border: "1px solid rgba(255,255,255,0.7)",
+           txt_color_header: "var(--text_color_white),
+             
         },
         Gradiant: {
-          headerBackground: "linear-gradient(45deg, #FFC3A0, #FFAFBD)",
+          headerBackground: "linear-gradient(45deg, #FFC3A0, #FFAFBD)", txt_color_header: "var(--text_color_white)
         },
         Noir: { headerBackground: "#000", txt_color_header: "var(--text_color_white)" },
         Blanc: { headerBackground: "#fff", txt_color_header: "var(--text_color_black)" },
-        Couleur: { headerBackground: "var(--body_color)" },
-        Transparent: { headerBackground: "#00000000" },
+        Couleur: { headerBackground: "var(--body_color)", txt_color_header: "var(--text_color_white)" },
+        Transparent: { headerBackground: "#00000000", txt_color_header: "var(--text_color_white)" },
         // ... ajoutez les autres styles de fond ici
       };
 
