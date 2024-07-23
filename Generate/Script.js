@@ -156,7 +156,7 @@ a.style.color = txt_color_header
 
             // Ajouter des styles au bouton
             btn.style.border = "none";
-            btn.style.color = "#fff";
+            btn.style.color = txt_color_header;
             btn.style.backgroundImage =
               "linear-gradient(30deg, #0400ff, #4ce3f7)";
             btn.style.borderRadius = "20px";
@@ -198,7 +198,7 @@ a.style.color = txt_color_header
             btn.style.border = "none";
 
             btn.style.fontFamily = "inherit";
-            btn.style.color = "var(--text_color_white)";
+            btn.style.color = txt_color_header;
             btn.style.width = "9em";
             btn.style.height = "3em";
             btn.style.lineHeight = "2em";
@@ -255,7 +255,7 @@ a.style.color = txt_color_header
             btn.classList.add("button");
             const span = document.createElement("span");
             span.classList.add("button-content");
-            span.textContent = "Login";
+            span.textContent = "Se connecter";
             btn.appendChild(span);
             a_btn.appendChild(btn);
 
@@ -267,7 +267,7 @@ a.style.color = txt_color_header
             btn.style.borderRadius = "1.5rem";
             btn.style.background = "#3d3a4e";
             btn.style.backgroundSize = "400%";
-            btn.style.color = "#fff";
+            btn.style.color = txt_color_header;
             btn.style.border = "none";
 
             const styleSheet = document.createElement("style");
