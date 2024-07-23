@@ -65,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
         Gradiant: {
           headerBackground: "linear-gradient(45deg, #FFC3A0, #FFAFBD)",
         },
-        Noir: { headerBackground: "#000" },
-        Blanc: { headerBackground: "#fff" },
+        Noir: { headerBackground: "#000", txt_color_header: "--text_color_white" },
+        Blanc: { headerBackground: "#fff", txt_color_header: "--text_color_black" },
         Couleur: { headerBackground: "#bbab1a" },
         Transparent: { headerBackground: "#00000000" },
         // ... ajoutez les autres styles de fond ici
@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
           borderBottomLeftRadius,
           borderBottomRightRadius,
           border,
+          txt_color_header
         } = backgroundMappings[selectedBackground];
 
         // Appliquer le style au body
@@ -140,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
             a.href = "#";
             a.textContent = splited_lien_site[i];
             li.appendChild(a);
-
+a.style.color = txt_color_header 
             // parentElement.appendChild(li);
           }
 
