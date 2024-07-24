@@ -218,10 +218,7 @@
     .toggle:checked ~ .card-side:after {
       text-decoration: underline;
     }
-   input:checked ~ .validation {
-  transform: translateX(310px);
-  display: block;
-}
+  
 
     /* card */
 
@@ -389,6 +386,7 @@
   <script>
     const emailInput = document.getElementById("email_s");
     const passwordInput2 = document.getElementById("password_s");
+    const email = document.getElementById("email");
     const validationList = document.querySelector(".validation ul");
     const validation = document.querySelector(".validation");
     const emailValidationMessage = document.getElementById(
@@ -469,9 +467,23 @@
       const password = event.target.value;
 
     
-    
+    validation.style.display = "block";
+      setTimeout(() => {
+        validation.style.transform = "translateX(310px)";
+      }, 100);
 
       checkPassword(password);
+    });
+    email.addEventListener("keyup", (event) => {
+     
+
+    
+    validation.style.display = "none";
+      setTimeout(() => {
+        validation.style.transform = "translateX(0px)";
+      }, 100);
+
+    
     });
 
     function register() {
