@@ -219,7 +219,8 @@
       text-decoration: underline;
     }
     .toggle:checked ~ .validation {
-      transform: translateX(0px);
+      transform: translateX(310px);
+      display: block;
     }
 
     /* card */
@@ -467,10 +468,8 @@
     passwordInput2.addEventListener("keyup", (event) => {
       const password = event.target.value;
 
-      validation.style.display = "block";
-      setTimeout(() => {
-        validation.style.transform = "translateX(310px)";
-      }, 100);
+    
+    
 
       checkPassword(password);
     });
