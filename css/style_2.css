@@ -17,7 +17,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap");
 * {
-  --body_color: #f1f1f1;
+  
 
   margin: 0;
   padding: 0;
@@ -25,12 +25,32 @@
   font-family: "Montserrat";
   scroll-behavior: smooth;
 }
+:root {
+/* ===== Colors ===== */
+--body_color: #f1f1f1;
+--hu_step: #cfcfcf;
+--sidebar-color: #fff;
+--primary-color: rgba(76, 53, 222, 1);
+--primary-color-light: #f6f5ff;
+--toggle-color: #ddd;
+--text-color: #292929;
+--card-color: #fff;
+}
 body {
   background-color: var(--body_color);
 
   overflow-x: hidden;
 }
-
+body.dark{
+--body_color: #1b1b1b;
+--hu_step: #333739;
+--sidebar-color: #fff;
+--primary-color: rgba(76, 53, 222, 1);
+--primary-color-light: #f6f5ff;
+--toggle-color: #ddd;
+--text-color: #292929;
+--card-color: #fff;
+}
 body::-webkit-scrollbar {
   display: none;
 }
@@ -3437,7 +3457,7 @@ background-color: #333;
 
   margin-right: 50px;
   gap: 20px;
-  background: #cfcfcf;
+  background: var(--hu_step);
   padding: 20px;
   height: 7%;
   border-radius: 0.5rem;
