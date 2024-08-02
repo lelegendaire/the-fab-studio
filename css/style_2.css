@@ -3111,7 +3111,7 @@ background-color: #333;
 }
 .card_radius_right::after {
   content: "";
-  background: #333333;
+  background-color: var(--fond_perso);
   position: relative;
   left: -66px;
   bottom: 112px;
@@ -3124,7 +3124,7 @@ background-color: #333;
 .outer_radius_card {
   padding: 1.5rem 1rem;
 
-  background-color: var(--perso_section);
+  background-color: var(--fond_perso);
  
 }
 .information {
