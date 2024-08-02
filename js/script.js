@@ -2804,4 +2804,35 @@ document.addEventListener("DOMContentLoaded", () => {
         Menu.style.transform = "translateY(0px)";
         logo.style.scale = "100%"
     }, 100);
+      const request = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+        request.addEventListener("success", function (event) {
+          const db = event.target.result;
+          const transaction = db.transaction(["preferences"], "readonly");
+          const preferencesStore = transaction.objectStore("preferences");
+          const index = preferencesStore.index("nameIndex");
+
+          const sidebarClosedRequest = index.get("sidebarClosed");
+          const darkModeRequest = index.get("darkMode");
+
+          sidebarClosedRequest.onsuccess = function (event) {
+            const isSidebarClosed = event.target.result?.value;
+            if (isSidebarClosed) {
+              sidebar.classList.add("close");
+            }
+          };
+
+          darkModeRequest.onsuccess = function (event) {
+            const isDarkMode = event.target.result?.value;
+
+            if (isDarkMode) {
+              body.classList.add("dark");
+              const fond_section_hero = document.querySelector(".fond_section_hero");
+                fond_section_hero.src = "img/okcc-bg_dark.jpeg"
+            }
+
+          
+          };
+        });
+      
 });
