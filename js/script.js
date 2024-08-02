@@ -2830,3 +2830,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       
 });
+function applyDarkMode() {
+      document.body.classList.add("dark");
+      const fond_section_hero = document.querySelector(".fond_section_hero");
+                fond_section_hero.src = "img/okcc-bg_dark.png"
+}
+
+// Fonction pour appliquer le thème clair
+function applyLightMode() {
+      document.body.classList.add("dark");
+     const fond_section_hero = document.querySelector(".fond_section_hero");
+                fond_section_hero.src = "img/okcc-bg.jpeg"
+}
+
+// Écouter les changements de thème
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+function handleColorSchemeChange(e) {
+    if (e.matches) {
+        applyDarkMode();
+    } else {
+        applyLightMode();
+    }
+}
+
+// Appliquer le thème initial
+handleColorSchemeChange(mediaQuery);
+
+// Écouter les changements en temps réel
+mediaQuery.addEventListener('change', handleColorSchemeChange);
