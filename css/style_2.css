@@ -34,7 +34,7 @@
 --fond_perso: #f1f1f1;
 --fond_info: radial-gradient(rgb(0 0 0 / 17%) 2px, transparent 0);
 --card_site: #fff;
-
+--color_title_step: #363c48;
   
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
@@ -56,6 +56,7 @@ body.dark{
 --fond_perso: #202324;
 --fond_info: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0), #1b1b1b;
 --card_site: #3a3b3c;
+--color_title_step: #fff;
   
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
@@ -70,7 +71,7 @@ body::-webkit-scrollbar {
 .header_banner_hero {
   height: 100vh;
   width: 100%;
-
+background-color: #070707;
   display: flex;
   justify-content: center;
 
@@ -3041,7 +3042,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 .outer_radius::before {
   content: "";
   border-radius: 0 0 0.9rem;
-  background-color: var(--perso_section);
+  background-color: var(--fond_perso);
   position: relative;
  display: flex;
   width: 20px;
@@ -3050,7 +3051,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 .outer_radius::after {
   content: "";
   border-radius: 0 0 0 0.9rem;
-  background-color: var(--perso_section);
+  background-color: var(--fond_perso);
   position: relative;
   display: flex;
   width: 20px;
@@ -3075,7 +3076,7 @@ background-color: #333;
 .card_radius_right {
   padding: 0.5rem 1rem;
 
-  background-color: var(--perso_section);
+  background-color: var(--fond_perso);
   
  
   height: 421px;
@@ -3098,7 +3099,7 @@ background-color: #333;
 }
 .card_radius_right::after {
   content: "";
-  background: var(--perso_section);
+  background: #333333;
   position: relative;
   left: -66px;
   bottom: 112px;
@@ -3502,7 +3503,7 @@ background-color: #333;
   gap: 20px;
   align-items: center;
   justify-content: start;
-  color: #363c48;
+  color: var(--color_title_step);
   padding-bottom: 16px;
 }
 .hu_step .number_icon {
