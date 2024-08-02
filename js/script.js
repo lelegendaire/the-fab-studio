@@ -2812,15 +2812,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const preferencesStore = transaction.objectStore("preferences");
           const index = preferencesStore.index("nameIndex");
 
-          const sidebarClosedRequest = index.get("sidebarClosed");
           const darkModeRequest = index.get("darkMode");
 
-          sidebarClosedRequest.onsuccess = function (event) {
-            const isSidebarClosed = event.target.result?.value;
-            if (isSidebarClosed) {
-              sidebar.classList.add("close");
-            }
-          };
+      
 
           darkModeRequest.onsuccess = function (event) {
             const isDarkMode = event.target.result?.value;
