@@ -2820,7 +2820,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const isDarkMode = event.target.result?.value;
 
             if (isDarkMode) {
-              body.classList.add("dark");
+              document.body.classList.add("dark");
               const fond_section_hero = document.querySelector(".fond_section_hero");
                 fond_section_hero.src = "img/okcc-bg_dark.jpeg"
             }
