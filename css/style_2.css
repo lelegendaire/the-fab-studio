@@ -3286,7 +3286,10 @@ background-color: #333;
   opacity: 0.1;
   position: absolute;
 }
-
+.card-grid:hover .card_bento:not(:hover){
+filter: grayscale(1) blur(10px)
+  transform: scale(1.05);
+}
 .card_bento {
   background: #2b2b2b;
   border-radius: 8px;
@@ -3313,9 +3316,7 @@ background-color: #333;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Ajouter une ombre */
   transition: transform 0.5s ease, z-index 0s ease 0s; /* Animation plus douce */
 }
-.card_bento:hover {
-  transform: scale(1.05);
-}
+
 /* Désactiver l'effet hover pour les cartes ayant la classe expanded */
 .card_bento.expanded:hover {
   transform: translate(-50%, -50%); /* Garder la carte centrée sans effet */
