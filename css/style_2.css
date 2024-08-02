@@ -1140,6 +1140,7 @@ filter: blur(20px);
   overflow-y: scroll;
   z-index: 12;
   color: #000;
+  color: var(--text-color);
 }
 .select-langue.active {
   overflow-y: scroll;
