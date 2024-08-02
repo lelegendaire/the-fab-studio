@@ -3287,7 +3287,7 @@ background-color: #333;
   position: absolute;
 }
 .card-grid:hover .card_bento:not(:hover){
-filter: grayscale(1) blur(10px)
+filter: grayscale(1) blur(10px);
   transform: scale(1.05);
 }
 .card_bento {
