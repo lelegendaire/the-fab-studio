@@ -751,7 +751,7 @@ filter: blur(20px);
   height: 55px;
   border-radius: 3em;
   display: flex;
-  backgrond-color: var(--body_color);
+  background-color: var(--body_color);
   justify-content: center;
   align-items: center;
   gap: 12px;
