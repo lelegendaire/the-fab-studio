@@ -2822,7 +2822,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (isDarkMode) {
               document.body.classList.add("dark");
               const fond_section_hero = document.querySelector(".fond_section_hero");
-                fond_section_hero.src = "img/okcc-bg_dark.jpeg"
+                fond_section_hero.src = "img/okcc-bg_dark.png"
             }
 
           
