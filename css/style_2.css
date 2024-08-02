@@ -35,6 +35,10 @@
 --fond_info: radial-gradient(rgb(0 0 0 / 17%) 2px, transparent 0);
 --card_site: #fff;
 --color_title_step: #363c48;
+--fond_color_glass_cube: linear-gradient(249deg, #ffffff5c, #c3c3b740);
+--border_glass_cube: rgba(255, 255, 255, 0.8);
+--color_border_text: #ffffff29;
+
   
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
@@ -57,6 +61,11 @@ body.dark{
 --fond_info: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0), #1b1b1b;
 --card_site: #3a3b3c;
 --color_title_step: #fff;
+--fond_color_glass_cube: linear-gradient(249deg, #0000005c, #00000040);
+--border_glass_cube: rgb(67 67 67 / 80%);
+--color_border_text: #00000029;
+
+
   
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
@@ -234,7 +243,7 @@ background-color: #070707;
   inset: 0 0 0 0;
   color: transparent;
   position: absolute;
-  -webkit-text-stroke: 0.5px #ffffff29; /* Largeur et couleur du contour */
+  -webkit-text-stroke: 0.5px var(--color_border_text); /* Largeur et couleur du contour */
 }
 
 .cube-container {
@@ -259,12 +268,12 @@ background-color: #070707;
   position: absolute;
   width: clamp(100px, 20vw, 200px);
   height: clamp(100px, 20vw, 200px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border_glass_cube);
   text-align: center;
   line-height: 200px;
   font-size: clamp(12px, 2vw, 24px);
   font-weight: bold;
-  background: linear-gradient(249deg, #ffffff5c, #c3c3b740);
+  background: var(--fond_color_glass_cube);
   backdrop-filter: blur(2px);
 }
 
@@ -2357,6 +2366,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   height: 100vh;
   padding: 40px;
   position: relative;
+  color: var(--text-color);
 }
 .card_save_site {
   display: flex;
