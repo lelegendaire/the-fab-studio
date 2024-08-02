@@ -39,6 +39,7 @@
 --border_glass_cube: rgba(255, 255, 255, 0.8);
 --color_border_text: #ffffff29;
 --fond_bar_color: #0d0d0d;
+--fond_trans: #f1f1f1;
   
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
@@ -66,7 +67,7 @@ body {
 --border_glass_cube: rgb(67 67 67 / 80%);
 --color_border_text: #00000029;
 --fond_bar_color: #333333;
-
+--fond_trans: linear-gradient(#070707,#1b1b1b);
   
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
@@ -90,7 +91,7 @@ body.dark{
 --border_glass_cube: rgb(67 67 67 / 80%);
 --color_border_text: #00000029;
 --fond_bar_color: #333333;
-
+--fond_trans: linear-gradient(#070707,#1b1b1b);
   
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
