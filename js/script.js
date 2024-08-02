@@ -2183,8 +2183,8 @@ plus_bento.addEventListener("click", function () {
 
         })
         // Si "bxs-arrow-to-top" est visible, faire les actions de désactivation
-        wave_h.style.backgroundColor = "#f1f1f1"; // Remettre à la couleur par défaut
-        wave_b.style.backgroundColor = "#f1f1f1"; // Remettre à la couleur par défaut
+        wave_h.style.backgroundColor = "var(--body_color)"; // Remettre à la couleur par défaut
+        wave_b.style.backgroundColor = "var(--body_color)"; // Remettre à la couleur par défaut
         gradient_circle.style.display = "block"; // Afficher à nouveau le gradient
         card_size_bento_plus.style.height = "135vh"; // Remettre à la hauteur par défaut
         card_grid.style.position = "absolute"; // Remettre la position par défaut
