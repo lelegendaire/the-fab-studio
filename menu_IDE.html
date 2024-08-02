@@ -869,7 +869,31 @@
         }
       };
       // Fonction pour mettre à jour le thème
+function applyDarkMode() {
+    document.body.classList.add('dark');
+}
 
+// Fonction pour appliquer le thème clair
+function applyLightMode() {
+    document.body.classList.remove('dark');
+}
+
+// Écouter les changements de thème
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+function handleColorSchemeChange(e) {
+    if (e.matches) {
+        applyDarkMode();
+    } else {
+        applyLightMode();
+    }
+}
+
+// Appliquer le thème initial
+handleColorSchemeChange(mediaQuery);
+
+// Écouter les changements en temps réel
+mediaQuery.addEventListener('change', handleColorSchemeChange);
       // Fonction pour ouvrir la base de données IndexedDB
 
       // Fonction pour sauvegarder l'état dans IndexedDB
