@@ -29,11 +29,18 @@
 /* ===== Colors ===== */
 --body_color: #f1f1f1;
 --hu_step: #cfcfcf;
+--perso_section: #fff;
+--copyright_line: #ccc;
+--fond_perso: #f1f1f1;
+--fond_info: radial-gradient(rgb(0 0 0 / 17%) 2px, transparent 0);
+--card_site: #fff;
+
+  
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
 --primary-color-light: #f6f5ff;
 --toggle-color: #ddd;
---text-color: #292929;
+--text-color: #000;
 --card-color: #fff;
 }
 body {
@@ -44,11 +51,17 @@ body {
 body.dark{
 --body_color: #1b1b1b;
 --hu_step: #333739;
+--perso_section: #181a1b;
+--copyright_line: #35393b;
+--fond_perso: #202324;
+--fond_info: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0), #1b1b1b;
+--card_site: #3a3b3c;
+  
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
 --primary-color-light: #f6f5ff;
 --toggle-color: #ddd;
---text-color: #292929;
+--text-color: #fff;
 --card-color: #fff;
 }
 body::-webkit-scrollbar {
@@ -207,7 +220,7 @@ body::-webkit-scrollbar {
   font-size: clamp(40px, 5vw, 80px);
   text-transform: uppercase;
 
-  color: black;
+color: var(--text-color)
   font-family: "Lalezar";
   position: relative;
 }
@@ -314,6 +327,7 @@ body::-webkit-scrollbar {
   justify-content: center; /* Pour aligner les éléments horizontalement */
   align-items: center; /* Pour centrer les éléments verticalement */
   position: relative;
+  color: var(--text-color)
 }
 
 .Site_generate {
@@ -560,7 +574,7 @@ body::-webkit-scrollbar {
 }
 
 .border_perso {
-  background: #f1f1f1;
+  background: var(--fond_perso);
   width: 100%;
   height: 100%;
   border-radius: 36px 36px 0px 36px;
@@ -572,12 +586,13 @@ body::-webkit-scrollbar {
   margin: 50px auto;
   padding: 20px;
   position: relative;
+  color: var(--text-color)
 }
 .wrapper_perso .center-line {
   position: absolute;
   height: 100%;
   width: 4px;
-  background: #fff;
+  background: var(--perso_section);
   left: 50%;
   top: 20px;
   transform: translateX(-50%);
@@ -609,7 +624,7 @@ filter: blur(20px)
   transition: all 1s ease;
 }
 .wrapper_perso .row section {
-  background: #fff;
+  background: var(--perso_section);
   border-radius: 5px;
   width: calc(50% - 40px);
   padding: 20px;
@@ -621,7 +636,7 @@ filter: blur(20px)
   content: "";
   height: 15px;
   width: 15px;
-  background: #fff;
+  background: var(--perso_section);
   top: 28px;
   z-index: -1;
   transform: rotate(45deg);
@@ -635,7 +650,7 @@ filter: blur(20px)
 .row section .icon,
 .center-line .scroll-icon {
   position: absolute;
-  background: #f2f2f2;
+  background: var(--fond_perso;
   height: 40px;
   width: 40px;
   text-align: center;
@@ -643,7 +658,7 @@ filter: blur(20px)
   border-radius: 50%;
   color: rgba(76, 53, 222, 1);
   font-size: 17px;
-  box-shadow: 0 0 0 4px #fff, inset 0 2px 0 rgba(0, 0, 0, 0.08),
+  box-shadow: 0 0 0 4px var(--perso_section), inset 0 2px 0 rgba(0, 0, 0, 0.08),
     0 3px 0 4px rgba(0, 0, 0, 0.05);
 }
 .center-line .scroll-icon {
@@ -1244,7 +1259,7 @@ filter: blur(20px)
 .select-langue .select-btn {
   display: flex;
   height: 60px;
-  background: #fff;
+  background: var(--perso_section);
   padding: 20px;
   font-size: 18px;
   font-weight: 400;
@@ -1596,7 +1611,7 @@ button[id="validateBtn_cat"] {
 .info_description {
   width: 410px;
   height: 454px;
-  
+  color: var(--text-color)
 }
 .partie1 {
   transition: transform 1s ease;
@@ -2382,7 +2397,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   padding: 5px;
   border: 4px solid transparent;
   cursor: pointer;
-  background-color: white;
+  background-color: var(--side_bar);
 }
 
 .types {
@@ -3026,7 +3041,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 .outer_radius::before {
   content: "";
   border-radius: 0 0 0.9rem;
-  background-color: #f1f1f1;
+  background-color: var(--perso_section);
   position: relative;
  display: flex;
   width: 20px;
@@ -3035,7 +3050,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 .outer_radius::after {
   content: "";
   border-radius: 0 0 0 0.9rem;
-  background-color: #f1f1f1;
+  background-color: var(--perso_section);
   position: relative;
   display: flex;
   width: 20px;
@@ -3060,7 +3075,7 @@ background-color: #333;
 .card_radius_right {
   padding: 0.5rem 1rem;
 
-  background-color: #f1f1f1;
+  background-color: var(--perso_section);
   
  
   height: 421px;
@@ -3083,7 +3098,7 @@ background-color: #333;
 }
 .card_radius_right::after {
   content: "";
-  background: #f1f1f1;
+  background: var(--perso_section);
   position: relative;
   left: -66px;
   bottom: 112px;
@@ -3096,7 +3111,7 @@ background-color: #333;
 .outer_radius_card {
   padding: 1.5rem 1rem;
 
-  background-color: #f1f1f1;
+  background-color: var(--perso_section);
  
 }
 .information {
@@ -3161,7 +3176,7 @@ background-color: #333;
 }
 .copyright::before {
   content: "";
-  background: #ccc;
+  background: var(--copyright_line);
   width: 400px;
   height: 3px;
   border-radius: 5px;
@@ -3174,7 +3189,7 @@ background-color: #333;
   flex-direction: column;
 }
 .wave_h {
-  background-color: #f1f1f1;
+  background-color: var(--body_color);
   width: 100%;
   height: 50px;
   border-radius: 50%;
@@ -3183,7 +3198,7 @@ background-color: #333;
   transform: scale(1, 1.9);
 }
 .wave_b {
-  background-color: #f1f1f1;
+  background-color: var(--body_color);
   width: 100%;
   height: 50px;
   border-radius: 50%;
@@ -3419,6 +3434,7 @@ background-color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--text-color)
 }
 .how_use h1 {
   margin-top: 52px;
