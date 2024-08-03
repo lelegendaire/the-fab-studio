@@ -697,6 +697,9 @@
         justify-content: center;
         font-size: 44px;
       }
+      .ajout_projects a{
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
@@ -736,14 +739,28 @@
             <li class="nav-link">
               <a href="index.html">
                 <i class="bx bx-home-alt icon"></i>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            
+            <li class="nav-link">
+              <a href="index.html">
+                <i class='bx bxs-dashboard icon' ></i>
                 <span class="text nav-text">Accueil</span>
               </a>
             </li>
 
             <li class="nav-link">
-              <a onclick="projets()">
+              <a onclick="projets_code()">
                 <i class="bx bx-folder icon"></i>
-                <span class="text nav-text">Projets</span>
+                <span class="text nav-text">Projets codes</span>
+              </a>
+            </li>
+            
+            <li class="nav-link">
+              <a onclick="projets_site()">
+                <i class="bx bx-folder icon"></i>
+                <span class="text nav-text">Projets sites</span>
               </a>
             </li>
 
@@ -795,8 +812,8 @@
 
     <section class="home">
       <div class="text forProjects">The Fab Studio: IDE</div>
-      <div class="section_projets">
-        <h3>Vos projets</h3>
+      <div class="section_projets_code">
+        <h3>Mes projets codes</h3>
         <div class="projects">
           <article class="article-wrapper">
             <div class="rounded-lg container-project">
@@ -829,7 +846,15 @@
           </div>
         </div>
       </div>
-
+ <div class="section_projets_site">
+        <h3>Mes projets sites</h3>
+        <div class="projects">
+          
+          <div class="ajout_projects">
+            <a href="index.html#personnalisation"><i class="bx bx-plus-circle" "></i></a>
+          </div>
+        </div>
+      </div>
       <div class="section_templates">
         <div class="text forTemplates">Nos Templates</div>
         <div class="temlates">
@@ -1578,17 +1603,29 @@ mediaQuery.addEventListener('change', handleColorSchemeChange);
         };
       });
     }
-    function projets() {
+    function projets_code() {
       const section_templates = document.querySelector(".section_templates");
       section_templates.style.display = "none";
-      const section_projets = document.querySelector(".section_projets");
-      section_projets.style.display = "block";
+      const section_projets_code = document.querySelector(".section_projets_code");
+      section_projets_code.style.display = "block";
+       const section_projets_site = document.querySelector(".section_projets_site");
+      section_projets_site.style.display = "none";
+    }
+    function projets_site() {
+      const section_templates = document.querySelector(".section_templates");
+      section_templates.style.display = "none";
+      const section_projets_code = document.querySelector(".section_projets_code");
+      section_projets_code.style.display = "none";
+      const section_projets_site = document.querySelector(".section_projets_site");
+      section_projets_site.style.display = "block";
     }
     function templates() {
-      const section_projets = document.querySelector(".section_projets");
-      section_projets.style.display = "none";
+      const section_projets_code = document.querySelector(".section_projets_code");
+      section_projets_code.style.display = "none";
       const section_templates = document.querySelector(".section_templates");
       section_templates.style.display = "block";
+       const section_projets_site = document.querySelector(".section_projets_site");
+      section_projets_site.style.display = "none";
     }
   </script>
 </html>
