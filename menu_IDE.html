@@ -991,6 +991,8 @@ mediaQuery.addEventListener('change', handleColorSchemeChange);
 
             if (isDarkMode) {
               body.classList.add("dark");
+            } else if(!isDarkMode){
+ body.classList.remove("dark");
             }
 
             updateTheme(); // Mettre à jour le thème après avoir restauré l'état
