@@ -2819,14 +2819,27 @@ document.addEventListener("DOMContentLoaded", () => {
           darkModeRequest.onsuccess = function (event) {
             const isDarkMode = event.target.result?.value;
 
-            if (isDarkMode) {
-              document.body.classList.add("dark");
-              const fond_section_hero = document.querySelector(".fond_section_hero");
-                fond_section_hero.src = "img/okcc-bg_dark.png"
+            if (isDarkMode && isDarkMode === true) {
+             applyDarkMode()
+            } else if (isDarkMode && isDarkMode === false) {
+                applyLightMode()
             } else {
-                  document.body.classList.remove("dark");
-     const fond_section_hero = document.querySelector(".fond_section_hero");
-                fond_section_hero.src = "img/okcc-bg.jpeg"
+                // Écouter les changements de thème
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+function handleColorSchemeChange(e) {
+    if (e.matches) {
+        applyDarkMode();
+    } else {
+        applyLightMode();
+    }
+}
+
+// Appliquer le thème initial
+handleColorSchemeChange(mediaQuery);
+
+// Écouter les changements en temps réel
+mediaQuery.addEventListener('change', handleColorSchemeChange);
             }
 
           
@@ -2847,19 +2860,4 @@ function applyLightMode() {
                 fond_section_hero.src = "img/okcc-bg.jpeg"
 }
 
-// Écouter les changements de thème
-const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-function handleColorSchemeChange(e) {
-    if (e.matches) {
-        applyDarkMode();
-    } else {
-        applyLightMode();
-    }
-}
-
-// Appliquer le thème initial
-handleColorSchemeChange(mediaQuery);
-
-// Écouter les changements en temps réel
-mediaQuery.addEventListener('change', handleColorSchemeChange);
