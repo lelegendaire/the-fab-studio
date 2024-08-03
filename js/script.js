@@ -2814,16 +2814,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const darkModeRequest = index.get("darkMode");
 
-      
+      console.log(darkModeRequest)
 
           darkModeRequest.onsuccess = function (event) {
             const isDarkMode = event.target.result?.value;
 
             if (isDarkMode && isDarkMode === true) {
              applyDarkMode()
+                console.log(isDarkMode)
             } else if (isDarkMode && isDarkMode === false) {
                 applyLightMode()
+                console.log(isDarkMode)
             } else {
+                console.log(isDarkMode)
                 // Écouter les changements de thème
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
