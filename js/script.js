@@ -2819,10 +2819,10 @@ document.addEventListener("DOMContentLoaded", () => {
           darkModeRequest.onsuccess = function (event) {
             const isDarkMode = event.target.result?.value;
 
-            if (isDarkMode && isDarkMode === true) {
+            if (isDarkMode) {
              applyDarkMode()
                 console.log(isDarkMode)
-            } else if (isDarkMode && isDarkMode === false) {
+            } else if (!isDarkMode) {
                 applyLightMode()
                 console.log(isDarkMode)
             } else {
