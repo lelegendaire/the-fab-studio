@@ -68,7 +68,7 @@ body.dark{
 --border_glass_cube: rgb(67 67 67 / 80%);
 --color_border_text: #00000029;
 --fond_bar_color: #333333;
---fond_trans: linear-gradient(#070707,#1b1b1b);
+--fond_trans: linear-gradient(#f1f1f1,#1b1b1b);
 --fond_header_banner_hero: #070707;
   
 --sidebar-color: #fff;
@@ -84,7 +84,7 @@ body::-webkit-scrollbar {
 .header_banner_hero {
   height: 100vh;
   width: 100%;
-background-color: var(--fond_header_banner_hero);
+background-color: #f1f1f1;
   display: flex;
   justify-content: center;
 
