@@ -2838,7 +2838,7 @@ function applyDarkMode() {
 
 // Fonction pour appliquer le thème clair
 function applyLightMode() {
-      document.body.classList.add("dark");
+      document.body.classList.remove("dark");
      const fond_section_hero = document.querySelector(".fond_section_hero");
                 fond_section_hero.src = "img/okcc-bg.jpeg"
 }
