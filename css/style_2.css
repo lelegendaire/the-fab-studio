@@ -2308,8 +2308,8 @@ button[id="extension_chatpass_btn"]:hover:before {
   backdrop-filter: blur(5px);
 }
 .cookie_faux-warning {
-  background: linear-gradient(0deg, #9005bd 0%, #bc28d2 100%);
-  box-shadow: 10px 5px 20px 0 rgba(144, 5, 189, 0.3);
+     background: #ff8c6b;
+    box-shadow: 10px 5px 20px 0 #ff8c6ba6;
   max-width: 400px;
   display: flex !important;
   color: #fff;
