@@ -2823,6 +2823,10 @@ document.addEventListener("DOMContentLoaded", () => {
               document.body.classList.add("dark");
               const fond_section_hero = document.querySelector(".fond_section_hero");
                 fond_section_hero.src = "img/okcc-bg_dark.png"
+            } else {
+                  document.body.classList.remove("dark");
+     const fond_section_hero = document.querySelector(".fond_section_hero");
+                fond_section_hero.src = "img/okcc-bg.jpeg"
             }
 
           
