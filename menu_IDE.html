@@ -170,7 +170,9 @@
       :root {
         /* ===== Colors ===== */
         --body-color: #f1f1f1;
-        --sidebar-color: #fff;
+         --var_point: rgb(0 0 0 / 17%);
+        --body_color_radient: radial-gradient(var(--var_point) 2px, transparent 0), #1b1b1b;
+        --sidebar-color: rgb(255 255 255 / 50%);
         --primary-color: rgba(76, 53, 222, 1);
         --primary-color-light: #f6f5ff;
         --toggle-color: #ddd;
@@ -186,7 +188,7 @@
 
       body {
         min-height: 100vh;
-       background: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0), #1b1b1b;
+       background: var(--body_color_radient);
     background-size: 30px 30px;
     background-position: -5px -5px;
         transition: var(--tran-05);
@@ -200,7 +202,9 @@
 
       body.dark {
         --body-color: #18191a;
-        --sidebar-color: #242526;
+        --var_point: rgba(255, 255, 255, 0.171);
+        --body_color_radient: radial-gradient(var(--var_point) 2px, transparent 0), #1b1b1b;
+        --sidebar-color: rgb(36 37 38 / 50%);
         --primary-color: #3a3b3c;
         --primary-color-light: #3a3b3c;
         --toggle-color: #fff;
@@ -464,9 +468,8 @@
         left: 250px;
         height: 100vh;
         width: calc(100% - 250px);
-    background: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0), #1b1b1b;
-    background-size: 30px 30px;
-    background-position: -5px -5px;
+    
+   
         transition: var(--tran-05);
       }
       .home .text {
