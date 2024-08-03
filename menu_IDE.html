@@ -171,7 +171,8 @@
         /* ===== Colors ===== */
         --body-color: #f1f1f1;
          --var_point: rgb(0 0 0 / 17%);
-        --body_color_radient: radial-gradient(var(--var_point) 2px, var(--body-color) 0), #1b1b1b;
+        --body_color_radient: radial-gradient(var(--var_point) 2px, var(--body-color) 0);
+        --box_shadow: rgb(218 232 232 / 70%) 3px 3px 5px 0px, rgb(203 214 214 / 70%) 5px 5px 20px 0px;
         --sidebar-color: rgb(255 255 255 / 50%);
         --primary-color: rgba(76, 53, 222, 1);
         --primary-color-light: #f6f5ff;
@@ -203,7 +204,8 @@
       body.dark {
         --body-color: #18191a;
         --var_point: rgba(255, 255, 255, 0.171);
-        --body_color_radient: radial-gradient(var(--var_point) 2px,  var(--body-color) 0), #1b1b1b;
+        --body_color_radient: radial-gradient(var(--var_point) 2px,  var(--body-color) 0);
+        --box_shadow: rgb(21 22 22 / 70%) 3px 3px 5px 0px, rgb(21 22 22 / 70%) 5px 5px 20px 0px;
         --sidebar-color: rgb(36 37 38 / 50%);
         --primary-color: #3a3b3c;
         --primary-color-light: #3a3b3c;
@@ -220,9 +222,9 @@
         height: 98%;
         width: 250px;
         padding: 14px;
-       background: var(--sidebar);
+       background: var(--sidebar-color);
     backdrop-filter: blur(10px);
-    box-shadow: rgb(21 22 22 / 70%) 3px 3px 5px 0px, rgb(21 22 22 / 70%) 5px 5px 20px 0px;
+    box-shadow: var(--box_shadow);
         transition: var(--tran-05);
         z-index: 100;
         border-radius: 20px;
@@ -479,9 +481,9 @@
         padding: 12px 60px;
       }
       .home .text.forProjects{
-background: var(--sidebar);
+background: var(--sidebar-color);
     backdrop-filter: blur(10px);
-    box-shadow: rgb(21 22 22 / 70%) 3px 3px 5px 0px, rgb(21 22 22 / 70%) 5px 5px 20px 0px;
+    box-shadow: var(--box_shadow);
     margin: 10px 10px 0px 30px;
     border-radius: 20px;
     padding: 14px;
