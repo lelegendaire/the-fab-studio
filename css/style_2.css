@@ -2240,11 +2240,11 @@ button[id="extension_chatpass_btn"]:hover:before {
 
 
 
-.cta:hover .bx-plus {
+.cta:hover i:nth-child(1) {
   transition: 0.5s;
 display: none;
 }
-.cta:hover .bx-right-arrow-alt {
+.cta:hover i:nth-child(2) {
   transition: 0.5s;
 display: block;
 }
