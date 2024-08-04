@@ -12,72 +12,89 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="card-switch">
-        <label class="switch">
-          <input type="checkbox" class="toggle" />
-          <span class="slider"></span>
-          <span class="card-side"></span>
-          <div class="flip-card__inner">
-            <div class="flip-card__front">
-              <div class="title">Log in</div>
-              <form class="flip-card__form" id="loginForm">
-                <input
-                  class="flip-card__input"
-                  name="email"
-                  placeholder="Email"
-                  type="email"
-                  id="email"
-                />
-                <input
-                  class="flip-card__input"
-                  name="password"
-                  placeholder="Mot de passe"
-                  type="password"
-                  id="password"
-                />
-                <button type="button" class="flip-card__btn" onclick="login()">
-                  Se connecter
-                </button>
-              </form>
+   <main>
+        <div class="box">
+          <div class="inner-box">
+            <div class="forms-wrap">
+                <form action="inde.html" autocomplete="off" class="sign-in-form">
+                    <div class="logo">
+                        <img src="./img/logo.png" alt="The Fab Studio">
+                        <h3>The Fab Studio</h3>
+                    </div>
+
+                    <div class="heading">
+                        <h2>Welcome Back</h2>
+                        <h6>Not registred yet?</h6>
+                        <a href="#" class="toggle">Sign up</a>
+                    </div>
+
+                    <div class="actual-form">
+                        <div class="input-wrap">
+                            <input type="text" minlength="4" class="input-field" autocomplete="off" id="email" required>
+                            <label >Email</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="password" minlength="4" class="input-field" autocomplete="off" id="password" required>
+                            <label >Password</label>
+                        </div>
+                        <input type="submit" value="Sign In" class="Sign-btn" onclick="login()">
+                        <p class="text">
+                            Forgotten your password or you login datails?
+                            <a href="#">Get help</a> signing in
+                        </p>
+                    </div>
+                </form>
+                <form action="inde.html" autocomplete="off" class="sign-up-form">
+                    <div class="logo">
+                        <img src="./img/logo.png" alt="The Fab Studio">
+                        <h3>The Fab Studio</h3>
+                    </div>
+
+                    <div class="heading">
+                        <h2>Get Started</h2>
+                        <h6>Already have an account?</h6>
+                        <a href="#" class="toggle">Sign in</a>
+                    </div>
+
+                    <div class="actual-form">
+                        <div class="input-wrap">
+                            <input type="text" minlength="4" class="input-field" autocomplete="off" id="name" required>
+                            <label >Name</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="email"  class="input-field" autocomplete="off" id="email_s" required>
+                            <label >Email</label>
+                        </div>
+                        <div id="emailValidationMessage"></div>
+                        <div class="input-wrap">
+                            <input type="password" minlength="4" class="input-field" autocomplete="off" id="password_s" required>
+                            <label >Password</label>
+                        </div>
+                        <input type="submit" value="Sign Up" class="Sign-btn" onclick="register()">
+                        <p class="text">
+                           By signing up, I agree to the <a href="#">Terms of Services</a> and <a href="#">Privacy Policy</a>
+                        </p>
+                    </div>
+                </form>
             </div>
-            <div class="flip-card__back">
-              <div class="title">Sign up</div>
-              <form class="flip-card__form" id="registerForm">
-                <input
-                  class="flip-card__input"
-                  placeholder="Nom"
-                  type="text"
-                  id="name"
-                />
-                <input
-                  class="flip-card__input"
-                  name="email"
-                  placeholder="Email"
-                  type="email"
-                  id="email_s"
-                />
-                <div id="emailValidationMessage"></div>
-                <input
-                  class="flip-card__input"
-                  name="password"
-                  placeholder="Mot de passe"
-                  type="password"
-                  id="password_s"
-                />
-                <button
-                  type="button"
-                  class="flip-card__btn"
-                  onclick="register()"
-                >
-                  Créer
-                </button>
-              </form>
-            </div>
+            <div class="carousel"></div>
+            
           </div>
-        </label>
-      </div>
-    </div>
+        </div>
+      </main>
+
+
+
+
+
+
+
+
+
+
+
+    
+  
     <div class="validation">
       <ul>
         <li class="invalid">
@@ -101,21 +118,202 @@
 
   <style>
     /* style.css */
-    @import url("https://fonts.googleapis.com/css2?family=Lalezar&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Lalezar";
+      font-family: "Montserrat";
       scroll-behavior: smooth;
     }
-    body {
-      display: flex;
+    
 
-      justify-content: center;
-      align-items: center;
-      transform: translateY(350px);
-    }
+body,input{
+    font-family: "Montserrat", sans-serif;
+}
+main{
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #ff8c6b;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box{
+    max-width: 1020px;
+    height: 640px;
+    background-color: #fff;
+    border-radius: 3.3rem;
+    box-shadow: 0 60px 40px -30px rgba(0,0,0,0.27);
+}
+
+.inner-box{
+position: absolute;
+width: calc(100% - 4.1rem);
+height: calc(100% - 4.1rem);
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+
+}
+
+.forms-wrap{
+    position: absolute;
+    height: 100%;
+    width: 45%;
+    top: 0;
+    left: 0;
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 1fr;
+transition: 0.8s ease-in-out;
+}
+.carousel{
+    position: absolute;
+    height: 100%;
+    width: 55%;
+    left: 45%;
+    top: 0;
+    background-color: #ffe0d2;
+    border-radius: 2rem;
+    transition: 0.8s ease-in-out;
+}
+form{
+    max-width: 260px;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    transition: opacity 0.02s 0.4s ;
+}
+form.sign-up-form{
+    opacity: 0;
+    pointer-events: none;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo img{
+    width: 27px;
+    margin-right: 0.3rem;
+}
+
+.logo h4{
+    font-size: 1.1rem;
+margin-top: -9px;
+letter-spacing: -0.5px;
+color: #151111;
+}
+.heading h2{
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: #151111;
+}
+.heading h6{
+    color: #bababa;
+    font-weight: 400;
+    font-size: .75rem;
+    display: inline;
+}
+.toogle{
+    color: #151111;
+    text-decoration: none;
+    font-size: 0.75rem;
+font-weight: 500;
+transition: 0.3s;
+}
+.toogle:hover{
+    color: #8371fd;
+}
+.input-wrap{
+    position: relative;
+    height: 37px;
+    margin-bottom: 2rem;
+}
+.input-field{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bbb;
+    padding: 0;
+    font-size: 0.95rem;
+    color: #151111;
+    transition: 0.4s;
+}
+label{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: #bbb;
+    pointer-events: none;
+}
+.input-field.active{
+    border-bottom-color: #151111;
+}
+.input-field.active + label{
+  font-size: 0.75rem;
+  top: -2px;
+}
+.Sign-btn{
+    display: inline-block;
+    width: 100%;
+    height: 43px;
+    background-color: #151111;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+
+}
+.Sign-btn:hover{
+    background-color: #8371fd;
+}
+.text{
+    color: #bbb;
+    font-size: 0.7rem;
+}
+.text a{
+    color: #bbb;
+    transition: 0.3s;
+}
+.text a:hover{
+    color: #8371fd;
+}
+
+main.sign-up-mode form.sign-in-form{
+opacity: 0;
+pointer-events: none;
+}
+main.sign-up-mode form.sign-up-form{
+opacity: 0;
+pointer-events: all;
+}
+main.sign-up-mode .forms-wrap{
+    left: 55%;
+}
+
+main.sign-up-mode .carousel{
+    left: 0%;
+}
+    
+     
+    
     * {
       --input-focus: #2d8cf0;
       --font-color: #323232;
@@ -124,215 +322,7 @@
       --bg-color-alt: #66666688;
       --main-color: #323232;
     }
-    .wrapper {
-      --input-focus: #2d8cf0;
-      --font-color: #323232;
-      --font-color-sub: #666;
-      --bg-color: #fff;
-      --bg-color-alt: #66666688;
-      --main-color: #323232;
-    }
-    /* switch card */
-    .switch {
-      transform: translateY(-200px);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      width: 50px;
-      height: 20px;
-    }
-
-    .card-side::before {
-      position: absolute;
-      content: "Log in";
-      left: -70px;
-      top: 0;
-      width: 100px;
-      text-decoration: underline;
-      color: var(--font-color);
-      font-weight: 600;
-    }
-
-    .card-side::after {
-      position: absolute;
-      content: "Sign up";
-      left: 70px;
-      top: 0;
-      width: 100px;
-      text-decoration: none;
-      color: var(--font-color);
-      font-weight: 600;
-    }
-
-    .toggle {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      box-sizing: border-box;
-      border-radius: 0.75em;
-      border: 2px solid var(--main-color);
-      box-shadow: 4px 4px var(--main-color);
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: var(--bg-colorcolor);
-      transition: 0.3s;
-    }
-
-    .slider:before {
-      box-sizing: border-box;
-      position: absolute;
-      content: "";
-      height: 20px;
-      width: 20px;
-      border: 2px solid var(--main-color);
-      border-radius: 0.75em;
-      left: -2px;
-      bottom: 2px;
-      background-color: var(--bg-color);
-      box-shadow: 0 3px 0 var(--main-color);
-      transition: 0.3s;
-    }
-
-    .toggle:checked + .slider {
-      background-color: var(--input-focus);
-    }
-
-    .toggle:checked + .slider:before {
-      transform: translateX(30px);
-    }
-
-    .toggle:checked ~ .card-side:before {
-      text-decoration: none;
-    }
-
-    .toggle:checked ~ .card-side:after {
-      text-decoration: underline;
-    }
-  
-
-    /* card */
-
-    .flip-card__inner {
-      width: 300px;
-      height: 350px;
-      position: relative;
-      background-color: transparent;
-      perspective: 1000px;
-      /* width: 100%;
-      height: 100%; */
-      text-align: center;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-
-    .toggle:checked ~ .flip-card__inner {
-      transform: rotateY(180deg);
-    }
-
-    .toggle:checked ~ .flip-card__front {
-      box-shadow: none;
-    }
-
-    .flip-card__front,
-    .flip-card__back {
-      padding: 20px;
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      background: lightgrey;
-      gap: 20px;
-      border-radius: 0.75em;
-      border: 2px solid var(--main-color);
-      box-shadow: 4px 4px var(--main-color);
-    }
-
-    .flip-card__back {
-      width: 100%;
-      transform: rotateY(180deg);
-    }
-
-    .flip-card__form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .title {
-      margin: 20px 0 20px 0;
-      font-size: 25px;
-      font-weight: 900;
-      text-align: center;
-      color: var(--main-color);
-    }
-
-    .flip-card__input {
-      width: 250px;
-      height: 40px;
-      border-radius: 0.75em;
-      border: 2px solid var(--main-color);
-      background-color: var(--bg-color);
-      box-shadow: 4px 4px var(--main-color);
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--font-color);
-      padding: 5px 10px;
-      outline: none;
-    }
-
-    .flip-card__input::placeholder {
-      color: var(--font-color-sub);
-      opacity: 0.8;
-    }
-
-    .flip-card__input:focus {
-      border: 2px solid var(--input-focus);
-    }
-
-    .flip-card__btn:active,
-    .button-confirm:active {
-      box-shadow: 0px 0px var(--main-color);
-      transform: translate(3px, 3px);
-    }
-
-    .flip-card__btn {
-      margin: 20px 0 20px 0;
-      width: 120px;
-      height: 40px;
-      border-radius: 0.75em;
-      border: 2px solid var(--main-color);
-      background-color: var(--bg-color);
-      box-shadow: 4px 4px var(--main-color);
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--font-color);
-      cursor: pointer;
-    }
-    [id="emailValidationMessage"] {
-      display: none;
-      color: red;
-    }
-    .flip-card__input[id="email_s"].invalid {
-      border: 2px solid #ff0000;
-      box-shadow: 4px 4px #ff0000;
-    }
-    .flip-card__input[id="email_s"].valid {
-      border: 2px solid #323232;
-      box-shadow: 4px 4px #323232;
-    }
+   
     .validation {
       display: none;
       background: lightgrey;
@@ -384,6 +374,24 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll(".input-field")
+const toggle_btn = document.querySelectorAll(".toggle")
+const main = document.querySelector(".main")
+
+inputs.forEach(inp =>{
+    inp.addEventListener("focus", ()=>{
+        inp.classList.add("active")
+    })
+    inp.addEventListener("blur", ()=>{
+        if(inp.value != "") return;
+        inp.classList.remove("active")
+    })
+})
+toggle_btn.forEach((btn) => {
+    btn.addEventListener("click", ()=>{
+main.classList.toggle("sign-up-mode")
+    });
+});
     const emailInput = document.getElementById("email_s");
     const passwordInput2 = document.getElementById("password_s");
     const email = document.getElementById("email");
