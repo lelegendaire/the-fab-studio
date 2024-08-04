@@ -2229,6 +2229,9 @@ button[id="extension_chatpass_btn"]:hover:before {
 .cta[id="voir_mes_sites"]{
   width: 6%;
 }
+.cta[id="voir_mes_sites"]:hover{
+   width: 30%;
+}
 .cta:focus {
   outline: none;
 }
@@ -2246,7 +2249,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   transition: 0.5s;
 display: none;
 }
-.cta:hover i:nth-child(2) {
+.cta:hover i.bx-right-arrow-alt {
   transition: 0.5s;
 display: block;
 }
@@ -2261,7 +2264,7 @@ display: none;
 }
 
 
-.cta i:nth-child(2){
+.cta i.bx-right-arrow-alt{
   display: none;
   margin-left: auto;
   rotate: -25deg;
