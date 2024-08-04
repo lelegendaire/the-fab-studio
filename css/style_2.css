@@ -589,7 +589,7 @@ background-color: #f1f1f1;
   height: 100%;
   width: 100%;
   position: relative;
-  background: var(--footer_gradient_bas)
+  background: var(--footer_gradient_bas);
   padding: 20px 20px 0px 20px;
 }
 
