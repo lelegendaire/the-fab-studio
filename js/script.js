@@ -1729,10 +1729,12 @@ voir_plus_condition.addEventListener("click", function () {
     window.open("condition.html")
 })
 const voir_mes_sites = document.getElementById("voir_mes_sites")
+    if(voir_mes_sites){
+        
 voir_mes_sites.addEventListener("click", function () {
     window.open("menu_IDE.html")
 })
-
+    }
 const audiobook = document.getElementById("audiobook")
 audiobook.addEventListener("click", function () {
     window.open("audiobook.html")
