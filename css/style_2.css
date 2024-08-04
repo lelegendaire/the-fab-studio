@@ -43,7 +43,7 @@
 --fond_header_banner_hero: #f1f1f1;
   
 --sidebar-color: #fff;
---primary-color: rgba(76, 53, 222, 1);
+--primary-color: #ff8c6b;
 --primary-color-light: #f6f5ff;
 --toggle-color: #ddd;
 --text-color: #000;
@@ -2839,7 +2839,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 
   margin-right: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-  background-color: #fc6868;
+  background-color: #ff8c6b;
 }
 .action_btn {
   display: flex;
