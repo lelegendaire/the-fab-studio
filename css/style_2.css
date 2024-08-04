@@ -41,7 +41,10 @@
 --fond_bar_color: #0d0d0d;
 --fond_trans: #f1f1f1;
 --fond_header_banner_hero: #f1f1f1;
-  
+--footer_color: #ff8c6b
+--footer_gradient_haut: linear-gradient(#ff8c6b, #ff8c6b94, rgba(0, 0, 0, 0.1)), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+--fotter_gradient_bas: linear-gradient(rgba(0, 0, 0, 0.1), #ff8c6b), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+
 --sidebar-color: #fff;
 --primary-color: #ff8c6b;
 --primary-color-light: #f6f5ff;
@@ -72,6 +75,9 @@ body.dark{
 --fond_bar_color: #0d0d0d;
 --fond_trans: linear-gradient(#f1f1f1,#1b1b1b);
 --fond_header_banner_hero: #070707;
+--footer_color: #333
+--footer_gradient_haut: linear-gradient(#333, #333332f5, rgba(0, 0, 0, 0.1)), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+--fotter_gradient_bas: linear-gradient(rgba(0, 0, 0, 0.1), #333333), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
   
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
@@ -583,9 +589,7 @@ background-color: #f1f1f1;
   height: 100%;
   width: 100%;
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), #333333),
-    url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-
+  background: var(--footer_gradient_bas)
   padding: 20px 20px 0px 20px;
 }
 
@@ -3037,7 +3041,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 }
 .footer {
   height: 69vh;
-  background: linear-gradient(#333, #333332f5, rgba(0, 0, 0, 0.1)), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background: var(--footer_gradient_haut)
 }
 .footer_general {
   height: 100%;
@@ -3053,7 +3057,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   align-items: center;
   justify-content: center;
   grid-column-gap: 0.5rem;
-  background-color: #333;
+  background-color: var(--footer_color);
  
   width: 150px;
 }
@@ -3076,7 +3080,7 @@ button[id="extension_chatpass_btn"]:hover:before {
   height: 20px;
 }
 .outer_radius {
-background-color: #333;
+background-color: var(--footer_color);
     width: 180px;
     display: flex;
     justify-content: space-around;
@@ -3105,7 +3109,7 @@ background-color: #333;
 }
 .card_radius_right::before {
   content: "";
-  background: #333;
+  background: var(--footer_color);
   position: relative;
   left: -66px;
   bottom: 56px;
