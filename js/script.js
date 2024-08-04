@@ -1728,6 +1728,10 @@ const voir_plus_condition = document.getElementById("voir_plus_condition")
 voir_plus_condition.addEventListener("click", function () {
     window.open("condition.html")
 })
+const voir_mes_sites = document.getElementById("voir_mes_sites")
+voir_mes_sites.addEventListener("click", function () {
+    window.open("menu_IDE.html")
+})
 
 const audiobook = document.getElementById("audiobook")
 audiobook.addEventListener("click", function () {
@@ -1850,6 +1854,28 @@ const getAllRequest = index.getAll();
                     const title_save_site = document.createElement("h1");
                     title_save_site.textContent = "Vos sites";
                     save_site.appendChild(title_save_site);
+                    const button = document.createElement('button');
+button.className = 'cta';
+button.id = 'voir_mes_sites';
+
+// Création de la première icône
+const iconPlus = document.createElement('i');
+iconPlus.className = 'bx bx-dashboard';
+
+// Création du texte
+const span = document.createElement('span');
+span.className = 'span';
+span.textContent = 'Voir mes sites';
+
+// Création de la deuxième icône
+const iconArrow = document.createElement('i');
+iconArrow.className = 'bx bx-right-arrow-alt';
+
+// Ajout des éléments créés dans le bouton
+button.appendChild(iconPlus);
+button.appendChild(span);
+button.appendChild(iconArrow);
+                    save_site.appendChild(button);
                     const section_div_card_save_site = document.createElement("section");
                     section_div_card_save_site.classList.add("section_div_card_save_site");
                     save_site.appendChild(section_div_card_save_site);
