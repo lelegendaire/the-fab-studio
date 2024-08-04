@@ -2259,6 +2259,8 @@ display: none;
 
 .cta .bx-right-arrow-alt{
   display: none;
+  margin-left: auto;
+    rotate: -25deg;
 }
 
 @keyframes color_anim {
