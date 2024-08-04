@@ -1862,7 +1862,7 @@ button.id = 'voir_mes_sites';
 
 // Création de la première icône
 const iconPlus = document.createElement('i');
-iconPlus.className = 'bx bx-dashboard';
+iconPlus.className = 'bx bxs-dashboard';
 
 // Création du texte
 const span = document.createElement('span');
