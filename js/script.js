@@ -1728,13 +1728,8 @@ const voir_plus_condition = document.getElementById("voir_plus_condition")
 voir_plus_condition.addEventListener("click", function () {
     window.open("condition.html")
 })
-const voir_mes_sites = document.getElementById("voir_mes_sites")
-    if(voir_mes_sites){
-        
-voir_mes_sites.addEventListener("click", function () {
-    window.open("menu_IDE.html")
-})
-    }
+
+    
 const audiobook = document.getElementById("audiobook")
 audiobook.addEventListener("click", function () {
     window.open("audiobook.html")
@@ -1973,6 +1968,12 @@ button.appendChild(iconArrow);
 
                         // Append the article to the body or any desired container
                         section_div_card_save_site.appendChild(article);
+                       
+
+        
+button.addEventListener("click", function () {
+    window.open("menu_IDE.html")
+})
                         deleteProjectType.addEventListener("click", function () {
                             let confirmation = confirm(
                                 "Êtes-vous sûr de vouloir supprimer ce site ?"
