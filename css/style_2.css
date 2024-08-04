@@ -2218,9 +2218,10 @@ button[id="extension_chatpass_btn"]:hover:before {
     display: flex;
     align-items: center;
     font-size: 25px;
+  width: 14%;
     color: white;
     background: #ff8c6b;
-    border-radius: 50%;
+    border-radius: 3rem;
     transition: 1s;
     border: none;
     box-shadow: 4px 5px 20px 0 #ff8c6ba6;
@@ -2231,7 +2232,7 @@ button[id="extension_chatpass_btn"]:hover:before {
 }
 
 .cta:hover {
- transition: 0.5s;
+ 
     cursor: pointer;
     width: 60%;
     border-radius: 3rem;
@@ -2250,17 +2251,19 @@ display: block;
 .cta:hover .span {
   transition: 0.5s;
 display: block;
+
 }
 
 .span {
-display: none;
+display: none;  
+  white-space: nowrap;
 }
 
 
 .cta .bx-right-arrow-alt{
   display: none;
   margin-left: auto;
-    rotate: -25deg;
+  rotate: -25deg;
 }
 
 @keyframes color_anim {
