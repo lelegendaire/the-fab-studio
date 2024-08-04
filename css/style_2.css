@@ -676,7 +676,7 @@ filter: blur(20px);
   text-align: center;
   line-height: 40px;
   border-radius: 50%;
-  color: rgba(76, 53, 222, 1);
+  color: #ff8c6b;
   font-size: 17px;
   box-shadow: 0 0 0 4px var(--perso_section), inset 0 2px 0 rgba(0, 0, 0, 0.08),
     0 3px 0 4px rgba(0, 0, 0, 0.05);
@@ -710,7 +710,7 @@ filter: blur(20px);
 }
 .row section .bottom a {
   text-decoration: none;
-  background: rgba(76, 53, 222, 1);
+  background: #ff8c6b;
   color: #fff;
   padding: 11px 15px;
   border-radius: 5px;
