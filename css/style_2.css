@@ -54,7 +54,26 @@ body {
 
   overflow-x: hidden;
 }
+.card-container {
+  display: flex;
+  width: 200%; /* To allow space for the scrolling animation */
+  animation: scroll 20s linear infinite;
+}
 
+.card_bento {
+  flex: 0 0 100vw; /* Each card takes the full viewport width */
+  height: 100vh; /* Full viewport height */
+  box-sizing: border-box;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 body.dark{
 --body_color: #1b1b1b;
 --hu_step: #333739;
