@@ -1413,7 +1413,7 @@ filter: blur(20px);
 .site_perso {
   height: 100%;
 }
-.site_perso button:not([class="btn"]) {
+.site_perso button:not([class="btn"]):not(.cta) {
   display: inline-block;
   outline: 0;
   border: 0;
@@ -1432,13 +1432,13 @@ filter: blur(20px);
   transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-.site_perso button:not([class="btn"]):hover {
+.site_perso button:not([class="btn"]):not(.cta):hover {
   box-shadow: 0px 0.1em 0.2em rgb(45 35 66 / 40%),
     0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #3c4fe0;
   transform: translateY(-0.1em);
 }
 
-.site_perso button:not([class="btn"]):active {
+.site_perso button:not([class="btn"]):not(.cta):active {
   box-shadow: inset 0px 0.1em 0.6em #3c4fe0;
   transform: translateY(0em);
 }
