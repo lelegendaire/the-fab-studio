@@ -516,7 +516,9 @@ main.sign-up-mode .carousel{
     padding: 1rem 2rem 1.5rem;
   }
 }
-     
+div[id="emailValidationMessage]  {
+color: #e01d1d;
+}
     
     * {
       --input-focus: #2d8cf0;
@@ -528,17 +530,17 @@ main.sign-up-mode .carousel{
     }
    
     .validation {
-      display: none;
-      background: lightgrey;
-      padding: 20px;
-      transform: translateX(0px);
-      transition: all 0.5s ease-in-out;
-      font-size: 17px;
-      position: absolute;
-      border-radius: 0.75em;
-      border: 2px solid var(--main-color);
-      box-shadow: 4px 4px var(--main-color);
-      z-index: -1;
+      display: none
+   background: #ffffff7a;
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    transition: all 0.5s ease-in-out;
+    font-size: 17px;
+    position: absolute;
+    top: 0%;
+    left: 25%;
+    transform: translate(50%, -150%);
+    border-radius: 0.75em;
     }
 
     .validation ul {
@@ -549,21 +551,19 @@ main.sign-up-mode .carousel{
     }
     .validation ul li {
       position: relative;
-      list-style: none;
-      color: #666;
-      display: flex;
-      align-items: center;
-      background: #fff;
-      font-size: 0.85em;
-      transition: 0.5s;
-      border-radius: 0.75em;
-      padding: 5px;
-      border: 2px solid var(--main-color);
-      box-shadow: 4px 4px var(--main-color);
+    list-style: none;
+    color: #151111;
+    display: flex;
+    align-items: center;
+    background: #ff8c6b;
+    font-size: 0.85em;
+    transition: 0.5s;
+    border-radius: 0.75em;
+    padding: 0.5rem;
     }
 
     .validation ul li.valid {
-      color: #0f0;
+      color: #fff;
     }
 
     .validation ul li::before {
@@ -573,7 +573,7 @@ main.sign-up-mode .carousel{
     }
 
     .validation ul li i .valid::before {
-      color: #0f0;
+      color: #fff;
     }
   </style>
 
@@ -702,7 +702,7 @@ bullets.forEach((bullet) => {
     
     validation.style.display = "block";
       setTimeout(() => {
-        validation.style.transform = "translateX(310px)";
+        validation.style.transform = "translate(50%, 0%)";
       }, 100);
 
       checkPassword(password);
