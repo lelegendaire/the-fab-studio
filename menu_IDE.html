@@ -179,7 +179,7 @@
         --toggle-color: #ddd;
         --text-color: #292929;
         --card-color: #fff;
-
+--color_dark_pp: #fff;
         /* ====== Transition ====== */
         --tran-03: all 0.2s ease;
         --tran-03: all 0.3s ease;
@@ -212,6 +212,7 @@
         --toggle-color: #fff;
         --text-color: #ccc;
         --card-color: #242526;
+        --color_dark_pp: #000;
       }
 
       /* ===== Sidebar ===== */
@@ -308,9 +309,17 @@
         justify-content: center;
       }
 
-      .sidebar header .image img {
-        width: 60px;
-        border-radius: 12px;
+      .sidebar header .image .pp_dash {
+     width: 60px;
+    border-radius: 12px;
+    background: linear-gradient(30deg, #0400ff, #4ce3f7);
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border: 3px solid var(--color_dark_pp);
+    color: var(--color_dark_pp);
       }
 
       .sidebar header .toggle {
