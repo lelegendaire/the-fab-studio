@@ -2227,10 +2227,11 @@ button[id="extension_chatpass_btn"]:hover:before {
     box-shadow: 4px 5px 20px 0 #ff8c6ba6;
 }
 .cta[id="voir_mes_sites"]{
-  width: 6%;
+width: 56px;
+    margin-bottom: 20px;
 }
 .cta[id="voir_mes_sites"]:hover{
-   width: 30%;
+   width: 24%;
 }
 .cta:focus {
   outline: none;
