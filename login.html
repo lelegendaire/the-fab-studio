@@ -18,7 +18,7 @@
             <div class="forms-wrap">
                 <form action="inde.html" autocomplete="off" class="sign-in-form">
                     <div class="logo">
-                        <img src="./img/logo.png" alt="The Fab Studio">
+                        <img src="./img/Logo_fab_cvl_studio.png" alt="The Fab Studio">
                         <h3>The Fab Studio</h3>
                     </div>
 
@@ -78,7 +78,28 @@
                 </form>
             </div>
             <div class="carousel"></div>
-            
+                <div class="images-wrapper">
+              <img src="./img/login.png" class="image img-1 show" alt="" />
+              <img src="./img/login2.png" class="image img-2" alt="" />
+              <img src="./img/login3.png" class="image img-3" alt="" />
+            </div>
+
+            <div class="text-slider">
+              <div class="text-wrap">
+                <div class="text-group">
+                  <h2>Create your own courses</h2>
+                  <h2>Customize as you like</h2>
+                  <h2>Invite students to your class</h2>
+                </div>
+              </div>
+
+              <div class="bullets">
+                <span class="active" data-value="1"></span>
+                <span data-value="2"></span>
+                <span data-value="3"></span>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
       </main>
@@ -175,16 +196,7 @@ grid-template-columns: 1fr;
 grid-template-rows: 1fr;
 transition: 0.8s ease-in-out;
 }
-.carousel{
-    position: absolute;
-    height: 100%;
-    width: 55%;
-    left: 45%;
-    top: 0;
-    background-color: #ffe0d2;
-    border-radius: 2rem;
-    transition: 0.8s ease-in-out;
-}
+
 form{
     max-width: 260px;
     width: 100%;
@@ -316,7 +328,192 @@ main.sign-up-mode .forms-wrap{
 main.sign-up-mode .carousel{
     left: 0%;
 }
-    
+    .carousel {
+  position: absolute;
+  height: 100%;
+  width: 55%;
+  left: 45%;
+  top: 0;
+  background-color: #ffe0d2;
+  border-radius: 2rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding-bottom: 2rem;
+  overflow: hidden;
+  transition: 0.8s ease-in-out;
+}
+
+.images-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.image {
+  width: 100%;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.5s;
+}
+
+.img-1 {
+  transform: translate(0, -50px);
+}
+
+.img-2 {
+  transform: scale(0.4, 0.5);
+}
+
+.img-3 {
+  transform: scale(0.3) rotate(-20deg);
+}
+
+.image.show {
+  opacity: 1;
+  transform: none;
+}
+
+.text-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.text-wrap {
+  max-height: 2.2rem;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.text-group {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transform: translateY(0);
+  transition: 0.5s;
+}
+
+.text-group h2 {
+  line-height: 2.2rem;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.bullets {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bullets span {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #aaa;
+  margin: 0 0.25rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bullets span.active {
+  width: 1.1rem;
+  background-color: #151111;
+  border-radius: 1rem;
+}
+
+@media (max-width: 850px) {
+  .box {
+    height: auto;
+    max-width: 550px;
+    overflow: hidden;
+  }
+
+  .inner-box {
+    position: static;
+    transform: none;
+    width: revert;
+    height: revert;
+    padding: 2rem;
+  }
+
+  .forms-wrap {
+    position: revert;
+    width: 100%;
+    height: auto;
+  }
+
+  form {
+    max-width: revert;
+    padding: 1.5rem 2.5rem 2rem;
+    transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+  }
+
+  .heading {
+    margin: 2rem 0;
+  }
+
+  form.sign-up-form {
+    transform: translateX(100%);
+  }
+
+  main.sign-up-mode form.sign-in-form {
+    transform: translateX(-100%);
+  }
+
+  main.sign-up-mode form.sign-up-form {
+    transform: translateX(0%);
+  }
+
+  .carousel {
+    position: revert;
+    height: auto;
+    width: 100%;
+    padding: 3rem 2rem;
+    display: flex;
+  }
+
+  .images-wrapper {
+    display: none;
+  }
+
+  .text-slider {
+    width: 100%;
+  }
+}
+
+@media (max-width: 530px) {
+  main {
+    padding: 1rem;
+  }
+
+  .box {
+    border-radius: 2rem;
+  }
+
+  .inner-box {
+    padding: 1rem;
+  }
+
+  .carousel {
+    padding: 1.5rem 1rem;
+    border-radius: 1.6rem;
+  }
+
+  .text-wrap {
+    margin-bottom: 1rem;
+  }
+
+  .text-group h2 {
+    font-size: 1.2rem;
+  }
+
+  form {
+    padding: 1rem 2rem 1.5rem;
+  }
+}
      
     
     * {
@@ -379,23 +576,44 @@ main.sign-up-mode .carousel{
   </style>
 
   <script>
-    const inputs = document.querySelectorAll(".input-field")
-const toggle_btn = document.querySelectorAll(".toggle")
-const main = document.querySelector("main")
+const inputs = document.querySelectorAll(".input-field");
+const toggle_btn = document.querySelectorAll(".toggle");
+const main = document.querySelector("main");
+const bullets = document.querySelectorAll(".bullets span");
+const images = document.querySelectorAll(".image");
 
-inputs.forEach(inp =>{
-    inp.addEventListener("focus", ()=>{
-        inp.classList.add("active")
-    })
-    inp.addEventListener("blur", ()=>{
-        if(inp.value != "") return;
-        inp.classList.remove("active")
-    })
-})
+inputs.forEach((inp) => {
+  inp.addEventListener("focus", () => {
+    inp.classList.add("active");
+  });
+  inp.addEventListener("blur", () => {
+    if (inp.value != "") return;
+    inp.classList.remove("active");
+  });
+});
+
 toggle_btn.forEach((btn) => {
-    btn.addEventListener("click", ()=>{
-main.classList.toggle("sign-up-mode")
-    });
+  btn.addEventListener("click", () => {
+    main.classList.toggle("sign-up-mode");
+  });
+});
+
+function moveSlider() {
+  let index = this.dataset.value;
+
+  let currentImage = document.querySelector(`.img-${index}`);
+  images.forEach((img) => img.classList.remove("show"));
+  currentImage.classList.add("show");
+
+  const textSlider = document.querySelector(".text-group");
+  textSlider.style.transform = `translateY(${-(index - 1) * 2.2}rem)`;
+
+  bullets.forEach((bull) => bull.classList.remove("active"));
+  this.classList.add("active");
+}
+
+bullets.forEach((bullet) => {
+  bullet.addEventListener("click", moveSlider);
 });
     const emailInput = document.getElementById("email_s");
     const passwordInput2 = document.getElementById("password_s");
