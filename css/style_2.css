@@ -3146,28 +3146,19 @@ background-color: #333;
   margin-bottom: 10px;
 }
 .information .social a {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  color: #000;
-  text-decoration: none;
+     width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: #ccc;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    font-size: 20px;
+    padding: 1rem;
 }
-.information .social a:nth-child(1) {
-  background-color: yellow;
-}
-.information .social a:nth-child(2) {
-  background: radial-gradient(
-    circle at 30% 107%,
-    #fdf497 0%,
-    #fdf497 5%,
-    #fd5949 45%,
-    #d6249f 60%,
-    #285aeb 90%
-  );
-}
+
 .list_gen {
   display: flex;
   margin-top: 50px;
