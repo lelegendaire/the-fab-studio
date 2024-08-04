@@ -704,7 +704,7 @@ resetBtnActive()
 function resetBtnActive() {
     const step = localStorage.getItem("step")
     if (step === "1") {
-        personnalisé_btn_header.style.boxShadow = "0 0 0 5px rgb(129 140 248 / 30%)"
+        personnalisé_btn_header.style.boxShadow = "#ff8c6b82 0px 0px 0px 5px"
 
         personnalisé_btn_nav.style.boxShadow = "none"
         personnalisé_btn_hero_section.style.boxShadow = "none"
@@ -712,7 +712,7 @@ function resetBtnActive() {
         personnalisé_btn_footer.style.boxShadow = "none"
         personnalisé_btn_main_content.style.boxShadow = "none"
     } else if (step === "2") {
-        personnalisé_btn_nav.style.boxShadow = "0 0 0 5px rgb(129 140 248 / 30%)"
+        personnalisé_btn_nav.style.boxShadow = "#ff8c6b82 0px 0px 0px 5px"
         personnalisé_btn_header.style.boxShadow = "none"
 
         personnalisé_btn_hero_section.style.boxShadow = "none"
@@ -720,7 +720,7 @@ function resetBtnActive() {
         personnalisé_btn_footer.style.boxShadow = "none"
         personnalisé_btn_main_content.style.boxShadow = "none"
     } else if (step === "3") {
-        personnalisé_btn_hero_section.style.boxShadow = "0 0 0 5px rgb(129 140 248 / 30%)"
+        personnalisé_btn_hero_section.style.boxShadow = "#ff8c6b82 0px 0px 0px 5px"
         personnalisé_btn_header.style.boxShadow = "none"
         personnalisé_btn_nav.style.boxShadow = "none"
 
@@ -728,7 +728,7 @@ function resetBtnActive() {
         personnalisé_btn_footer.style.boxShadow = "none"
         personnalisé_btn_main_content.style.boxShadow = "none"
     } else if (step === "4") {
-        personnalisé_btn_main_content.style.boxShadow = "0 0 0 5px rgb(129 140 248 / 30%)"
+        personnalisé_btn_main_content.style.boxShadow = "#ff8c6b82 0px 0px 0px 5px"
         personnalisé_btn_header.style.boxShadow = "none"
         personnalisé_btn_nav.style.boxShadow = "none"
         personnalisé_btn_hero_section.style.boxShadow = "none"
@@ -736,7 +736,7 @@ function resetBtnActive() {
         personnalisé_btn_footer.style.boxShadow = "none"
 
     } else if (step === "5") {
-        personnalisé_btn_prefooter.style.boxShadow = "0 0 0 5px rgb(129 140 248 / 30%)"
+        personnalisé_btn_prefooter.style.boxShadow = "#ff8c6b82 0px 0px 0px 5px"
         personnalisé_btn_header.style.boxShadow = "none"
         personnalisé_btn_nav.style.boxShadow = "none"
         personnalisé_btn_hero_section.style.boxShadow = "none"
@@ -744,7 +744,7 @@ function resetBtnActive() {
         personnalisé_btn_footer.style.boxShadow = "none"
         personnalisé_btn_main_content.style.boxShadow = "none"
     } else if (step === "6") {
-        personnalisé_btn_footer.style.boxShadow = "0 0 0 5px rgb(129 140 248 / 30%)"
+        personnalisé_btn_footer.style.boxShadow = "#ff8c6b82 0px 0px 0px 5px"
         personnalisé_btn_header.style.boxShadow = "none"
         personnalisé_btn_nav.style.boxShadow = "none"
         personnalisé_btn_hero_section.style.boxShadow = "none"
