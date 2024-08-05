@@ -55,7 +55,17 @@
                         <h6>Vous avez déjà un compte ?</h6>
                         <a href="#" class="toggle">Se connecter</a>
                     </div>
-
+<div class="App_tier">
+<h6>Ou connectez avec</h6>
+<div class="div_app_tiers">
+    <div class="app_tier">
+      <i class="bx bxl-google"></i>
+    </div>
+      <div class="app_tier">
+        <i class="bx bxl-github"></i>
+      </div>
+</div>
+                    </div>
                     <div class="actual-form">
                         <div class="input-wrap">
                             <input type="text" minlength="4" class="input-field" autocomplete="off" id="name" required>
@@ -229,6 +239,33 @@ form.sign-up-form{
 margin-top: -9px;
 letter-spacing: -0.5px;
 color: #151111;
+}
+.App_tier{
+text-align: center;
+color: #bbb;
+}
+.App_tier h6{
+margin-bottom: 10px;
+}
+.App_tier .div_app_tiers{
+ display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+.App_tier .app_tier{
+ font-size: 25px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.App_tier .app_tier i{
+  border: 1px solid #000;
+    border-radius: 50%;
+    padding: 4px;
 }
 .heading h2{
     font-size: 2.1rem;
