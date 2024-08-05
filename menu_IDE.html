@@ -1415,7 +1415,7 @@ mediaQuery.addEventListener('change', handleColorSchemeChange);
     function create_projects_in_page() {
       const codeSavedList = localStorage.getItem("var_code_saved");
       console.log(codeSavedList);
-      const projects = document.querySelector(".projects");
+      const projects = document.querySelector(".section_projets_code .projects");
       // Assurez-vous que site_saved_card est un tableau, pas une chaîne de caractères
       const Newrequest = window.indexedDB.open("MaBaseDeDonnees", 1);
 
@@ -1557,7 +1557,7 @@ mediaQuery.addEventListener('change', handleColorSchemeChange);
                   // Append the article to the body or any desired container
                   projects.appendChild(article);
                   const abouProjects =
-                    document.querySelector(".ajout_projects");
+                    document.querySelector(".section_projets_code .projects .ajout_projects");
                   abouProjects.parentNode.insertBefore(article, abouProjects);
                   deleteProjectType.addEventListener("click", function () {
                     let confirmation = confirm(
@@ -1648,5 +1648,333 @@ mediaQuery.addEventListener('change', handleColorSchemeChange);
        const section_projets_site = document.querySelector(".section_projets_site");
       section_projets_site.style.display = "none";
     }
+    
+const Newrequest = window.indexedDB.open("MaBaseDeDonnees", 1);
+
+// Gérer les événements associés à la requête
+Newrequest.addEventListener("success", function (event) {
+    const db = event.target.result;
+
+    const transaction_to_connection = db.transaction(["Connexion"], "readonly");
+    const objectStore_to_connection = transaction_to_connection.objectStore("Connexion");
+
+
+    // Si vous avez un index nommé "Connected", vous pouvez également l'utiliser
+    const getRequestByuserId2connection = objectStore_to_connection.get(1);
+
+    getRequestByuserId2connection.onsuccess = function (event) {
+        const dataByuserId = event.target.result;
+
+        if (dataByuserId) {
+            const userId = dataByuserId.id_to_create;
+
+            // Stocker le site
+            const transaction = db.transaction(["Site"], "readonly");
+            const ObjectStore = transaction.objectStore("Site");
+            const index = ObjectStore.index("SiteId");
+const getAllRequest = index.getAll();
+
+            getAllRequest.onsuccess = function (event) {
+                const items = event.target.result;
+                const savedSites = [];
+
+                items.forEach((item) => {
+
+                    const key = item.id;
+
+                    if (key.startsWith('site_')) {
+
+                        const storedItem = item.value;
+
+                        try {
+                            const parsedItem = JSON.parse(storedItem);
+
+                            if (parsedItem.userId === userId) {
+                           
+                                savedSites.push(parsedItem);
+                            }
+                        } catch (error) {
+                            console.error('Erreur de parsing pour la clé ', key, ':', error);
+                        }
+                    }
+                });
+
+
+
+
+
+
+
+
+
+                if (savedSites.length > 0) {
+
+
+
+
+
+                    const save_site = document.createElement("section");
+                    save_site.classList.add("save_site");
+                    const section_projets_site = document.querySelector(".section_projets_site .projects");
+                   
+                    section_projets_site.appendChild(save_site)
+                    // Insérez la nouvelle section avant la section "footer"
+                   
+                    const title_save_site = document.createElement("h1");
+                    title_save_site.textContent = "Vos sites";
+                    save_site.appendChild(title_save_site);
+                    const button = document.createElement('button');
+button.className = 'cta';
+button.id = 'voir_mes_sites';
+
+// Création de la première icône
+const iconPlus = document.createElement('i');
+iconPlus.className = 'bx bxs-dashboard';
+
+// Création du texte
+const span = document.createElement('span');
+span.className = 'span';
+span.textContent = 'Voir mes sites';
+
+// Création de la deuxième icône
+const iconArrow = document.createElement('i');
+iconArrow.className = 'bx bx-right-arrow-alt';
+
+// Ajout des éléments créés dans le bouton
+button.appendChild(iconPlus);
+button.appendChild(span);
+button.appendChild(iconArrow);
+                    save_site.appendChild(button);
+                    const section_div_card_save_site = document.createElement("section");
+                    section_div_card_save_site.classList.add("section_div_card_save_site");
+                    save_site.appendChild(section_div_card_save_site);
+
+
+
+
+
+                    savedSites.forEach((siteInfo) => {
+
+
+                        
+                        // Accédez aux informations de chaque carte
+                        const name_card = siteInfo.name;
+                        const img_card = siteInfo.logo;
+                        const code_site = siteInfo.content;
+                        const siteId = siteInfo.siteId;
+                        const time_save = siteInfo.time;
+                        const type = siteInfo.type;
+
+
+
+
+
+                        // Create the article element
+                        const article = document.createElement('article');
+                        article.className = 'article-wrapper';
+
+                        // Create the container project div
+                        const containerProject = document.createElement('div');
+                        containerProject.className = 'rounded-lg container-project';
+
+                        const img_logo = document.createElement("img")
+                        img_logo.src = img_card
+                        containerProject.appendChild(img_logo)
+                        // Create the project info div
+                        const projectInfo = document.createElement('div');
+                        projectInfo.className = 'project-info';
+
+                        // Create the flex-pr div
+                        const flexPr = document.createElement('div');
+                        flexPr.className = 'flex-pr';
+
+                        // Create the project title div
+                        const projectTitle = document.createElement('div');
+                        projectTitle.className = 'project-title text-nowrap';
+                        projectTitle.textContent = name_card;
+
+                        // Create the project hover div
+                        const projectHover = document.createElement('div');
+                        projectHover.className = 'project-hover';
+
+                        // Create the right arrow icon
+                        const rightArrowIcon = document.createElement('i');
+                        rightArrowIcon.className = 'bx bx-right-arrow-alt';
+
+                        // Append the right arrow icon to the project hover div
+                        projectHover.appendChild(rightArrowIcon);
+
+                        // Append the project title and project hover to the flex-pr div
+                        flexPr.appendChild(projectTitle);
+                        flexPr.appendChild(projectHover);
+
+                        // Create the types div
+                        const types = document.createElement('div');
+                        types.className = 'types';
+
+                        // Create the first project type span
+                        const firstProjectType = document.createElement('span');
+                        firstProjectType.style.backgroundColor = 'rgba(165, 96, 247, 0.43)';
+                        firstProjectType.style.color = 'rgb(85, 27, 177)';
+                        firstProjectType.className = 'project-type';
+                        firstProjectType.textContent = '• ' + time_save;
+
+                        // Create the second project type span
+                        const secondProjectType = document.createElement('span');
+                        secondProjectType.className = 'project-type';
+                        secondProjectType.textContent = '• ' + type;
+
+                        const deleteProjectType = document.createElement('span');
+                        deleteProjectType.className = 'project-type delete';
+                        deleteProjectType.innerHTML = `<i class='bx bx-trash' ></i>`;
+                        // Append the project type spans to the types div
+                        types.appendChild(firstProjectType);
+                        types.appendChild(secondProjectType);
+                        types.appendChild(deleteProjectType);
+                        // Append all elements to the respective parent elements
+                        projectInfo.appendChild(flexPr);
+                        projectInfo.appendChild(types);
+
+                        article.appendChild(containerProject);
+                        article.appendChild(projectInfo);
+
+                        // Append the article to the body or any desired container
+                        section_div_card_save_site.appendChild(article);
+                        const abouProjects =
+                    document.querySelector(".section_projets_site .projects .ajout_projects");
+                  abouProjects.parentNode.insertBefore(article, abouProjects);
+
+        
+button.addEventListener("click", function () {
+    window.open("menu_IDE.html")
+})
+                        deleteProjectType.addEventListener("click", function () {
+                            let confirmation = confirm(
+                                "Êtes-vous sûr de vouloir supprimer ce site ?"
+                            );
+                            if (confirmation) {
+                                const siteId = siteInfo.siteId;
+
+                                // Ouvrir une transaction en mode de lecture-écriture
+                                const transaction = db.transaction(["Site"], "readwrite");
+
+                                // Obtenir une référence à l'object store
+                                const objectStore = transaction.objectStore("Site");
+
+                                // Utiliser la méthode delete de l'object store pour supprimer l'objet spécifique
+                                const deleteRequest = objectStore.delete(siteId);
+
+                                deleteRequest.onsuccess = function (event) {
+                                    console.log("Site supprimé avec succès de la base de données.");
+                                    function getFormattedDateTime() {
+                                        const currentTime = new Date();
+
+                                        // Obtention des composants de la date
+                                        const day = currentTime.getDate();
+                                        const month = currentTime.getMonth() + 1; // Les mois sont indexés à partir de 0
+                                        const year = currentTime.getFullYear();
+
+                                        // Formater la date au format "dd-mm-yyyy"
+                                        const formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
+
+                                        // Obtention des composants de l'heure
+                                        const hours = currentTime.getHours();
+                                        const minutes = currentTime.getMinutes();
+
+                                        // Formater l'heure au format "hh:mm"
+                                        const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+
+                                        // Concaténer la date et l'heure dans la chaîne de caractères finale
+                                        return `${formattedDate} ${formattedTime}`;
+                                    }
+                                    updateDateTimeInUpdating();
+                                    function updateDateTimeInUpdating() {
+                                        const formattedDateTime = getFormattedDateTime();
+                                        // Mettre à jour l'heure dans Updating
+                                        const transaction = db.transaction(["Updating"], "readwrite");
+                                        const objectStore = transaction.objectStore("Updating");
+                                        objectStore.put({ MAJ: formattedDateTime, update: "maj_hour" });
+                                    }
+                                };
+
+                                deleteRequest.onerror = function (event) {
+                                    console.error("Erreur lors de la suppression du site :", event.target.error);
+                                };
+
+                                // Mettre à jour savedSites
+                                const index = savedSites.findIndex((site) => site.siteId === siteId);
+                                if (index > -1) {
+                                    savedSites.splice(index, 1);
+
+                                    // Mettre à jour le localStorage
+
+                                    // Supprimer l'élément du DOM
+                                    section_div_card_save_site.removeChild(article);
+                                }
+                            }
+                        });
+
+
+
+                        projectHover.addEventListener("click", function () {
+                            // Redirigez vers la page de modification en passant le code_site en tant que paramètre
+                            const combinedData = `${siteId}¤${code_site}`;
+                            const transaction = db.transaction(["GestionSite"], "readwrite");
+                            const ObjectStore = transaction.objectStore("GestionSite");
+
+
+                            const newRequest = ObjectStore.put({
+                                site_gestion: 1,
+                                SiteContent: combinedData,
+                            });
+                            newRequest.onsuccess = function (event) {
+                                const contentKey = event.target.result;
+
+                                window.open(`Generate/index_generate.html?contentKey=${contentKey}`);
+                            };
+
+
+
+                            // Redirigez vers la page de modification en passant une référence à la clé dans l'URL
+
+                            localStorage.setItem("Site_save", "true");
+                            function getFormattedDateTime() {
+                                const currentTime = new Date();
+
+                                // Obtention des composants de la date
+                                const day = currentTime.getDate();
+                                const month = currentTime.getMonth() + 1; // Les mois sont indexés à partir de 0
+                                const year = currentTime.getFullYear();
+
+                                // Formater la date au format "dd-mm-yyyy"
+                                const formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
+
+                                // Obtention des composants de l'heure
+                                const hours = currentTime.getHours();
+                                const minutes = currentTime.getMinutes();
+
+                                // Formater l'heure au format "hh:mm"
+                                const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+
+                                // Concaténer la date et l'heure dans la chaîne de caractères finale
+                                return `${formattedDate} ${formattedTime}`;
+                            }
+                            updateDateTimeInUpdating();
+                            function updateDateTimeInUpdating() {
+                                const formattedDateTime = getFormattedDateTime();
+                                // Mettre à jour l'heure dans Updating
+                                const transaction = db.transaction(["Updating"], "readwrite");
+                                const objectStore = transaction.objectStore("Updating");
+                                objectStore.put({ MAJ: formattedDateTime, update: "maj_hour" });
+                            }
+                        });
+                    }
+                    )
+                }
+            };
+
+        }
+    }
+})
   </script>
 </html>
