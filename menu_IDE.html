@@ -490,6 +490,7 @@
     
    
         transition: var(--tran-05);
+        view-transition-name: t-001;
       }
       .home .text {
         font-size: 30px;
@@ -1627,28 +1628,37 @@ mediaQuery.addEventListener('change', handleColorSchemeChange);
       });
     }
     function projets_code() {
-      const section_templates = document.querySelector(".section_templates");
+        document.startViewTransition(()=>{
+        const section_templates = document.querySelector(".section_templates");
       section_templates.style.display = "none";
       const section_projets_code = document.querySelector(".section_projets_code");
       section_projets_code.style.display = "block";
        const section_projets_site = document.querySelector(".section_projets_site");
       section_projets_site.style.display = "none";
+      })
+      
     }
     function projets_site() {
-      const section_templates = document.querySelector(".section_templates");
+        document.startViewTransition(()=>{
+              const section_templates = document.querySelector(".section_templates");
       section_templates.style.display = "none";
       const section_projets_code = document.querySelector(".section_projets_code");
       section_projets_code.style.display = "none";
       const section_projets_site = document.querySelector(".section_projets_site");
       section_projets_site.style.display = "block";
+      })
+
     }
     function templates() {
-      const section_projets_code = document.querySelector(".section_projets_code");
+      document.startViewTransition(()=>{
+           const section_projets_code = document.querySelector(".section_projets_code");
       section_projets_code.style.display = "none";
       const section_templates = document.querySelector(".section_templates");
       section_templates.style.display = "block";
        const section_projets_site = document.querySelector(".section_projets_site");
       section_projets_site.style.display = "none";
+      })
+   
     }
     
 const Newrequest = window.indexedDB.open("MaBaseDeDonnees", 1);
