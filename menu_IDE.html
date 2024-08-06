@@ -28,7 +28,7 @@
         position: fixed;
         height: 70vh;
         width: 60vh;
-        background: #fff;
+        background: var(--card-color);
         border-radius: 20px;
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
         transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1) 0.2s,
@@ -38,6 +38,7 @@
         padding: 20px;
         overflow-y: scroll;
         z-index: 999;
+        color: var(--text-color);
       }
       .card_to_projects::-webkit-scrollbar {
         width: 6px; /* Largeur de la barre de défilement */
@@ -64,7 +65,7 @@
         border-width: 1px;
         border-color: transparent;
         --tw-bg-opacity: 1;
-        background-color: rgba(76, 53, 222, var(--tw-bg-opacity));
+        background-color: var(--primary-color);
         padding: 0.625rem 1rem;
         font-size: 16px;
         line-height: 16px;
@@ -83,7 +84,7 @@
 
         margin-top: 10px;
         border-radius: 8px;
-        background: #fff;
+        background: var(--primary-color);
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
         display: none;
       }
@@ -93,7 +94,7 @@
       .select-language_section .select-btn {
         display: flex;
         height: 60px;
-        background: #e7dbdb;
+        background: var(--primary-color);
         padding: 20px;
         font-size: 18px;
         font-weight: 400;
@@ -124,7 +125,7 @@
         margin-top: 15px;
         border-radius: 8px;
         align-items: center;
-        background: #e7dbdb;
+        background: var(--primary-color);
       }
       .card_to_projects input {
         display: block;
@@ -139,6 +140,8 @@
         padding: 0.625rem 0.75rem;
         font-size: 16px;
         line-height: 16px;
+        background: var(--card-color);
+        color: var(--text-color);
       }
       .card_to_projects input[type="text"]:focus {
         --tw-border-opacity: 1;
@@ -1203,13 +1206,22 @@ mediaQuery.addEventListener('change', handleColorSchemeChange);
       const abouProjects = document.querySelector(".ajout_projects");
       abouProjects.parentNode.insertBefore(article, abouProjects);
     }
+    function create_card(){
+const card_to_projects = document.createElement("div");
+        card_to_projects.classList.add("card_to_projects");
+         card_to_projects.style.transform = "translateY(-700px)";
+        document.body.appendChild(card_to_projects);
+   
+     
+      setTimeout(() => {
+        card_to_projects.style.transform = "translateY(0px)";
+      }, 100);
+    }
     function Add_projects() {
       const card_to_projects = document.querySelector(".card_to_projects");
       if (card_to_projects) {
       } else {
-        const card_to_projects = document.createElement("div");
-        card_to_projects.classList.add("card_to_projects");
-        document.body.appendChild(card_to_projects);
+        create_card()
         // Création de la div principale
         const fontHeroDiv = document.createElement("div");
         fontHeroDiv.classList.add("language_hero");
@@ -1657,6 +1669,17 @@ mediaQuery.addEventListener('change', handleColorSchemeChange);
       section_templates.style.display = "block";
        const section_projets_site = document.querySelector(".section_projets_site");
       section_projets_site.style.display = "none";
+      })
+   
+    }
+    function reset() {
+      document.startViewTransition(()=>{
+           const section_projets_code = document.querySelector(".section_projets_code");
+      section_projets_code.style.display = "block";
+      const section_templates = document.querySelector(".section_templates");
+      section_templates.style.display = "block";
+       const section_projets_site = document.querySelector(".section_projets_site");
+      section_projets_site.style.display = "block";
       })
    
     }
