@@ -11383,10 +11383,10 @@ function saveSiteToDB(db, userId, siteId, savedSiteName, generatedContent, date_
     const body_index3 = document.querySelector(".body_index");
     const voir_mon_site = document.querySelector(".voir_mon_site");
     voir_mon_site.addEventListener("click", function (event) {
-      resetLayout()
-      resetCards()
-      resetHeader()
-      resetLayout_div_text()
+      resetLayout();
+      resetCards();
+      resetHeader();
+      resetLayout_div_text();
       const excludedElements = [
         document.getElementById("button_div"),
         document.getElementById("bar_edit"), // Ajoutez l'élément à exclure ici
@@ -12437,6 +12437,10 @@ const btn_create_host = document.createElement("button");
                 btn_create_host.textContent = "Créer un hébergement"
                 body_share.appendChild(btn_create_host)
                 btn_create_host.addEventListener("click",function(){
+                     resetLayout();
+      resetLayout_div_text();
+      reset_nav_bar();
+      resetCards();
                   const savedSiteName = localStorage.getItem("siteName");
                   const formattedSiteName = savedSiteName.replace(/\s+/g, '-');
                  const request = window.indexedDB.open("MaBaseDeDonnees", 1);
@@ -12460,6 +12464,7 @@ const btn_create_host = document.createElement("button");
               if (user_name) {
 
          input_create_host.value = "https://the-fab-studio.onrender.com/#/" + user_name.name_to_profil + "/" + formattedSiteName  + "/index.html"  
+              
                 saved_create_notif("host")
               }
             }
