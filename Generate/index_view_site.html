@@ -41,6 +41,7 @@
               const excludedElements = [
                 document.getElementById("button_div"),
                 document.getElementById("bar_edit"), // Ajoutez l'élément à exclure ici
+                document.getElementById("header_bar_div"), // Ajoutez l'élément à exclure ici
                 document.getElementById("save_notif"), // Ajoutez l'élément à exclure ici
                 document.getElementById("toast"), // Ajoutez l'élément à exclure ici
                 document.getElementById("header_bar"), // Ajoutez l'élément à exclure ici
@@ -62,6 +63,7 @@
               ];
               body_index3.style.width = "100%";
               body_index3.style.height = "100%";
+              body_index3.style.marginBottom = "0px";
               body_index3.style.overflow = "hidden";
               body_index3.style.borderRadius = "0px";
               excludedElements.forEach((excludedElement) => {
