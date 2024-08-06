@@ -1458,6 +1458,7 @@ a.style.color = txt_color_header
  function saved_create_notif(etat_of_host) {
     resetNotif(); // Assurez-vous que cette fonction est définie ailleurs
     saveState();  // Assurez-vous que cette fonction est définie ailleurs
+   
 
     localStorage.setItem("Site_save", "true");
     const save_notif = document.createElement("div");
@@ -1483,9 +1484,17 @@ a.style.color = txt_color_header
     const Save_temoin = document.querySelector(".Save_temoin");
     Save_temoin.classList.remove("active");
 if(etat_of_host){
+     resetLayout();
+      resetLayout_div_text();
+      reset_nav_bar();
+      resetCards();
    saveSite(etat_of_host);
 }
     btn_notif.addEventListener("click", function () {
+         resetLayout();
+      resetLayout_div_text();
+      reset_nav_bar();
+      resetCards();
         saveSite(etat_of_host);
     });
 }
@@ -12437,16 +12446,13 @@ const btn_create_host = document.createElement("button");
                 btn_create_host.textContent = "Créer un hébergement"
                 body_share.appendChild(btn_create_host)
                 btn_create_host.addEventListener("click",function(){
-                     resetLayout();
-      resetLayout_div_text();
-      reset_nav_bar();
-      resetCards();
+                  
                   const savedSiteName = localStorage.getItem("siteName");
                   const formattedSiteName = savedSiteName.replace(/\s+/g, '-');
                  const request = window.indexedDB.open("MaBaseDeDonnees", 1);
 
           request.addEventListener("success", function (event) {
-            console.log("click_btn")
+
             const db = event.target.result;
             // Démarrer une transaction en lecture seule sur l'objectStore "Connexion"
     const transaction = db.transaction(["Connexion"], "readonly");
