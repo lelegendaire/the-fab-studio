@@ -725,6 +725,19 @@
         text-decoration: none;
         color: var(--text-color);
       }
+      .section_templates,
+      .section_projets_code,
+      .section_projets_site{
+          animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+      .section_templates.show{
+        opacity: 1;
+        transform: scale(100%);
+      }
+      .section_templates.hidden{
+        opacity: 0;
+        transform: scale(50%);
+      }
     </style>
   </head>
   <body>
@@ -1643,44 +1656,69 @@ const card_to_projects = document.createElement("div");
     function projets_code() {
         document.startViewTransition(()=>{
         const section_templates = document.querySelector(".section_templates");
-      section_templates.style.display = "none";
+        section_templates.classList.add("hidden")
+        setTimeout(()=>{
+           section_templates.style.display = "none";
+        }, 500)
+         
       const section_projets_code = document.querySelector(".section_projets_code");
       section_projets_code.style.display = "block";
+      section_projets_code.classList.add("show")
        const section_projets_site = document.querySelector(".section_projets_site");
-      section_projets_site.style.display = "none";
+        section_projets_site.classList.add("hidden")
+        setTimeout(()=>{
+           section_projets_site.style.display = "none";
+        }, 500)
       })
       
     }
     function projets_site() {
         document.startViewTransition(()=>{
               const section_templates = document.querySelector(".section_templates");
-      section_templates.style.display = "none";
+        section_templates.classList.add("hidden")
+        setTimeout(()=>{
+           section_templates.style.display = "none";
+        }, 500)
       const section_projets_code = document.querySelector(".section_projets_code");
-      section_projets_code.style.display = "none";
+        section_projets_code.classList.add("hidden")
+        setTimeout(()=>{
+           section_projets_code.style.display = "none";
+        }, 500)
       const section_projets_site = document.querySelector(".section_projets_site");
-      section_projets_site.style.display = "block";
+       section_projets_site.style.display = "block";
+      section_projets_site.classList.add("show")
       })
 
     }
     function templates() {
       document.startViewTransition(()=>{
            const section_projets_code = document.querySelector(".section_projets_code");
-      section_projets_code.style.display = "none";
+        section_projets_code.classList.add("hidden")
+        setTimeout(()=>{
+           section_projets_code.style.display = "none";
+        }, 500)
       const section_templates = document.querySelector(".section_templates");
-      section_templates.style.display = "block";
+          section_templates.style.display = "block";
+      section_templates.classList.add("show")
        const section_projets_site = document.querySelector(".section_projets_site");
-      section_projets_site.style.display = "none";
+        section_projets_site.classList.add("hidden")
+        setTimeout(()=>{
+           section_projets_site.style.display = "none";
+        }, 500)
       })
    
     }
     function reset() {
       document.startViewTransition(()=>{
            const section_projets_code = document.querySelector(".section_projets_code");
-      section_projets_code.style.display = "block";
+          section_projets_code.style.display = "block";
+      section_projets_code.classList.add("show")
       const section_templates = document.querySelector(".section_templates");
-      section_templates.style.display = "block";
+         section_templates.style.display = "block";
+      section_templates.classList.add("show")
        const section_projets_site = document.querySelector(".section_projets_site");
-      section_projets_site.style.display = "block";
+          section_projets_site.style.display = "block";
+      section_projets_site.classList.add("show")
       })
    
     }
