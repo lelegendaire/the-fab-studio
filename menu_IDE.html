@@ -1801,19 +1801,12 @@ const getAllRequest = index.getAll();
 
 
 
-
-                    const save_site = document.createElement("section");
-                    save_site.classList.add("save_site");
                     const section_projets_site = document.querySelector(".section_projets_site .projects");
                    
-                    section_projets_site.appendChild(save_site)
                     // Insérez la nouvelle section avant la section "footer"
                    
                  
-                    
-                    const section_div_card_save_site = document.createElement("section");
-                    section_div_card_save_site.classList.add("section_div_card_save_site");
-                    save_site.appendChild(section_div_card_save_site);
+                  
 
 
 
@@ -1905,7 +1898,7 @@ const getAllRequest = index.getAll();
                         article.appendChild(projectInfo);
 
                         // Append the article to the body or any desired container
-                        section_div_card_save_site.appendChild(article);
+                        section_projets_site.appendChild(article);
                         const abouProjects =
                     document.querySelector(".section_projets_site .projects .ajout_projects");
                   abouProjects.parentNode.insertBefore(article, abouProjects);
@@ -1973,7 +1966,7 @@ const getAllRequest = index.getAll();
                                     // Mettre à jour le localStorage
 
                                     // Supprimer l'élément du DOM
-                                    section_div_card_save_site.removeChild(article);
+                                    section_projets_site.removeChild(article);
                                 }
                             }
                         });
