@@ -75,9 +75,9 @@ body.dark{
 --fond_bar_color: #0d0d0d;
 --fond_trans: linear-gradient(#f1f1f1,#1b1b1b);
 --fond_header_banner_hero: #070707;
---footer_color: #333
+--footer_color: #333;
 --footer_gradient_haut: linear-gradient(#333, #333332f5, rgba(0, 0, 0, 0.1)), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
---fotter_gradient_bas: linear-gradient(rgba(0, 0, 0, 0.1), #333333), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+--footer_gradient_bas: linear-gradient(rgba(0, 0, 0, 0.1), #333333), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
   
 --sidebar-color: #fff;
 --primary-color: rgba(76, 53, 222, 1);
