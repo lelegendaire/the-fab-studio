@@ -730,11 +730,15 @@
       .section_projets_site{
           animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
       }
-      .section_templates.show{
+      .section_templates.show,
+      .section_projets_site.show,
+      .section_projets_code.show{
         opacity: 1;
         transform: scale(100%);
       }
-      .section_templates.hidden{
+      .section_templates.hidden,
+      .section_projets_site.hidden,
+      .section_projets_code.hidden{
         opacity: 0;
         transform: scale(50%);
       }
