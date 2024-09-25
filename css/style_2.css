@@ -1360,7 +1360,7 @@ filter: blur(20px);
   padding: 20px;
   width: 245px;
   border-radius: 8px;
-  background: #fff;
+  background: var(--body_color);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   opacity: 0;
   z-index: -1;
@@ -1371,7 +1371,7 @@ filter: blur(20px);
   padding: 20px;
   margin-top: 10px;
   border-radius: 8px;
-  background: #fff;
+  background: var(--body_color);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   display: none;
 }
