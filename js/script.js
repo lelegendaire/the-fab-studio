@@ -2184,7 +2184,7 @@ plus_bento.addEventListener("click", function () {
         } else {
             icon.style.display = isActive ? "block" : "none";
         }
-
+ });
     
 
    
