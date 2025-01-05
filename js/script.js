@@ -2181,6 +2181,7 @@ plus_bento.addEventListener("click", function () {
     let isArrowToTopVisible = false;
     plus_bento_i.forEach((icon) => {
         if (icon.classList.contains("bxs-arrow-to-top")) {
+            console.log(icon.style.display)
             if (icon.style.display === "block" || icon.style.display === "") {
                 isArrowToTopVisible = true;
                 console.log(isArrowToTopVisible)
