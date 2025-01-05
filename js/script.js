@@ -2172,19 +2172,21 @@ plus_bento.addEventListener("click", function () {
     const card_bento = document.querySelectorAll('.card_bento');
     const plus_bento_i = document.querySelectorAll('.plus_bento i');
     // Basculer l'état actif
-    plus_bento.classList.toggle("active");
+    //plus_bento.classList.toggle("active");
 
     // Vérifier si l'état actif est activé
-    const isActive = plus_bento.classList.contains("active");
+    //const isActive = plus_bento.classList.contains("active");
 
-    // Appliquer les modifications en fonction de l'état actif
+   // Vérifier si l'icône "bxs-arrow-to-top" est actuellement visible
+    let isArrowToTopVisible = false;
     plus_bento_i.forEach((icon) => {
         if (icon.classList.contains("bxs-arrow-to-top")) {
-            icon.style.display = isActive ? "none" : "block";
-        } else {
-            icon.style.display = isActive ? "block" : "none";
+            if (icon.style.display === "block" || icon.style.display === "") {
+                isArrowToTopVisible = true;
+            }
+
         }
- });
+    });
     
 
    
@@ -2202,7 +2204,7 @@ plus_bento.addEventListener("click", function () {
     });
 
     // Appliquer les modifications supplémentaires en fonction de l'état de "bxs-arrow-to-top"
-    if (!isActive) {
+    if (isArrowToTopVisible) {
         card_bento.forEach((card) => {
             
 
