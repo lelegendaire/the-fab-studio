@@ -2166,24 +2166,28 @@ document.addEventListener('click', (event) => {
 });
 // Écouter les clics sur le bouton plus_bento
 plus_bento.addEventListener("click", function () {
-
-
-    // Sélectionner les éléments nécessaires
+// Sélectionner les éléments nécessaires
     const gradient_circle = document.querySelector('.gradient-circle');
     const card_grid = document.querySelector('.card-grid');
     const card_bento = document.querySelectorAll('.card_bento');
     const plus_bento_i = document.querySelectorAll('.plus_bento i');
+    // Basculer l'état actif
+    plus_bento.classList.toggle("active");
 
-    // Vérifier si l'icône "bxs-arrow-to-top" est actuellement visible
-    let isArrowToTopVisible = false;
+    // Vérifier si l'état actif est activé
+    const isActive = plus_bento.classList.contains("active");
+
+    // Appliquer les modifications en fonction de l'état actif
     plus_bento_i.forEach((icon) => {
         if (icon.classList.contains("bxs-arrow-to-top")) {
-            if (icon.style.display === "block" || icon.style.display === "") {
-                isArrowToTopVisible = true;
-            }
-
+            icon.style.display = isActive ? "none" : "block";
+        } else {
+            icon.style.display = isActive ? "block" : "none";
         }
-    });
+
+    
+
+   
 
     // Inverser les états d'affichage des icônes
     plus_bento_i.forEach((icon) => {
@@ -2198,7 +2202,7 @@ plus_bento.addEventListener("click", function () {
     });
 
     // Appliquer les modifications supplémentaires en fonction de l'état de "bxs-arrow-to-top"
-    if (isArrowToTopVisible) {
+    if (!isActive) {
         card_bento.forEach((card) => {
             
 
