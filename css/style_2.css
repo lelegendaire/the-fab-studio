@@ -3402,16 +3402,16 @@ filter: grayscale(1) blur(10px);
 }
 .mobile,
 .ai-route {
-  animation: scroll_ininity 20s linear infinite;
+  /*animation: scroll_ininity 20s linear infinite;*/
 }
 .time,
 .distance {
-  animation: scroll_ininity_inverse 20s linear infinite;
+  /*animation: scroll_ininity_inverse 20s linear infinite;*/
 }
 .cycling,
 .virage,
 .icons {
-  animation: scroll_ininity 20s linear infinite;
+  /*animation: scroll_ininity 20s linear infinite;*/
 }
 @keyframes scroll_ininity {
   0% {
