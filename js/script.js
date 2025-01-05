@@ -2183,6 +2183,7 @@ plus_bento.addEventListener("click", function () {
         if (icon.classList.contains("bxs-arrow-to-top")) {
             if (icon.style.display === "block" || icon.style.display === "") {
                 isArrowToTopVisible = true;
+                console.log(isArrowToTopVisible)
             }
 
         }
@@ -2201,10 +2202,12 @@ plus_bento.addEventListener("click", function () {
             // Afficher les autres icônes si "bxs-arrow-to-top" est masquée
             icon.style.display = isArrowToTopVisible ? "block" : "none";
         }
+        console.log(isArrowToTopVisible)
     });
 
     // Appliquer les modifications supplémentaires en fonction de l'état de "bxs-arrow-to-top"
     if (isArrowToTopVisible) {
+        console.log(isArrowToTopVisible)
         card_bento.forEach((card) => {
             
 
@@ -2217,6 +2220,7 @@ plus_bento.addEventListener("click", function () {
         card_grid.style.position = "absolute"; // Remettre la position par défaut
         card_grid.style.opacity = "0.2"; // Mettre une opacité par défaut
     } else {
+        console.log(isArrowToTopVisible)
         card_bento.forEach((card) => {
             card.style.animation = "none"
         })
