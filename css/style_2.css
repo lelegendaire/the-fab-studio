@@ -1619,8 +1619,8 @@ button[id="validateBtn_cat"] {
 
   transition: all 1s ease;
 
-  animation: autoShowAnimation2 both;
-  animation-timeline: view(block 70% 10%);
+  /*animation: autoShowAnimation2 both;*/
+  /*animation-timeline: view(block 70% 10%);*/
 }
 @keyframes autoShowAnimation2 {
   from {
@@ -1639,13 +1639,13 @@ button[id="validateBtn_cat"] {
 }
 .partie1 {
   transition: transform 1s ease;
-  animation: autoShowAnimation3 both;
-  animation-timeline: view(block 70% 10%);
+  /*animation: autoShowAnimation3 both;*/
+  /*animation-timeline: view(block 70% 10%);*/
 }
 .partie2 {
   transition: transform 1s ease;
-  animation: autoShowAnimation3 both;
-  animation-timeline: view(block 95% 10%);
+  /*animation: autoShowAnimation3 both;*/
+  /*animation-timeline: view(block 95% 10%);*/
 }
 @keyframes autoShowAnimation3 {
   from {
