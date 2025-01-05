@@ -3273,7 +3273,7 @@ background-color: var(--footer_color);
   opacity: 0.1;
   position: absolute;
 }
-.card-grid:hover .card_bento:not(:hover){
+.card-grid:hover .card_bento:hover{
 /*filter: grayscale(1) blur(10px);*/
  transform: scale(1.05);
 }
