@@ -2200,15 +2200,7 @@ plus_bento.addEventListener("click", function () {
     // Appliquer les modifications supplémentaires en fonction de l'état de "bxs-arrow-to-top"
     if (isArrowToTopVisible) {
         card_bento.forEach((card) => {
-            if (card.classList.contains("time")) {
-                card.style.animation = "scroll_ininity_inverse 20s linear infinite"
-                if (card.classList.contains("distance")) {
-                    card.style.animation = "scroll_ininity_inverse 20s linear infinite"
-
-                }
-            } else {
-                card.style.animation = "scroll_ininity 20s linear infinite"
-            }
+            
 
         })
         // Si "bxs-arrow-to-top" est visible, faire les actions de désactivation
