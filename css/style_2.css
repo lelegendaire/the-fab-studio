@@ -45,7 +45,9 @@
 --footer_gradient_haut: linear-gradient(#ff8c6b, #ff8c6b94, rgba(0, 0, 0, 0.1)), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
 --footer_gradient_bas: linear-gradient(rgba(0, 0, 0, 0.1), #ff8c6b), url(https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
 --footer_angle: linear-gradient(#ff8c6b, #ec8363);
-  
+--option: #cfcfcf;
+--option_hover: #f2f2f2;
+
 --sidebar-color: #fff;
 --primary-color: #ff8c6b;
 --primary-color-light: #f6f5ff;
@@ -1401,10 +1403,11 @@ filter: blur(20px);
   margin-top: 15px;
   border-radius: 8px;
   align-items: center;
-  background: #fff;
+  background: var(--option);
+  color: var(--text-color)
 }
 .options .option:hover {
-  background: #f2f2f2;
+  background: var(--option_hover);
 }
 
 .option .option-text {
